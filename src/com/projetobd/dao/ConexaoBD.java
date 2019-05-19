@@ -8,11 +8,12 @@ public class ConexaoBD {
 
 	private static Connection con = null;
 	private static ConexaoBD self = null;
-	
-	protected Connection getConector() throws SQLException, ClassNotFoundException{
+
+	protected Connection getConector() throws SQLException, ClassNotFoundException {
 		if (con == null) {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Projeto_BD_II?useTimezone=true&serverTimezone=UTC","root","1006");
+			con = DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/Projeto_BD_II?useTimezone=true&serverTimezone=UTC", "root", "1006");
 		}
 		return con;
 	}
@@ -37,7 +38,7 @@ public class ConexaoBD {
 		con.close();
 	}
 
-	public static boolean testarCon() throws ClassNotFoundException, SQLException{
+	public static boolean testarCon() throws ClassNotFoundException, SQLException {
 		if (getInstacia().getConector() != null) {
 			return true;
 		}

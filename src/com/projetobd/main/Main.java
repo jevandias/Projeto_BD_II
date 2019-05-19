@@ -6,7 +6,7 @@ import com.projetobd.dao.ConexaoBD;
 
 public class Main {
 
-	public static void main(String[] args){
+	public static void main(String[] args) {
 		try {
 			System.out.println(ConexaoBD.testarCon());
 		} catch (ClassNotFoundException e) {
