@@ -1,5 +1,9 @@
 package com.projetobd.dao;
 
-public class FuncionarioDao {
+public class FuncionarioDao implements IFuncionarioDao{
 
+	public FuncionarioDao() {
+	
+	}
+		
 }
