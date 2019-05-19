@@ -21,7 +21,7 @@ public class DepartamentoDao implements IDepartamentoDao{
 
 	@Override
 	public void cadastrar(Departamentos departamentos) throws SQLException {
-		String sql = "INSERT INTO departamentos(codigo,nome,localizacao) VALUES (?,?,?);";
+		String sql = "INSERT INTO departamentos(nome,localizacao) VALUES (?,?);";
 		PreparedStatement prepare = con.prepareStatement(sql);
 		prepare.setString(1, departamentos.getNome());
 		prepare.setString(2, departamentos.getLocalizacao());
@@ -51,9 +51,9 @@ public class DepartamentoDao implements IDepartamentoDao{
 		PreparedStatement prepare = con.prepareStatement(sql);
 		prepare.setString(1, departamentos.getNome());
 		prepare.setString(2, departamentos.getLocalizacao());
+		prepare.setInt(3, departamentos.getCodigo());
 		prepare.executeUpdate();
 		prepare.close();
-		
 	}
 
 	@Override
