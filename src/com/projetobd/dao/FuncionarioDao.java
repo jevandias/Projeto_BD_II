@@ -4,6 +4,5 @@ public class FuncionarioDao implements IFuncionarioDao{
 
 	public FuncionarioDao() {
 	
-	}
-		
+	}		
 }
