@@ -16,6 +16,7 @@ create table Dependentes
     numero integer null,
     cidade varchar(50) null,
     uf varchar(2) null,
+    cep bigint null,
 	parentesco varchar(30) null
 );
 
@@ -29,6 +30,7 @@ create table Funcionarios
     numero integer null,
     cidade varchar(50) null,
     uf varchar(2) null,
+    cep bigint null,
 	telefone bigint null,
 	salario bigint null,
     senha varchar(32) not null,
