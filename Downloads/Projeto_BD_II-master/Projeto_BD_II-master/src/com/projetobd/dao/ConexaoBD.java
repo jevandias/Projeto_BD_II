@@ -13,7 +13,7 @@ public class ConexaoBD {
 		if (con == null) {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/Projeto_BD_II?useTimezone=true&serverTimezone=UTC", "root", "");
+					"jdbc:mysql://localhost:3306/Projeto_BD_II?useTimezone=true&serverTimezone=UTC", "root", "root1234");
 		}
 		return con;
 	}
