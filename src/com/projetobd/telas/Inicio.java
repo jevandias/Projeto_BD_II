@@ -4,24 +4,33 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
+import javax.swing.WindowConstants;
 
 import java.awt.Font;
 import java.awt.Dimension;
 
-public class Inicio extends javax.swing.JFrame {
+import com.projetobd.controler.FuncionarioController;
+import com.projetobd.controler.FuncionarioLogado;
+import com.projetobd.entidades.Funcionario;
+
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
+
+public class Inicio extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private JButton btnFechar;
-	private JButton btnEntrar;
 	private JLabel jLabel1;
 	private JLabel lblLogo;
 	private JLabel jLabel3;
@@ -29,9 +38,11 @@ public class Inicio extends javax.swing.JFrame {
 	private JLabel jLabel5;
 	private JPanel jPanel1;
 	private JPasswordField txtPwd;
-	private JSeparator jSeparator1;
-	private JSeparator jSeparator2;
+	private JSeparator jSeparatorUsuario;
+	private JSeparator jSeparatorSenha;
 	private JTextField txtUsuario;
+	private JButton btnEntrar;
+	private JLabel lblErro;
 
 	public Inicio() {
 
@@ -41,43 +52,53 @@ public class Inicio extends javax.swing.JFrame {
 	private void initComponents() {
 		setUndecorated(true);
 		jPanel1 = new JPanel();
+		jPanel1.setBounds(180, 90, 350, 310);
 		lblLogo = new JLabel();
+		lblLogo.setBounds(138, 41, 69, 84);
 		txtUsuario = new JTextField();
-		jSeparator1 = new JSeparator();
+		txtUsuario.setBounds(98, 143, 164, 14);
+		jSeparatorUsuario = new JSeparator();
+		jSeparatorUsuario.setBounds(98, 157, 164, 10);
 		jLabel4 = new JLabel();
-		jSeparator2 = new JSeparator();
+		jLabel4.setBounds(78, 141, 16, 18);
+		jSeparatorSenha = new JSeparator();
+		jSeparatorSenha.setBounds(98, 215, 164, 10);
 		jLabel5 = new JLabel();
-		btnEntrar = new JButton();
+		jLabel5.setBounds(75, 199, 19, 18);
 		txtPwd = new JPasswordField();
+		txtPwd.setBounds(98, 201, 164, 14);
 		jLabel3 = new JLabel();
+		jLabel3.setBounds(160, 70, 400, 350);
 		jLabel1 = new JLabel();
+		jLabel1.setBounds(0, 0, 720, 500);
+		btnFechar = new JButton("X");
+		lblErro = new JLabel();
 
-		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setAlwaysOnTop(true);
 		setBackground(new java.awt.Color(255, 255, 255));
 		setMinimumSize(new Dimension(720, 500));
 		setSize(new Dimension(702, 530));
-		getContentPane().setLayout(null);
 		setLocationRelativeTo(null);
 
 		jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
 		lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/ifpe.png")));
-		lblLogo.setFocusable(true);
+		lblLogo.setFocusable(false);
 
 		txtUsuario.setBackground(new java.awt.Color(255, 255, 255));
 		txtUsuario.setText("Usuário");
 		txtUsuario.setBorder(null);
 		txtUsuario.setForeground(new Color(204, 204, 204));
 
-		jSeparator1.setBackground(new java.awt.Color(204, 204, 204));
-		jSeparator1.setForeground(new java.awt.Color(204, 204, 204));
+		jSeparatorUsuario.setBackground(new java.awt.Color(204, 204, 204));
+		jSeparatorUsuario.setForeground(new java.awt.Color(204, 204, 204));
 
 		jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/usuario.png")));
 		jLabel4.setPreferredSize(new java.awt.Dimension(16, 18));
 
-		jSeparator2.setBackground(new java.awt.Color(204, 204, 204));
-		jSeparator2.setForeground(new java.awt.Color(204, 204, 204));
+		jSeparatorSenha.setBackground(new java.awt.Color(204, 204, 204));
+		jSeparatorSenha.setForeground(new java.awt.Color(204, 204, 204));
 
 		jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/senha.png")));
 		jLabel5.setPreferredSize(new java.awt.Dimension(16, 18));
@@ -88,90 +109,52 @@ public class Inicio extends javax.swing.JFrame {
 		txtPwd.setBorder(null);
 
 		limparTxtField();
-
-		javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-		jPanel1.setLayout(jPanel1Layout);
-		jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-						.addContainerGap(73, Short.MAX_VALUE)
-						.addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-								.addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 19,
-										javax.swing.GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-						.addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-								.addComponent(jSeparator2)
-								.addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.LEADING)
-								.addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
-								.addComponent(txtPwd, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
-						.addGap(88, 88, 88))
-				.addGroup(jPanel1Layout.createSequentialGroup().addGroup(jPanel1Layout
-						.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-						.addGroup(jPanel1Layout.createSequentialGroup().addGap(138, 138, 138).addComponent(lblLogo,
-								javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-						.addGroup(jPanel1Layout.createSequentialGroup().addGap(142, 142, 142).addComponent(btnEntrar)))
-						.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
-		jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(jPanel1Layout.createSequentialGroup().addGap(41, 41, 41)
-						.addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 84,
-								javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addGap(18, 18, 18)
-						.addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-								.addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-						.addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10,
-								javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addGap(12, 12, 12)
-						.addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-								.addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtPwd, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-						.addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10,
-								javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addGap(29, 29, 29).addComponent(btnEntrar).addContainerGap(43, Short.MAX_VALUE)));
-
-
-		btnEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/entrar.png")));
-		btnEntrar.setBorder(null);
+		getContentPane().setLayout(null);
+		
+		btnEntrar = new JButton();
+		btnEntrar.setFocusable(false);
+		btnEntrar.setBounds(138, 249, 69, 26);
+		btnEntrar.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/entrar.png")));
 		btnEntrar.setBackground(Color.WHITE);
 		btnEntrar.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
-				btnEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/entrar.png")));
+				btnEntrar.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/entrar.png")));
 			}
-
+			
 			@Override
 			public void mousePressed(MouseEvent arg0) {
-				btnEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/entrar2.png")));
+				btnEntrar.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/entrar2.png")));
+				
 			}
-
+			
 			@Override
-			public void mouseExited(MouseEvent arg0) {
-			}
-
+			public void mouseExited(MouseEvent arg0) {}
+			
 			@Override
-			public void mouseEntered(MouseEvent arg0) {
-			}
-
+			public void mouseEntered(MouseEvent arg0) {}
+			
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
-			}
+			public void mouseClicked(MouseEvent arg0) {}
 		});
 		
+		 btnEntrar.addActionListener(this);
+		
 		getContentPane().add(jPanel1);
-		jPanel1.setBounds(180, 90, 350, 310);
+		jPanel1.setLayout(null);
+		jPanel1.add(jLabel4);
+		jPanel1.add(jLabel5);
+		jPanel1.add(jSeparatorSenha);
+		jPanel1.add(txtUsuario);
+		jPanel1.add(jSeparatorUsuario);
+		jPanel1.add(txtPwd);
+		jPanel1.add(lblLogo);
+		jPanel1.add(btnEntrar);
 
-		btnFechar = new JButton("X");
+		btnFechar.setBounds(672, 0, 48, 23);
 		btnFechar.setBackground(Color.RED);
 		btnFechar.setForeground(Color.WHITE);
 		btnFechar.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnFechar.setBounds(679, 0, 41, 23);
 		getContentPane().add(btnFechar);
 		btnFechar.addActionListener(new ActionListener() {
 			@Override
@@ -182,15 +165,27 @@ public class Inicio extends javax.swing.JFrame {
 
 		jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/sombra.png"))); // NOI18N
 		getContentPane().add(jLabel3);
-		jLabel3.setBounds(160, 70, 400, 350);
 
 		jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/back.png"))); // NOI18N
 		getContentPane().add(jLabel1);
-		jLabel1.setBounds(0, 0, 720, 500);
 
 		pack();
+		btnEntrar.setBorder(null);
+		
+		lblErro.setHorizontalAlignment(SwingConstants.CENTER);
+		lblErro.setBounds(10, 285, 330, 14);
+		lblErro.setForeground(Color.RED);
+		jPanel1.add(lblErro);
 	}
 
+	public void actionPerformed(ActionEvent e) {
+       if(e.getSource() == btnFechar) {
+    	   dispose();
+       }else if(e.getSource() == btnEntrar) {
+    	   validarSessao();
+       }
+    }
+		
 	private void limparTxtField() {
 		txtUsuario.addFocusListener(new FocusListener() {
 			@Override
@@ -206,6 +201,8 @@ public class Inicio extends javax.swing.JFrame {
 				if (txtUsuario.getText().equals("") || txtUsuario.getText().equals("Usuário")) {
 					txtUsuario.setText("");
 					txtUsuario.setForeground(Color.black);
+					jSeparatorUsuario.setBackground(new Color(204,204,204));
+					
 				}
 			}
 		});
@@ -226,33 +223,38 @@ public class Inicio extends javax.swing.JFrame {
 				if (senha.equals("") || senha.equals("jPasswordField1")) {
 					txtPwd.setText("");
 					txtPwd.setForeground(Color.black);
+					jSeparatorSenha.setBackground(new Color(204,204,204));
 				}
 			}
 		});
 	}
-
-	public static void main(String args[]) {
-		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
-					javax.swing.UIManager.setLookAndFeel(info.getClassName());
-					break;
+	
+	private void validarSessao() {
+		String usuario = txtUsuario.getText();
+		String senha = new String(txtPwd.getPassword());
+		Funcionario funcionario;
+		
+		if(usuario.equals("Usuário") || usuario.equals("")) {
+			jSeparatorUsuario.setBackground(Color.RED);
+		}else if(senha.equals("jPasswordField1") || senha.equals("")) {
+			jSeparatorSenha.setBackground(Color.RED);
+		}else {
+			try {
+				funcionario = new FuncionarioController().validarSessao(usuario, senha);
+				
+				if(funcionario != null) {
+					FuncionarioLogado.nome = funcionario.getNome();
+				}else {
+					lblErro.setText("");
+					lblErro.setText("Usuario e/ou senha invalidos");
 				}
+			} catch (ClassNotFoundException e) {
+				lblErro.setText("");
+				lblErro.setText("Erro interno do sistema");
+			} catch (SQLException e) {
+				lblErro.setText("");
+				lblErro.setText("Erro de banco de dados");
 			}
-		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}
-
-		java.awt.EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				new Inicio().setVisible(true);
-			}
-		});
 	}
 }

@@ -83,4 +83,19 @@ public class FuncionarioDao implements IFuncionarioDao {
 		prepare.execute();
 		prepare.close();
 	}
+	
+	@Override
+	public Funcionario validarSessao(String usuario, String senha) throws SQLException{
+		String sql = "SELECT nome FROM funcionarios WHERE cpf = ? AND senha=?";
+		PreparedStatement prepare = con.prepareStatement(sql);
+		prepare.setString(1, usuario);
+		prepare.setString(2, senha);
+		ResultSet result = prepare.executeQuery();
+		Funcionario funcionario = null;
+		if(result.next()) {
+			funcionario = new Funcionario();
+			funcionario.setNome(result.getString("nome"));
+		}
+		return funcionario;
+	}
 }

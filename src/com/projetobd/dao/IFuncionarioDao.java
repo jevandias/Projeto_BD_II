@@ -11,4 +11,5 @@ public interface IFuncionarioDao {
 	public List<Funcionario> listar() throws SQLException;
 	public void alterar(Funcionario funcionario) throws SQLException;
 	public void excluir(int codigo) throws SQLException;
+	Funcionario validarSessao(String usuario, String senha) throws SQLException;
 }
