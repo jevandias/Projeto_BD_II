@@ -1,5 +1,6 @@
 package com.projetobd.controler;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.projetobd.dao.FuncionarioDao;
@@ -9,7 +10,7 @@ import com.projetobd.entidades.Funcionario;
 public class FuncionarioController {
 	IFuncionarioDao funcionarioDao;
 	
-	public FuncionarioController() {
+	public FuncionarioController() throws ClassNotFoundException, SQLException {
 		funcionarioDao = new FuncionarioDao();
 	}
 	
