@@ -9,12 +9,12 @@ import java.util.List;
 
 import com.projetobd.entidades.Departamentos;
 
-public class DepartamentoDao implements IDepartamentoDao{
+public class DepartamentoDao implements IDepartamentoDao {
 
 	private Connection con;
 	private Departamentos departamentos;
 	private List<Departamentos> listDepartamento;
-	
+
 	public DepartamentoDao() throws ClassNotFoundException, SQLException {
 		con = (Connection) ConexaoBD.getInstacia().getConector();
 	}
@@ -35,7 +35,7 @@ public class DepartamentoDao implements IDepartamentoDao{
 		PreparedStatement prepare = con.prepareStatement(sql);
 		ResultSet result = prepare.executeQuery();
 		listDepartamento = new ArrayList<Departamentos>();
-		while(result.next()) {
+		while (result.next()) {
 			departamentos = new Departamentos();
 			departamentos.setCodigo(result.getInt("codigo"));
 			departamentos.setNome(result.getString("nome"));
