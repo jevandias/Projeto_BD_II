@@ -239,7 +239,22 @@ public class Inicio extends JFrame implements ActionListener {
 		}else if(senha.equals("jPasswordField1") || senha.equals("")) {
 			jSeparatorSenha.setBackground(Color.RED);
 		}else {
-			new Cadastro().setVisible(true);
+			try {
+				funcionario = new FuncionarioController().validarSessao(usuario, senha);
+				
+				if(funcionario != null) {
+					FuncionarioLogado.nome = funcionario.getNome();
+				}else {
+					lblErro.setText("");
+					lblErro.setText("Usuario e/ou senha invalidos");
+				}
+			} catch (ClassNotFoundException e) {
+				lblErro.setText("");
+				lblErro.setText("Erro interno do sistema");
+			} catch (SQLException e) {
+				lblErro.setText("");
+				lblErro.setText("Erro de banco de dados");
+			}
 		}
 	}
 }
