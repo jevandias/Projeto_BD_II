@@ -31,6 +31,7 @@ create table Funcionarios
     uf varchar(2) null,
 	telefone bigint null,
 	salario bigint null,
+    senha varchar(32) not null,
     codigo_Departamento int not null,
 	codigo_DepartamentoGerenciar int not null AUTO_INCREMENT,
 	constraint fk_cod_depar_ger
