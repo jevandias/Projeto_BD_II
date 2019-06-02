@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FuncionarioDao implements IFuncionarioDao {
+public class FuncionarioDao {
 	private Connection con;
 	private Funcionario funcionario;
 	private List<Funcionario> listFuncionario;
@@ -17,7 +17,6 @@ public class FuncionarioDao implements IFuncionarioDao {
 		con = (Connection) ConexaoBD.getInstacia().getConector();
 	}
 
-	@Override
 	public void cadastrar(Funcionario funcionario) throws SQLException {
 		String sql = "INSERT INTO funcionarios(`CPF`,`nome`,`rua`,`bairro`,`numero`,`cidade`,`uf`,`telefone`,`salario`) VALUES(?,?,?,?,?,?,?,?,?);";
 		PreparedStatement prepare = con.prepareStatement(sql);
@@ -34,7 +33,6 @@ public class FuncionarioDao implements IFuncionarioDao {
 		prepare.close();
 	}
 
-	@Override
 	public List<Funcionario> listar() throws SQLException {
 		String sql = "SELECT * FROM funcionarios";
 		PreparedStatement prepare = con.prepareStatement(sql);
@@ -58,7 +56,6 @@ public class FuncionarioDao implements IFuncionarioDao {
 		return listFuncionario;
 	}
 
-	@Override
 	public void alterar(Funcionario funcionario) throws SQLException {
 		String sql = "UPDATE `funcionarios` SET `nome` = ?,`rua` = ?,`bairro` = ?,`numero` = ?,`cidade` = ?,`uf` = ?,`telefone` = ?,`salario` = ? WHERE `CPF` = ?;";
 		PreparedStatement prepare = con.prepareStatement(sql);
@@ -75,7 +72,6 @@ public class FuncionarioDao implements IFuncionarioDao {
 		prepare.close();
 	}
 
-	@Override
 	public void excluir(int codigo) throws SQLException {
 		String sql = "DELETE FROM funcionarios WHERE cpf = ?";
 		PreparedStatement prepare = con.prepareStatement(sql);
@@ -84,7 +80,6 @@ public class FuncionarioDao implements IFuncionarioDao {
 		prepare.close();
 	}
 	
-	@Override
 	public Funcionario validarSessao(String usuario, String senha) throws SQLException{
 		String sql = "SELECT nome FROM funcionarios WHERE cpf = ? AND senha=?";
 		PreparedStatement prepare = con.prepareStatement(sql);

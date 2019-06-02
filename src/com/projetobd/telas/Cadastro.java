@@ -1,7 +1,11 @@
 package com.projetobd.telas;
 
 import java.awt.Dimension;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -13,12 +17,87 @@ import javax.swing.JTextField;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
-import java.awt.Font;
+import javax.swing.table.DefaultTableModel;
 
-public class Cadastro extends javax.swing.JFrame {
+import com.projetobd.personalizados.JDocumentFormatedField;
+import com.projetobd.personalizados.JNumberField;
+import com.projetobd.controler.ConsultaCep;
+import com.projetobd.controler.GerarSenha;
+import com.projetobd.controler.ValidaCNP;
+
+public class Cadastro extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-
+	
+	private JButton btnSair;
+	private JButton btnSalvar;
+	private JLabel lblUsuarioLogado;
+	private JLabel lblBairro;
+	private JLabel lblNumero;
+	private JLabel lblCidade;
+	private JLabel lblUf;
+	private JLabel lblCep;
+	private JLabel lblTelefone;
+	private JLabel lblSalario;
+	private JLabel lblConfirmacao;
+	private JLabel lblRodape;
+	private JLabel lblIconIF;
+	private JLabel lblNavegacao;
+	private JLabel lblSenha;
+	private JLabel jLabel26;
+	private JLabel jLabel27;
+	private JLabel jLabel28;
+	private JLabel jLabel29;
+	private JLabel lblBemVindo;
+	private JLabel jLabel30;
+	private JLabel lblNomeSistema;
+	private JLabel lblTituloTela;
+	private JLabel lblNome;
+	private JLabel lblCpf;
+	private JLabel lblEndereco;
+	private JLabel lblRua;
+	private JPanel jPanel1;
+	private JPanel tabListar;
+	private JPanel tabCadastrar;
+	private JPanel tabInicio;
+	private JScrollPane jScrollPaneListas;
+	private JSeparator jSeparatorBase;
+	private JSeparator jSeparatorCep;
+	private JSeparator jSeparatorTelefone;
+	private JSeparator jSeparatorSalario;
+	private JSeparator jSeparator13;
+	private JSeparator jSeparatorSenha;
+	private JSeparator jSeparatorTitulo;
+	private JSeparator jSeparatorNome;
+	private JSeparator jSeparatorCpf;
+	private JSeparator jSeparatorRua;
+	private JSeparator jSeparatorBairro;
+	private JSeparator jSeparatorCidade;
+	private JSeparator jSeparatorNumero;
+	private JSeparator jSeparatorUf;
+	private JTabbedPane jTabbedPane1;
+	private JTable ListaFuncionario;
+	private JTextField txtFuncionarioNome;
+	private JTextField txtSalario;
+	private JTextField txtFuncionarioCpf;
+	private JTextField txtCidade;
+	private JTextField txtBairro;
+	private JTextField txtNumero;
+	private JTextField txtRua;
+	private JTextField txtUf;
+	private JTextField txtTelefone;
+	private JTextField txtCep;
+	private JButton btnCadastroDeDependentes;
+	private JButton btnCadastroDeDepartamentos;
+	private JButton btnCadastroDeFuncionarios;
+	private JButton btnCadastroDeProjetos;
+	private JButton btnInicio;
+	private JButton btnCadastroDeDepartamentos_1;
+	private JButton btnCadastroDeFuncionrios;
+	private JButton btnCadastroFuncionarios;
+	private JButton btnCadastroDeDependentes_1;
+	private JTextField txtSenha;
+	
 	public Cadastro() {
 		initComponents();
 	}
@@ -33,15 +112,15 @@ public class Cadastro extends javax.swing.JFrame {
 		jPanel1 = new JPanel();
 		jTabbedPane1 = new JTabbedPane();
 		tabListar = new JPanel();
-		jScrollPane2 = new JScrollPane();
-		jTable1 = new JTable();
+		jScrollPaneListas = new JScrollPane();
+		ListaFuncionario = new JTable();
 		tabCadastrar = new JPanel();
 		lblTituloTela = new JLabel();
 		jSeparatorTitulo = new JSeparator();
 		txtFuncionarioNome = new JTextField();
 		jSeparatorNome = new JSeparator();
 		lblCpf = new JLabel();
-		txtFuncionarioCpf = new JTextField();
+		txtFuncionarioCpf = new JDocumentFormatedField().getCpf();
 		jSeparatorCpf = new JSeparator();
 		lblEndereco = new JLabel();
 		lblRua = new JLabel();
@@ -56,16 +135,15 @@ public class Cadastro extends javax.swing.JFrame {
 		jSeparatorUf = new JSeparator();
 		lblCep = new JLabel();
 		jSeparatorCep = new JSeparator();
-		txtTelefone = new JTextField();
+		txtTelefone = new JDocumentFormatedField().getTel();
 		jSeparatorTelefone = new JSeparator();
-		txtSenha = new JTextField();
 		jSeparator13 = new JSeparator();
 		lblConfirmacao = new JLabel();
 		lblNavegacao = new JLabel();
 
 		setUndecorated(true);
 		setMinimumSize(new Dimension(800, 530));
-		setSize(new Dimension(800, 531));
+		setSize(new Dimension(800, 520));
 		setAlwaysOnTop(true);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -95,52 +173,52 @@ public class Cadastro extends javax.swing.JFrame {
 
 		jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
 		tabInicio = new javax.swing.JPanel();
-		jLabel1 = new javax.swing.JLabel();
-		jLabel1.setBounds(618, 18, 110, 14);
-		jButton1 = new javax.swing.JButton();
-		jButton1.setBounds(726, 14, 59, 23);
-		jLabel2 = new javax.swing.JLabel();
-		jLabel2.setBounds(36, 17, 70, 96);
-		jLabel3 = new javax.swing.JLabel();
-		jLabel3.setBounds(520, 11, 92, 24);
-		jSeparator1 = new javax.swing.JSeparator();
-		jSeparator1.setBounds(110, 119, 675, 10);
-		jLabel4 = new javax.swing.JLabel();
-		jLabel4.setHorizontalAlignment(SwingConstants.CENTER);
-		jLabel4.setBounds(212, 135, 371, 14);
+		lblUsuarioLogado = new javax.swing.JLabel();
+		lblUsuarioLogado.setBounds(618, 18, 110, 14);
+		btnSair = new javax.swing.JButton();
+		btnSair.setBounds(726, 14, 59, 23);
+		lblIconIF = new javax.swing.JLabel();
+		lblIconIF.setBounds(36, 17, 70, 96);
+		lblBemVindo = new javax.swing.JLabel();
+		lblBemVindo.setBounds(520, 11, 92, 24);
+		jSeparatorBase = new javax.swing.JSeparator();
+		jSeparatorBase.setBounds(110, 119, 675, 10);
+		lblNomeSistema = new javax.swing.JLabel();
+		lblNomeSistema.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNomeSistema.setBounds(212, 135, 371, 14);
 
 		tabInicio.setBackground(new java.awt.Color(255, 255, 255));
 		tabInicio.setForeground(new java.awt.Color(0, 0, 0));
 
-		jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-		jLabel1.setText("Usuário");
+		lblUsuarioLogado.setBackground(new java.awt.Color(255, 255, 255));
+		lblUsuarioLogado.setText("Usuário");
 
-		jButton1.setBackground(new java.awt.Color(255, 255, 255));
-		jButton1.setText("Sair");
-		jButton1.addActionListener(new java.awt.event.ActionListener() {
+		btnSair.setBackground(new java.awt.Color(255, 255, 255));
+		btnSair.setText("Sair");
+		btnSair.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButton1ActionPerformed(evt);
 			}
 		});
 
-		jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/ifpe.png")));
+		lblIconIF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/ifpe.png")));
 
-		jLabel3.setFont(new java.awt.Font("Dialog", 1, 14));
-		jLabel3.setText("Bem vindo !");
+		lblBemVindo.setFont(new java.awt.Font("Dialog", 1, 14));
+		lblBemVindo.setText("Bem vindo !");
 
-		jSeparator1.setBackground(new java.awt.Color(204, 204, 204));
-		jSeparator1.setForeground(new java.awt.Color(204, 204, 204));
+		jSeparatorBase.setBackground(new java.awt.Color(204, 204, 204));
+		jSeparatorBase.setForeground(new java.awt.Color(204, 204, 204));
 
-		jLabel4.setText("Gerência Empressarial |  Departamentos e Funcionários");
+		lblNomeSistema.setText("Gerência Empressarial |  Departamentos e Funcionários");
 
 		jTabbedPane1.addTab("Inicío", tabInicio);
 		tabInicio.setLayout(null);
-		tabInicio.add(jLabel2);
-		tabInicio.add(jSeparator1);
-		tabInicio.add(jLabel3);
-		tabInicio.add(jLabel1);
-		tabInicio.add(jButton1);
-		tabInicio.add(jLabel4);
+		tabInicio.add(lblIconIF);
+		tabInicio.add(jSeparatorBase);
+		tabInicio.add(lblBemVindo);
+		tabInicio.add(lblUsuarioLogado);
+		tabInicio.add(btnSair);
+		tabInicio.add(lblNomeSistema);
 
 		btnCadastroDeDependentes = new JButton("Cadastro de dependentes");
 		btnCadastroDeDependentes.setBackground(Color.WHITE);
@@ -168,24 +246,25 @@ public class Cadastro extends javax.swing.JFrame {
 
 		tabListar.setBackground(new java.awt.Color(255, 255, 255));
 
-		jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
-		jScrollPane2.setBorder(null);
+		jScrollPaneListas.setBackground(new java.awt.Color(255, 255, 255));
+		jScrollPaneListas.setBorder(null);
 
-		jTable1.setBackground(new java.awt.Color(255, 255, 255));
-		jTable1.setModel(
-				new javax.swing.table.DefaultTableModel(
-						new Object[][] { { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null } },
-						new String[] { "CPF", "Nome", "Telefone", "Departamento" }));
-		jTable1.setGridColor(new java.awt.Color(153, 153, 153));
-		jScrollPane2.setViewportView(jTable1);
+		ListaFuncionario.setBackground(new java.awt.Color(255, 255, 255));
+		ListaFuncionario.setModel(new DefaultTableModel(new Object[][] { { null, null, null, null }, },
+				new String[] { "CPF", "Nome", "Telefone", "Departamento" }));
+		ListaFuncionario.getColumnModel().getColumn(0).setPreferredWidth(70);
+		ListaFuncionario.getColumnModel().getColumn(1).setPreferredWidth(225);
+		ListaFuncionario.getColumnModel().getColumn(2).setPreferredWidth(98);
+		ListaFuncionario.getColumnModel().getColumn(3).setPreferredWidth(109);
+		ListaFuncionario.setGridColor(new java.awt.Color(153, 153, 153));
+		jScrollPaneListas.setViewportView(ListaFuncionario);
 
 		javax.swing.GroupLayout gl_tabListar = new javax.swing.GroupLayout(tabListar);
 		tabListar.setLayout(gl_tabListar);
 		gl_tabListar.setHorizontalGroup(gl_tabListar.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 771, Short.MAX_VALUE));
+				.addComponent(jScrollPaneListas, javax.swing.GroupLayout.DEFAULT_SIZE, 771, Short.MAX_VALUE));
 		gl_tabListar.setVerticalGroup(gl_tabListar.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE));
+				.addComponent(jScrollPaneListas, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE));
 
 		jTabbedPane1.addTab("Listas", tabListar);
 
@@ -193,7 +272,7 @@ public class Cadastro extends javax.swing.JFrame {
 		tabCadastrar.setLayout(null);
 
 		lblTituloTela.setBackground(new java.awt.Color(153, 153, 153));
-		lblTituloTela.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+		lblTituloTela.setFont(new java.awt.Font("Dialog", 1, 18));
 		lblTituloTela.setText("Cadastro de Funcionários");
 		tabCadastrar.add(lblTituloTela);
 		lblTituloTela.setBounds(23, 15, 301, 35);
@@ -233,6 +312,20 @@ public class Cadastro extends javax.swing.JFrame {
 		txtFuncionarioCpf.setForeground(new java.awt.Color(153, 153, 153));
 		txtFuncionarioCpf.setToolTipText("");
 		txtFuncionarioCpf.setBorder(null);
+		txtFuncionarioCpf.addFocusListener(new FocusListener() {	
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				boolean valido = ValidaCNP.isValidCPF(txtFuncionarioCpf.getText().replace(".", "").replace("-", ""));
+				if(!valido) {
+					jSeparatorCpf.setBackground(Color.RED);
+					txtFuncionarioCpf.setText("");
+				}
+			}
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				jSeparatorCpf.setBackground(new Color(204,204,204));
+			}
+		});
 
 		tabCadastrar.add(txtFuncionarioCpf);
 		txtFuncionarioCpf.setBounds(357, 72, 123, 18);
@@ -315,7 +408,7 @@ public class Cadastro extends javax.swing.JFrame {
 		lblNumero.setText("Nº:");
 		tabCadastrar.add(lblNumero);
 		lblNumero.setBounds(598, 147, 25, 16);
-		txtNumero = new javax.swing.JTextField();
+		txtNumero = new JNumberField();
 
 		txtNumero.setBackground(new java.awt.Color(255, 255, 255));
 		txtNumero.setForeground(new java.awt.Color(153, 153, 153));
@@ -375,12 +468,30 @@ public class Cadastro extends javax.swing.JFrame {
 		lblCep.setText("CEP:");
 		tabCadastrar.add(lblCep);
 		lblCep.setBounds(316, 193, 26, 16);
-		txtCep = new javax.swing.JTextField();
+		txtCep = new JDocumentFormatedField().getCep();
 
 		txtCep.setBackground(new java.awt.Color(255, 255, 255));
 		txtCep.setForeground(new java.awt.Color(153, 153, 153));
 		txtCep.setToolTipText("");
 		txtCep.setBorder(null);
+		txtCep.addFocusListener(new FocusListener() {
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				if (!txtCep.getText().replace("     -   ", "").isEmpty()) {
+					ConsultaCep consulta = new ConsultaCep(txtCep.getText().replace("-", ""));
+					txtBairro.setText(consulta.getBairro());
+					txtCidade.setText(consulta.getCidade());
+					txtRua.setText(consulta.getLogradouro());
+					txtUf.setText(consulta.getEstado());
+					txtSenha.setText(String.valueOf(GerarSenha.retornaSenha()));
+				}
+			}
+
+			@Override
+			public void focusGained(FocusEvent arg0) {
+
+			}
+		});
 
 		tabCadastrar.add(txtCep);
 		txtCep.setBounds(348, 192, 114, 18);
@@ -416,14 +527,6 @@ public class Cadastro extends javax.swing.JFrame {
 		lblSenha.setText("Senha de Acesso:");
 		tabCadastrar.add(lblSenha);
 		lblSenha.setBounds(23, 233, 102, 16);
-
-		txtSenha.setBackground(new java.awt.Color(255, 255, 255));
-		txtSenha.setForeground(new java.awt.Color(153, 153, 153));
-		txtSenha.setToolTipText("");
-		txtSenha.setBorder(null);
-
-		tabCadastrar.add(txtSenha);
-		txtSenha.setBounds(131, 232, 111, 18);
 		jSeparatorSenha = new javax.swing.JSeparator();
 
 		jSeparatorSenha.setBackground(new java.awt.Color(204, 204, 204));
@@ -449,7 +552,7 @@ public class Cadastro extends javax.swing.JFrame {
 		tabCadastrar.add(lblConfirmacao);
 		lblConfirmacao.setBounds(527, 283, 73, 16);
 
-		lblNavegacao.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+		lblNavegacao.setFont(new java.awt.Font("Dialog", 1, 14));
 		lblNavegacao.setForeground(new java.awt.Color(255, 255, 255));
 		lblNavegacao.setText("Navegação:");
 		tabCadastrar.add(lblNavegacao);
@@ -496,13 +599,21 @@ public class Cadastro extends javax.swing.JFrame {
 		tabCadastrar.add(btnCadastroDeDependentes_1);
 
 		jTabbedPane1.addTab("Cadastrar", tabCadastrar);
-		jLabel19 = new javax.swing.JLabel();
+		lblRodape = new javax.swing.JLabel();
 
-		jLabel19.setBackground(new java.awt.Color(0, 204, 0));
-		jLabel19.setForeground(new java.awt.Color(0, 204, 0));
-		jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/telaverde.png"))); // NOI18N
-		tabCadastrar.add(jLabel19);
-		jLabel19.setBounds(23, 317, 694, 150);
+		lblRodape.setBackground(new java.awt.Color(0, 204, 0));
+		lblRodape.setForeground(new java.awt.Color(0, 204, 0));
+		lblRodape.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/telaverde.png")));
+		tabCadastrar.add(lblRodape);
+		lblRodape.setBounds(23, 317, 694, 150);
+		
+		txtSenha = new JTextField();
+		txtSenha.setBackground(new Color(255, 255, 255));
+		txtSenha.setBounds(127, 232, 114, 18);
+		txtSenha.setForeground(new Color(153, 153, 153));
+		tabCadastrar.add(txtSenha);
+		txtSenha.setBorder(null);
+		txtSenha.setColumns(10);
 
 		javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
 		jPanel1.setLayout(jPanel1Layout);
@@ -515,96 +626,21 @@ public class Cadastro extends javax.swing.JFrame {
 						.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
 		getContentPane().add(jPanel1);
-		jPanel1.setBounds(0, 0, 800, 530);
+		jPanel1.setBounds(0, 0, 800, 519);
 
 		pack();
-	}// </editor-fold>//GEN-END:initComponents
+	}
 
-	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
 		dispose();
 		new Inicio().setVisible(true);
 	}
 
-	/**
-	 * @param args the command line arguments
-	 */
 	public static void main(String args[]) {
-		/* Create and display the form */
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				new Cadastro().setVisible(true);
 			}
 		});
 	}
-
-	// Variables declaration - do not modify//GEN-BEGIN:variables
-	private javax.swing.JButton jButton1;
-	private javax.swing.JButton btnSalvar;
-	private javax.swing.JLabel jLabel1;
-	private javax.swing.JLabel lblBairro;
-	private javax.swing.JLabel lblNumero;
-	private javax.swing.JLabel lblCidade;
-	private javax.swing.JLabel lblUf;
-	private javax.swing.JLabel lblCep;
-	private javax.swing.JLabel lblTelefone;
-	private javax.swing.JLabel lblSalario;
-	private javax.swing.JLabel lblConfirmacao;
-	private javax.swing.JLabel jLabel19;
-	private javax.swing.JLabel jLabel2;
-	private javax.swing.JLabel lblNavegacao;
-	private javax.swing.JLabel lblSenha;
-	private javax.swing.JLabel jLabel26;
-	private javax.swing.JLabel jLabel27;
-	private javax.swing.JLabel jLabel28;
-	private javax.swing.JLabel jLabel29;
-	private javax.swing.JLabel jLabel3;
-	private javax.swing.JLabel jLabel30;
-	private javax.swing.JLabel jLabel4;
-	private javax.swing.JLabel lblTituloTela;
-	private javax.swing.JLabel lblNome;
-	private javax.swing.JLabel lblCpf;
-	private javax.swing.JLabel lblEndereco;
-	private javax.swing.JLabel lblRua;
-	private javax.swing.JPanel jPanel1;
-	private javax.swing.JPanel tabListar;
-	private javax.swing.JPanel tabCadastrar;
-	private javax.swing.JPanel tabInicio;
-	private javax.swing.JScrollPane jScrollPane2;
-	private javax.swing.JSeparator jSeparator1;
-	private javax.swing.JSeparator jSeparatorCep;
-	private javax.swing.JSeparator jSeparatorTelefone;
-	private javax.swing.JSeparator jSeparatorSalario;
-	private javax.swing.JSeparator jSeparator13;
-	private javax.swing.JSeparator jSeparatorSenha;
-	private javax.swing.JSeparator jSeparatorTitulo;
-	private javax.swing.JSeparator jSeparatorNome;
-	private javax.swing.JSeparator jSeparatorCpf;
-	private javax.swing.JSeparator jSeparatorRua;
-	private javax.swing.JSeparator jSeparatorBairro;
-	private javax.swing.JSeparator jSeparatorCidade;
-	private javax.swing.JSeparator jSeparatorNumero;
-	private javax.swing.JSeparator jSeparatorUf;
-	private javax.swing.JTabbedPane jTabbedPane1;
-	private javax.swing.JTable jTable1;
-	private javax.swing.JTextField txtFuncionarioNome;
-	private javax.swing.JTextField txtSalario;
-	private javax.swing.JTextField txtSenha;
-	private javax.swing.JTextField txtFuncionarioCpf;
-	private javax.swing.JTextField txtCidade;
-	private javax.swing.JTextField txtBairro;
-	private javax.swing.JTextField txtNumero;
-	private javax.swing.JTextField txtRua;
-	private javax.swing.JTextField txtUf;
-	private javax.swing.JTextField txtTelefone;
-	private javax.swing.JTextField txtCep;
-	private JButton btnCadastroDeDependentes;
-	private JButton btnCadastroDeDepartamentos;
-	private JButton btnCadastroDeFuncionarios;
-	private JButton btnCadastroDeProjetos;
-	private JButton btnInicio;
-	private JButton btnCadastroDeDepartamentos_1;
-	private JButton btnCadastroDeFuncionrios;
-	private JButton btnCadastroFuncionarios;
-	private JButton btnCadastroDeDependentes_1;
-	// End of variables declaration//GEN-END:variables
 }

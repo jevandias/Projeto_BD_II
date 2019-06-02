@@ -3,14 +3,11 @@ package com.projetobd.controler;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.swing.text.StyledEditorKit.BoldAction;
-
 import com.projetobd.dao.FuncionarioDao;
-import com.projetobd.dao.IFuncionarioDao;
 import com.projetobd.entidades.Funcionario;
 
 public class FuncionarioController {
-	IFuncionarioDao funcionarioDao;
+	FuncionarioDao funcionarioDao;
 	
 	public FuncionarioController() throws ClassNotFoundException, SQLException {
 		funcionarioDao = new FuncionarioDao();

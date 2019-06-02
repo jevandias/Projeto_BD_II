@@ -8,7 +8,7 @@ import java.util.List;
 
 import com.projetobd.entidades.Projetos;
 
-public class ProjetosDao implements IProjetoDao{
+public class ProjetosDao {
 	
 	private Connection con;
 	private List<Projetos> listProjetos;
@@ -18,7 +18,6 @@ public class ProjetosDao implements IProjetoDao{
 		con = (Connection) ConexaoBD.getInstacia().getConector();
 	}
 	
-	@Override
 	public void cadastrar(Projetos projetos) throws SQLException {
 		String sql = "INSERT INTO projetos (nome, tipo, codigo_Departamento, CPF_funcionario, verba, horas) VALUES(?, ?, ?, ?, ?, ?);";
 		PreparedStatement prepare = con.prepareStatement(sql);
@@ -31,7 +30,6 @@ public class ProjetosDao implements IProjetoDao{
 		prepare.close();
 	}
 
-	@Override
 	public List<Projetos> listar() throws SQLException {
 		String sql = "SELECT * FROM projetos";
 		PreparedStatement prepare = con.prepareStatement(sql);
@@ -44,12 +42,10 @@ public class ProjetosDao implements IProjetoDao{
 		return null;
 	}
 
-	@Override
 	public void atualizar(Projetos projetos) throws SQLException {
 		
 	}
 
-	@Override
 	public void excluir(int codigo) throws SQLException {
 		
 	}
