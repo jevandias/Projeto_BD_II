@@ -13,8 +13,8 @@ public class FuncionarioController {
 		funcionarioDao = new FuncionarioDao();
 	}
 	
-	public void cadastrarFuncionario(Funcionario funcionario) {
-		
+	public void cadastrarFuncionario(Funcionario funcionario) throws SQLException {
+		funcionarioDao.cadastrar(funcionario);
 	}
 	
 	public List<Funcionario> listarFuncionario(){

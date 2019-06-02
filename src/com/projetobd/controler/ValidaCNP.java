@@ -15,6 +15,7 @@ public class ValidaCNP {
 	}
 
 	public static boolean isValidCPF(String cpf) {
+		cpf = cpf.replace(".", "").replace("-", "");
 		if ((cpf == null) || (cpf.length() != 11))
 			return false;
 
