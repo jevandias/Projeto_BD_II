@@ -18,7 +18,7 @@ public class FuncionarioDao {
 	}
 
 	public void cadastrar(Funcionario funcionario) throws SQLException {
-		String sql = "INSERT INTO funcionarios(`CPF`,`nome`,`rua`,`bairro`,`numero`,`cidade`,`uf`,`telefone`,`salario`) VALUES(?,?,?,?,?,?,?,?,?);";
+		String sql = "INSERT INTO funcionarios(CPF,nome,rua,bairro,numero,cidade,uf,telefone,salario,senha) VALUES(?,?,?,?,?,?,?,?,?,?);";
 		PreparedStatement prepare = con.prepareStatement(sql);
 		prepare.setLong(1, funcionario.getCpf());
 		prepare.setString(2, funcionario.getNome());
@@ -29,6 +29,7 @@ public class FuncionarioDao {
 		prepare.setString(7, funcionario.getUf());
 		prepare.setLong(8, funcionario.getTelefone());
 		prepare.setDouble(9, funcionario.getSalario());
+		prepare.setInt(10, funcionario.getSenha());
 		prepare.execute();
 		prepare.close();
 	}

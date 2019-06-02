@@ -6,19 +6,30 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.sql.SQLException;
+
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import com.projetobd.personalizados.JNumberFormatField;
 
 import java.text.DecimalFormat;
 
+import com.projetobd.controler.ConsultaCep;
+import com.projetobd.controler.FuncionarioController;
+import com.projetobd.controler.GerarSenha;
+import com.projetobd.controler.ValidaCNP;
+import com.projetobd.entidades.Funcionario;
 import com.projetobd.personalizados.JDocumentFormatedField;
 import com.projetobd.personalizados.JNumberField;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 import javax.swing.SwingConstants;
 
-public class CadastroFuncionario extends JFrame {
+public class CadastroFuncionario extends JFrame implements FocusListener, ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -129,6 +140,7 @@ public class CadastroFuncionario extends JFrame {
 		txtCpf.setBounds(342, 67, 125, 20);
 		contentPane.add(txtCpf);
 		txtCpf.setColumns(10);
+		txtCpf.addFocusListener(this);
 		
 		separatorCpf = new JSeparator();
 		separatorCpf.setForeground(new Color(204, 204, 204));
@@ -177,6 +189,7 @@ public class CadastroFuncionario extends JFrame {
 		txtCep.setBounds(43, 141, 113, 20);
 		contentPane.add(txtCep);
 		txtCep.setColumns(10);
+		txtCep.addFocusListener(this);
 		
 		separatorCep = new JSeparator();
 		separatorCep.setForeground(new Color(204, 204, 204));
@@ -316,6 +329,7 @@ public class CadastroFuncionario extends JFrame {
 		contentPane.add(lblSenha);
 		
 		txtSenha = new JNumberField();
+		txtSenha.setEditable(false);
 		txtSenha.setToolTipText("");
 		txtSenha.setForeground(new Color(153, 153, 153));
 		txtSenha.setBorder(null);
@@ -336,6 +350,7 @@ public class CadastroFuncionario extends JFrame {
 		btnSalvar.setBackground(Color.WHITE);
 		btnSalvar.setBounds(624, 268, 80, 39);
 		contentPane.add(btnSalvar);
+		btnSalvar.addActionListener(this);
 		
 		label_13 = new JLabel();
 		label_13.setText("Confirmação");
@@ -394,5 +409,63 @@ public class CadastroFuncionario extends JFrame {
 		lblBack.setBackground(new Color(0, 204, 0));
 		lblBack.setBounds(10, 313, 694, 150);
 		contentPane.add(lblBack);
+	}
+	
+	private void validaCpf() {
+		boolean valido = ValidaCNP.isValidCPF(txtCpf.getText());
+		if(!valido) {
+			separatorCpf.setBackground(Color.RED);
+			txtCpf.setText("");
+		}
+	}
+
+	@Override
+	public void focusGained(FocusEvent e) {
+		if(e.getSource() == txtCpf) {
+			separatorCpf.setBackground(new Color(204, 204, 204));
+		}
+	}
+
+	@Override
+	public void focusLost(FocusEvent e) {
+		if(e.getSource() == txtCep) {
+			ConsultaCep consulta = new ConsultaCep(txtCep.getText().replace("     -   ", ""));
+			if(consulta != null) {
+				txtRua.setText(consulta.getLogradouro());
+				txtBairro.setText(consulta.getBairro());
+				txtCidade.setText(consulta.getCidade());
+				txtUf.setText(consulta.getEstado());
+				txtSenha.setText(String.valueOf(GerarSenha.retornaSenha()));
+			}
+		}else if(e.getSource() == txtCpf) {
+			validaCpf();
+		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		if(arg0.getSource() == btnSalvar) {
+			Funcionario funcionario = new Funcionario();
+			funcionario.setCpf(Long.parseLong(txtCpf.getText().replace("-", "").replace(".", "")));
+			funcionario.setNome(txtNome.getText());
+			funcionario.setRua(txtRua.getText());
+			funcionario.setBairro(txtBairro.getText());
+			funcionario.setNumeroEnd(Integer.parseInt(txtNumero.getText()));
+			funcionario.setCidade(txtCidade.getText());
+			funcionario.setUf(txtUf.getText());
+			funcionario.setTelefone(Long.parseLong(txtTelefone.getText().replace("(", "").replace(")", "").replace("-", "")));
+			funcionario.setSalario(Double.parseDouble(txtSalario.getText().replace(",", ".")));
+			funcionario.setCodigo_departamento(0);
+			funcionario.setCodigo_departamentoGerenciar(0);
+			funcionario.setSenha(Integer.parseInt(txtSenha.getText()));
+			
+			try {
+				new FuncionarioController().cadastrarFuncionario(funcionario);
+				
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 }
