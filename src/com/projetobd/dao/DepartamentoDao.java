@@ -9,7 +9,7 @@ import java.util.List;
 
 import com.projetobd.entidades.Departamentos;
 
-public class DepartamentoDao implements IDepartamentoDao {
+public class DepartamentoDao {
 
 	private Connection con;
 	private Departamentos departamentos;
@@ -19,7 +19,6 @@ public class DepartamentoDao implements IDepartamentoDao {
 		con = (Connection) ConexaoBD.getInstacia().getConector();
 	}
 
-	@Override
 	public void cadastrar(Departamentos departamentos) throws SQLException {
 		String sql = "INSERT INTO departamentos(nome,localizacao) VALUES (?,?);";
 		PreparedStatement prepare = con.prepareStatement(sql);
@@ -29,7 +28,6 @@ public class DepartamentoDao implements IDepartamentoDao {
 		prepare.close();
 	}
 
-	@Override
 	public List<Departamentos> listar() throws SQLException {
 		String sql = "SELECT * FROM departamentos";
 		PreparedStatement prepare = con.prepareStatement(sql);
@@ -45,7 +43,6 @@ public class DepartamentoDao implements IDepartamentoDao {
 		return listDepartamento;
 	}
 
-	@Override
 	public void alterar(Departamentos departamentos) throws SQLException {
 		String sql = "UPDATE departamentos SET nome = ?, localizacao = ? WHERE codigo = ?;";
 		PreparedStatement prepare = con.prepareStatement(sql);
@@ -56,7 +53,6 @@ public class DepartamentoDao implements IDepartamentoDao {
 		prepare.close();
 	}
 
-	@Override
 	public void excluir(int codigo) throws SQLException {
 		String sql = "DELETE FROM departamentos WHERE codigo = ?;";
 		PreparedStatement prepare = con.prepareStatement(sql);

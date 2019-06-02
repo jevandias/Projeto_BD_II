@@ -9,7 +9,7 @@ import java.util.List;
 
 import com.projetobd.entidades.Dependentes;
 
-public class DependentesDao implements IDependentesDao{
+public class DependentesDao {
 
 	private Connection con;
 	private Dependentes dependentes;
@@ -19,7 +19,6 @@ public class DependentesDao implements IDependentesDao{
 		con = (Connection) ConexaoBD.getInstacia().getConector();
 	}
 
-	@Override
 	public void cadastrar(Dependentes dependentes) throws SQLException {
 		String sql = "INSERT INTO dependentes(nome,rua,bairro,numero,cidade,uf,parentesco) VALUES (?,?,?,?,?,?,?);";
 		PreparedStatement prepare = con.prepareStatement(sql);
@@ -34,7 +33,6 @@ public class DependentesDao implements IDependentesDao{
 		prepare.close();
 	}
 
-	@Override
 	public List<Dependentes> listar() throws SQLException {
 		String sql = "SELECT * FROM dependentes";
 		PreparedStatement prepare = con.prepareStatement(sql);
@@ -54,7 +52,6 @@ public class DependentesDao implements IDependentesDao{
 		return listDependentes;
 	}
 
-	@Override
 	public void alterar(Dependentes dependentes) throws SQLException {
 		String sql = "UPDATE dependentes SET nome = ?, rua = ?, bairro = ?, numero = ?, cidade = ?, uf = ?, parentesco = ? WHERE codigo = ?;";
 		PreparedStatement prepare = con.prepareStatement(sql);
@@ -70,7 +67,6 @@ public class DependentesDao implements IDependentesDao{
 		prepare.close();
 	}
 
-	@Override
 	public void excluir(int codigo) throws SQLException {
 		String sql = "DELETE FROM dependentes WHERE codigo = ?;";
 		PreparedStatement prepare = con.prepareStatement(sql);

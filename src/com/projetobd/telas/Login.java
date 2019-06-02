@@ -110,7 +110,7 @@ public class Login extends JFrame implements ActionListener {
 
 		limparTxtField();
 		getContentPane().setLayout(null);
-		
+
 		btnEntrar = new JButton();
 		btnEntrar.setFocusable(false);
 		btnEntrar.setBounds(138, 249, 69, 26);
@@ -121,25 +121,28 @@ public class Login extends JFrame implements ActionListener {
 			public void mouseReleased(MouseEvent arg0) {
 				btnEntrar.setIcon(new ImageIcon(Login.class.getResource("/imgs/entrar.png")));
 			}
-			
+
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				btnEntrar.setIcon(new ImageIcon(Login.class.getResource("/imgs/entrar2.png")));
-				
+
 			}
-			
+
 			@Override
-			public void mouseExited(MouseEvent arg0) {}
-			
+			public void mouseExited(MouseEvent arg0) {
+			}
+
 			@Override
-			public void mouseEntered(MouseEvent arg0) {}
-			
+			public void mouseEntered(MouseEvent arg0) {
+			}
+
 			@Override
-			public void mouseClicked(MouseEvent arg0) {}
+			public void mouseClicked(MouseEvent arg0) {
+			}
 		});
-		
-		 btnEntrar.addActionListener(this);
-		
+
+		btnEntrar.addActionListener(this);
+
 		getContentPane().add(jPanel1);
 		jPanel1.setLayout(null);
 		jPanel1.add(jLabel4);
@@ -171,7 +174,7 @@ public class Login extends JFrame implements ActionListener {
 
 		pack();
 		btnEntrar.setBorder(null);
-		
+
 		lblErro.setHorizontalAlignment(SwingConstants.CENTER);
 		lblErro.setBounds(10, 285, 330, 14);
 		lblErro.setForeground(Color.RED);
@@ -179,13 +182,13 @@ public class Login extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-       if(e.getSource() == btnFechar) {
-    	   dispose();
-       }else if(e.getSource() == btnEntrar) {
-    	   validarSessao();
-       }
-    }
-		
+		if (e.getSource() == btnFechar) {
+			dispose();
+		} else if (e.getSource() == btnEntrar) {
+			validarSessao();
+		}
+	}
+
 	private void limparTxtField() {
 		txtUsuario.addFocusListener(new FocusListener() {
 			@Override
@@ -201,8 +204,8 @@ public class Login extends JFrame implements ActionListener {
 				if (txtUsuario.getText().equals("") || txtUsuario.getText().equals("Usuário")) {
 					txtUsuario.setText("");
 					txtUsuario.setForeground(Color.black);
-					jSeparatorUsuario.setBackground(new Color(204,204,204));
-					
+					jSeparatorUsuario.setBackground(new Color(204, 204, 204));
+
 				}
 			}
 		});
@@ -223,28 +226,28 @@ public class Login extends JFrame implements ActionListener {
 				if (senha.equals("") || senha.equals("jPasswordField1")) {
 					txtPwd.setText("");
 					txtPwd.setForeground(Color.black);
-					jSeparatorSenha.setBackground(new Color(204,204,204));
+					jSeparatorSenha.setBackground(new Color(204, 204, 204));
 				}
 			}
 		});
 	}
-	
+
 	private void validarSessao() {
 		String usuario = txtUsuario.getText();
 		String senha = new String(txtPwd.getPassword());
 		Funcionario funcionario;
-		
-		if(usuario.equals("Usuário") || usuario.equals("")) {
+
+		if (usuario.equals("Usuário") || usuario.equals("")) {
 			jSeparatorUsuario.setBackground(Color.RED);
-		}else if(senha.equals("jPasswordField1") || senha.equals("")) {
+		} else if (senha.equals("jPasswordField1") || senha.equals("")) {
 			jSeparatorSenha.setBackground(Color.RED);
-		}else {
+		} else {
 			try {
 				funcionario = new FuncionarioController().validarSessao(usuario, senha);
-				
-				if(funcionario != null) {
+
+				if (funcionario != null) {
 					FuncionarioLogado.nome = funcionario.getNome();
-				}else {
+				} else {
 					lblErro.setText("");
 					lblErro.setText("Usuario e/ou senha invalidos");
 				}

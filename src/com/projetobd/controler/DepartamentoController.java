@@ -4,12 +4,11 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.projetobd.dao.DepartamentoDao;
-import com.projetobd.dao.IDepartamentoDao;
 import com.projetobd.entidades.Departamentos;
 
 public class DepartamentoController {
 
-	IDepartamentoDao departamentoDao;
+	DepartamentoDao departamentoDao;
 	
 	public DepartamentoController() throws ClassNotFoundException, SQLException {
 		departamentoDao = new DepartamentoDao();
