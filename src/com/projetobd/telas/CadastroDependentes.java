@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
+import javax.swing.ImageIcon;
 
 public class CadastroDependentes extends JFrame {
 
@@ -53,7 +54,6 @@ public class CadastroDependentes extends JFrame {
 	private JLabel lblEndereco;
 	private JLabel lblCep;
 	private JLabel lblConfirmacao;
-	private JLabel lblNavegacao;
 	private JButton btnInicio;
 	private JButton btnCadastroDepartamento;
 	private JButton btnCadastroFuncionario;
@@ -312,27 +312,20 @@ public class CadastroDependentes extends JFrame {
 		btnSalvar.setForeground(new Color(153, 153, 153));
 		btnSalvar.setBorder(new LineBorder(new Color(153, 153, 153), 1, true));
 		btnSalvar.setBackground(Color.WHITE);
-		btnSalvar.setBounds(624, 268, 80, 39);
+		btnSalvar.setBounds(10, 224, 80, 39);
 		contentPane.add(btnSalvar);
 		
 		lblConfirmacao = new JLabel();
 		lblConfirmacao.setText("Confirmação");
-		lblConfirmacao.setBounds(514, 279, 73, 16);
+		lblConfirmacao.setBounds(100, 235, 73, 16);
 		contentPane.add(lblConfirmacao);
-		
-		lblNavegacao = new JLabel();
-		lblNavegacao.setText("Navegação:");
-		lblNavegacao.setForeground(Color.BLACK);
-		lblNavegacao.setFont(new Font("Dialog", Font.BOLD, 14));
-		lblNavegacao.setBounds(37, 326, 100, 23);
-		contentPane.add(lblNavegacao);
 		
 		btnInicio = new JButton("Início");
 		btnInicio.setHorizontalAlignment(SwingConstants.LEFT);
 		btnInicio.setForeground(Color.BLACK);
 		btnInicio.setBorder(null);
 		btnInicio.setBackground(Color.WHITE);
-		btnInicio.setBounds(37, 349, 57, 23);
+		btnInicio.setBounds(10, 344, 57, 23);
 		contentPane.add(btnInicio);
 		
 		btnCadastroDepartamento = new JButton("Cadastro de Departamentos");
@@ -340,7 +333,7 @@ public class CadastroDependentes extends JFrame {
 		btnCadastroDepartamento.setForeground(Color.BLACK);
 		btnCadastroDepartamento.setBorder(null);
 		btnCadastroDepartamento.setBackground(Color.WHITE);
-		btnCadastroDepartamento.setBounds(37, 371, 162, 23);
+		btnCadastroDepartamento.setBounds(10, 366, 162, 23);
 		contentPane.add(btnCadastroDepartamento);
 		
 		btnCadastroFuncionario = new JButton("Cadastro de Funcionários");
@@ -348,7 +341,7 @@ public class CadastroDependentes extends JFrame {
 		btnCadastroFuncionario.setForeground(Color.BLACK);
 		btnCadastroFuncionario.setBorder(null);
 		btnCadastroFuncionario.setBackground(Color.WHITE);
-		btnCadastroFuncionario.setBounds(37, 393, 162, 23);
+		btnCadastroFuncionario.setBounds(10, 388, 162, 23);
 		contentPane.add(btnCadastroFuncionario);
 		
 		btnCadastroProjetos = new JButton("Cadastro de Projetos");
@@ -356,7 +349,7 @@ public class CadastroDependentes extends JFrame {
 		btnCadastroProjetos.setForeground(Color.BLACK);
 		btnCadastroProjetos.setBorder(null);
 		btnCadastroProjetos.setBackground(Color.WHITE);
-		btnCadastroProjetos.setBounds(37, 414, 162, 23);
+		btnCadastroProjetos.setBounds(10, 409, 162, 23);
 		contentPane.add(btnCadastroProjetos);
 		
 		btnCadastroDependentes = new JButton("Cadastro de Dependentes");
@@ -364,13 +357,14 @@ public class CadastroDependentes extends JFrame {
 		btnCadastroDependentes.setForeground(Color.BLACK);
 		btnCadastroDependentes.setBorder(null);
 		btnCadastroDependentes.setBackground(Color.WHITE);
-		btnCadastroDependentes.setBounds(37, 433, 162, 23);
+		btnCadastroDependentes.setBounds(10, 428, 162, 23);
 		contentPane.add(btnCadastroDependentes);
 		
 		lblBack = new JLabel();
+		lblBack.setIcon(new ImageIcon(CadastroDependentes.class.getResource("/imgs/backdependentes.png")));
 		lblBack.setForeground(new Color(0, 204, 0));
 		lblBack.setBackground(new Color(0, 204, 0));
-		lblBack.setBounds(10, 313, 694, 150);
+		lblBack.setBounds(0, 212, 800, 270);
 		contentPane.add(lblBack);
 		
 		cbxCpfFuncionario = new JComboBox();
