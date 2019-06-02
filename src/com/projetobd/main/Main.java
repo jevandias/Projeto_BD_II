@@ -1,10 +1,10 @@
 package com.projetobd.main;
 
-import com.projetobd.telas.CadastroFuncionario;
+import com.projetobd.telas.CadastroProjetos;
 import com.projetobd.telas.Login;
 
 public class Main {
 	public static void main(String[] args) {
-		new CadastroFuncionario().setVisible(true);
+		new CadastroProjetos().setVisible(true);
 	}
 }
