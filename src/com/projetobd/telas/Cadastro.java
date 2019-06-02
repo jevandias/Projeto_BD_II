@@ -305,7 +305,7 @@ public class Cadastro extends javax.swing.JFrame {
 		txtBairro.setBorder(null);
 
 		tabCadastrar.add(txtBairro);
-		txtBairro.setBounds(413, 146, 154, 18);
+		txtBairro.setBounds(399, 146, 168, 18);
 
 		jSeparatorBairro.setBackground(new java.awt.Color(204, 204, 204));
 		jSeparatorBairro.setForeground(new java.awt.Color(204, 204, 204));
@@ -345,7 +345,7 @@ public class Cadastro extends javax.swing.JFrame {
 		txtCidade.setBorder(null);
 
 		tabCadastrar.add(txtCidade);
-		txtCidade.setBounds(71, 192, 114, 18);
+		txtCidade.setBounds(65, 192, 120, 18);
 
 		jSeparatorCidade.setBackground(new java.awt.Color(204, 204, 204));
 		jSeparatorCidade.setForeground(new java.awt.Color(204, 204, 204));
@@ -417,7 +417,7 @@ public class Cadastro extends javax.swing.JFrame {
 		lblSenha.setForeground(new java.awt.Color(153, 153, 153));
 		lblSenha.setText("Senha de Acesso:");
 		tabCadastrar.add(lblSenha);
-		lblSenha.setBounds(23, 233, 102, 16);
+		lblSenha.setBounds(23, 233, 86, 16);
 
 		txtSenha.setBackground(new java.awt.Color(255, 255, 255));
 		txtSenha.setForeground(new java.awt.Color(153, 153, 153));
@@ -425,7 +425,7 @@ public class Cadastro extends javax.swing.JFrame {
 		txtSenha.setBorder(null);
 
 		tabCadastrar.add(txtSenha);
-		txtSenha.setBounds(131, 232, 111, 18);
+		txtSenha.setBounds(119, 232, 123, 18);
 		jSeparatorSenha = new javax.swing.JSeparator();
 
 		jSeparatorSenha.setBackground(new java.awt.Color(204, 204, 204));
@@ -516,30 +516,30 @@ public class Cadastro extends javax.swing.JFrame {
 								javax.swing.GroupLayout.PREFERRED_SIZE)
 						.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		
-		panel = new JPanel();
-		panel.setBackground(Color.WHITE);
-		jTabbedPane1.addTab("Dependentes", null, panel, null);
-		panel.setLayout(null);
+		tabDependentes = new JPanel();
+		tabDependentes.setBackground(Color.WHITE);
+		jTabbedPane1.addTab("Dependentes", null, tabDependentes, null);
+		tabDependentes.setLayout(null);
 		
 		lblCadastroDeDependentes = new JLabel();
 		lblCadastroDeDependentes.setText("Cadastro de Dependentes");
 		lblCadastroDeDependentes.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblCadastroDeDependentes.setBackground(new Color(153, 153, 153));
 		lblCadastroDeDependentes.setBounds(23, 15, 301, 35);
-		panel.add(lblCadastroDeDependentes);
+		tabDependentes.add(lblCadastroDeDependentes);
 		
 		separator = new JSeparator();
 		separator.setForeground(new Color(204, 204, 204));
 		separator.setBackground(new Color(204, 204, 204));
 		separator.setBounds(23, 56, 694, 10);
-		panel.add(separator);
+		tabDependentes.add(separator);
 		
 		label_1 = new JLabel();
 		label_1.setText("Nome:");
 		label_1.setForeground(new Color(153, 153, 153));
 		label_1.setBackground(Color.WHITE);
 		label_1.setBounds(23, 73, 36, 16);
-		panel.add(label_1);
+		tabDependentes.add(label_1);
 		
 		textField = new JTextField();
 		textField.setToolTipText("");
@@ -547,20 +547,20 @@ public class Cadastro extends javax.swing.JFrame {
 		textField.setBorder(null);
 		textField.setBackground(Color.WHITE);
 		textField.setBounds(65, 72, 243, 18);
-		panel.add(textField);
+		tabDependentes.add(textField);
 		
 		separator_1 = new JSeparator();
 		separator_1.setForeground(new Color(204, 204, 204));
 		separator_1.setBackground(new Color(204, 204, 204));
 		separator_1.setBounds(23, 96, 285, 10);
-		panel.add(separator_1);
+		tabDependentes.add(separator_1);
 		
 		label_2 = new JLabel();
 		label_2.setText("CPF:");
 		label_2.setForeground(new Color(153, 153, 153));
 		label_2.setBackground(Color.WHITE);
 		label_2.setBounds(326, 73, 25, 16);
-		panel.add(label_2);
+		tabDependentes.add(label_2);
 		
 		textField_1 = new JTextField();
 		textField_1.setToolTipText("");
@@ -568,40 +568,40 @@ public class Cadastro extends javax.swing.JFrame {
 		textField_1.setBorder(null);
 		textField_1.setBackground(Color.WHITE);
 		textField_1.setBounds(357, 72, 123, 18);
-		panel.add(textField_1);
+		tabDependentes.add(textField_1);
 		
 		separator_2 = new JSeparator();
 		separator_2.setForeground(new Color(204, 204, 204));
 		separator_2.setBackground(new Color(204, 204, 204));
 		separator_2.setBounds(326, 96, 154, 10);
-		panel.add(separator_2);
+		tabDependentes.add(separator_2);
 		
 		lblFuncionrio = new JLabel();
 		lblFuncionrio.setText("CPF do Funcionário:");
 		lblFuncionrio.setForeground(new Color(153, 153, 153));
 		lblFuncionrio.setBackground(Color.WHITE);
 		lblFuncionrio.setBounds(498, 73, 97, 16);
-		panel.add(lblFuncionrio);
+		tabDependentes.add(lblFuncionrio);
 		
 		separator_3 = new JSeparator();
 		separator_3.setForeground(new Color(204, 204, 204));
 		separator_3.setBackground(new Color(204, 204, 204));
 		separator_3.setBounds(498, 96, 97, 10);
-		panel.add(separator_3);
+		tabDependentes.add(separator_3);
 		
 		label_4 = new JLabel();
 		label_4.setText("Endereço");
 		label_4.setForeground(new Color(153, 153, 153));
 		label_4.setBackground(Color.WHITE);
 		label_4.setBounds(23, 118, 57, 16);
-		panel.add(label_4);
+		tabDependentes.add(label_4);
 		
 		label_5 = new JLabel();
 		label_5.setText("Rua:");
 		label_5.setForeground(new Color(153, 153, 153));
 		label_5.setBackground(Color.WHITE);
 		label_5.setBounds(23, 147, 25, 16);
-		panel.add(label_5);
+		tabDependentes.add(label_5);
 		
 		textField_3 = new JTextField();
 		textField_3.setToolTipText("");
@@ -609,139 +609,139 @@ public class Cadastro extends javax.swing.JFrame {
 		textField_3.setBorder(null);
 		textField_3.setBackground(Color.WHITE);
 		textField_3.setBounds(51, 146, 291, 18);
-		panel.add(textField_3);
+		tabDependentes.add(textField_3);
 		
 		separator_4 = new JSeparator();
 		separator_4.setForeground(new Color(204, 204, 204));
 		separator_4.setBackground(new Color(204, 204, 204));
 		separator_4.setBounds(23, 170, 319, 10);
-		panel.add(separator_4);
+		tabDependentes.add(separator_4);
 		
 		label_6 = new JLabel();
 		label_6.setText("Bairro:");
 		label_6.setForeground(new Color(153, 153, 153));
 		label_6.setBackground(Color.WHITE);
-		label_6.setBounds(350, 143, 38, 16);
-		panel.add(label_6);
+		label_6.setBounds(363, 147, 38, 16);
+		tabDependentes.add(label_6);
 		
 		textField_4 = new JTextField();
 		textField_4.setToolTipText("");
 		textField_4.setForeground(new Color(153, 153, 153));
 		textField_4.setBorder(null);
 		textField_4.setBackground(Color.WHITE);
-		textField_4.setBounds(400, 142, 154, 18);
-		panel.add(textField_4);
+		textField_4.setBounds(399, 146, 154, 18);
+		tabDependentes.add(textField_4);
 		
 		separator_5 = new JSeparator();
 		separator_5.setForeground(new Color(204, 204, 204));
 		separator_5.setBackground(new Color(204, 204, 204));
-		separator_5.setBounds(350, 166, 204, 10);
-		panel.add(separator_5);
+		separator_5.setBounds(363, 170, 204, 10);
+		tabDependentes.add(separator_5);
 		
 		label_7 = new JLabel();
 		label_7.setText("Nº:");
 		label_7.setForeground(new Color(153, 153, 153));
 		label_7.setBackground(Color.WHITE);
-		label_7.setBounds(585, 143, 25, 16);
-		panel.add(label_7);
+		label_7.setBounds(598, 147, 25, 16);
+		tabDependentes.add(label_7);
 		
 		textField_5 = new JTextField();
 		textField_5.setToolTipText("");
 		textField_5.setForeground(new Color(153, 153, 153));
 		textField_5.setBorder(null);
 		textField_5.setBackground(Color.WHITE);
-		textField_5.setBounds(606, 142, 97, 18);
-		panel.add(textField_5);
+		textField_5.setBounds(619, 146, 97, 18);
+		tabDependentes.add(textField_5);
 		
 		separator_6 = new JSeparator();
 		separator_6.setForeground(new Color(204, 204, 204));
 		separator_6.setBackground(new Color(204, 204, 204));
-		separator_6.setBounds(585, 166, 118, 10);
-		panel.add(separator_6);
+		separator_6.setBounds(598, 170, 118, 10);
+		tabDependentes.add(separator_6);
 		
 		label_8 = new JLabel();
 		label_8.setText("Cidade:");
 		label_8.setForeground(new Color(153, 153, 153));
 		label_8.setBackground(Color.WHITE);
-		label_8.setBounds(10, 189, 42, 16);
-		panel.add(label_8);
+		label_8.setBounds(23, 193, 42, 16);
+		tabDependentes.add(label_8);
 		
 		textField_6 = new JTextField();
 		textField_6.setToolTipText("");
 		textField_6.setForeground(new Color(153, 153, 153));
 		textField_6.setBorder(null);
 		textField_6.setBackground(Color.WHITE);
-		textField_6.setBounds(58, 188, 114, 18);
-		panel.add(textField_6);
+		textField_6.setBounds(65, 192, 114, 18);
+		tabDependentes.add(textField_6);
 		
 		separator_7 = new JSeparator();
 		separator_7.setForeground(new Color(204, 204, 204));
 		separator_7.setBackground(new Color(204, 204, 204));
-		separator_7.setBounds(10, 212, 162, 10);
-		panel.add(separator_7);
+		separator_7.setBounds(23, 216, 162, 10);
+		tabDependentes.add(separator_7);
 		
 		label_9 = new JLabel();
 		label_9.setText("UF:");
 		label_9.setForeground(new Color(153, 153, 153));
 		label_9.setBackground(Color.WHITE);
-		label_9.setBounds(198, 189, 17, 16);
-		panel.add(label_9);
+		label_9.setBounds(211, 193, 17, 16);
+		tabDependentes.add(label_9);
 		
 		textField_7 = new JTextField();
 		textField_7.setToolTipText("");
 		textField_7.setForeground(new Color(153, 153, 153));
 		textField_7.setBorder(null);
 		textField_7.setBackground(Color.WHITE);
-		textField_7.setBounds(221, 188, 56, 18);
-		panel.add(textField_7);
+		textField_7.setBounds(234, 192, 56, 18);
+		tabDependentes.add(textField_7);
 		
 		separator_8 = new JSeparator();
 		separator_8.setForeground(new Color(204, 204, 204));
 		separator_8.setBackground(new Color(204, 204, 204));
-		separator_8.setBounds(198, 212, 79, 10);
-		panel.add(separator_8);
+		separator_8.setBounds(211, 216, 79, 10);
+		tabDependentes.add(separator_8);
 		
 		label_10 = new JLabel();
 		label_10.setText("CEP:");
 		label_10.setForeground(new Color(153, 153, 153));
 		label_10.setBackground(Color.WHITE);
-		label_10.setBounds(303, 189, 26, 16);
-		panel.add(label_10);
+		label_10.setBounds(316, 193, 26, 16);
+		tabDependentes.add(label_10);
 		
 		textField_8 = new JTextField();
 		textField_8.setToolTipText("");
 		textField_8.setForeground(new Color(153, 153, 153));
 		textField_8.setBorder(null);
 		textField_8.setBackground(Color.WHITE);
-		textField_8.setBounds(335, 188, 114, 18);
-		panel.add(textField_8);
+		textField_8.setBounds(348, 192, 114, 18);
+		tabDependentes.add(textField_8);
 		
 		separator_9 = new JSeparator();
 		separator_9.setForeground(new Color(204, 204, 204));
 		separator_9.setBackground(new Color(204, 204, 204));
-		separator_9.setBounds(303, 212, 146, 10);
-		panel.add(separator_9);
+		separator_9.setBounds(316, 216, 146, 10);
+		tabDependentes.add(separator_9);
 		
 		lblParentesco = new JLabel();
 		lblParentesco.setText("Parentesco:");
 		lblParentesco.setForeground(new Color(153, 153, 153));
 		lblParentesco.setBackground(Color.WHITE);
-		lblParentesco.setBounds(467, 189, 61, 16);
-		panel.add(lblParentesco);
+		lblParentesco.setBounds(480, 193, 61, 16);
+		tabDependentes.add(lblParentesco);
 		
 		textField_9 = new JTextField();
 		textField_9.setToolTipText("");
 		textField_9.setForeground(new Color(153, 153, 153));
 		textField_9.setBorder(null);
 		textField_9.setBackground(Color.WHITE);
-		textField_9.setBounds(525, 188, 178, 18);
-		panel.add(textField_9);
+		textField_9.setBounds(540, 192, 178, 18);
+		tabDependentes.add(textField_9);
 		
 		separator_10 = new JSeparator();
 		separator_10.setForeground(new Color(204, 204, 204));
 		separator_10.setBackground(new Color(204, 204, 204));
-		separator_10.setBounds(467, 212, 236, 10);
-		panel.add(separator_10);
+		separator_10.setBounds(480, 216, 236, 10);
+		tabDependentes.add(separator_10);
 		
 		textField_10 = new JTextField();
 		textField_10.setToolTipText("");
@@ -749,85 +749,85 @@ public class Cadastro extends javax.swing.JFrame {
 		textField_10.setBorder(null);
 		textField_10.setBackground(Color.WHITE);
 		textField_10.setBounds(118, 228, 111, 18);
-		panel.add(textField_10);
+		tabDependentes.add(textField_10);
 		
 		button = new JButton();
 		button.setText("Salvar");
 		button.setForeground(new Color(153, 153, 153));
 		button.setBorder(new LineBorder(new Color(153, 153, 153), 1, true));
 		button.setBackground(Color.WHITE);
-		button.setBounds(624, 268, 80, 39);
-		panel.add(button);
+		button.setBounds(637, 272, 80, 39);
+		tabDependentes.add(button);
 		
 		separator_12 = new JSeparator();
 		separator_12.setOrientation(SwingConstants.VERTICAL);
 		separator_12.setForeground(Color.WHITE);
 		separator_12.setBackground(new Color(204, 204, 204));
-		separator_12.setBounds(27, 326, 20, 130);
-		panel.add(separator_12);
+		separator_12.setBounds(40, 330, 20, 130);
+		tabDependentes.add(separator_12);
 		
 		label_13 = new JLabel();
 		label_13.setText("Confirmação");
-		label_13.setBounds(514, 279, 73, 16);
-		panel.add(label_13);
+		label_13.setBounds(527, 283, 73, 16);
+		tabDependentes.add(label_13);
 		
 		label_14 = new JLabel();
 		label_14.setText("Navegação:");
 		label_14.setForeground(Color.WHITE);
 		label_14.setFont(new Font("Dialog", Font.BOLD, 14));
-		label_14.setBounds(37, 326, 100, 23);
-		panel.add(label_14);
+		label_14.setBounds(50, 330, 100, 23);
+		tabDependentes.add(label_14);
 		
 		button_1 = new JButton("Início");
 		button_1.setHorizontalAlignment(SwingConstants.LEFT);
 		button_1.setForeground(Color.WHITE);
 		button_1.setBorder(null);
 		button_1.setBackground(new Color(0, 168, 89));
-		button_1.setBounds(37, 349, 57, 23);
-		panel.add(button_1);
+		button_1.setBounds(50, 353, 57, 23);
+		tabDependentes.add(button_1);
 		
 		button_2 = new JButton("Cadastro de Departamentos");
 		button_2.setHorizontalAlignment(SwingConstants.LEFT);
 		button_2.setForeground(Color.WHITE);
 		button_2.setBorder(null);
 		button_2.setBackground(new Color(0, 168, 89));
-		button_2.setBounds(37, 371, 162, 23);
-		panel.add(button_2);
+		button_2.setBounds(50, 375, 162, 23);
+		tabDependentes.add(button_2);
 		
 		button_3 = new JButton("Cadastro de Funcionários");
 		button_3.setHorizontalAlignment(SwingConstants.LEFT);
 		button_3.setForeground(Color.WHITE);
 		button_3.setBorder(null);
 		button_3.setBackground(new Color(0, 168, 89));
-		button_3.setBounds(37, 393, 162, 23);
-		panel.add(button_3);
+		button_3.setBounds(50, 397, 162, 23);
+		tabDependentes.add(button_3);
 		
 		button_4 = new JButton("Cadastro de Projetos");
 		button_4.setHorizontalAlignment(SwingConstants.LEFT);
 		button_4.setForeground(Color.WHITE);
 		button_4.setBorder(null);
 		button_4.setBackground(new Color(0, 168, 89));
-		button_4.setBounds(37, 414, 162, 23);
-		panel.add(button_4);
+		button_4.setBounds(50, 418, 162, 23);
+		tabDependentes.add(button_4);
 		
 		button_5 = new JButton("Cadastro de Dependentes");
 		button_5.setHorizontalAlignment(SwingConstants.LEFT);
 		button_5.setForeground(Color.WHITE);
 		button_5.setBorder(null);
 		button_5.setBackground(new Color(0, 168, 89));
-		button_5.setBounds(37, 433, 162, 23);
-		panel.add(button_5);
+		button_5.setBounds(50, 437, 162, 23);
+		tabDependentes.add(button_5);
 		
 		label_15 = new JLabel();
 		label_15.setIcon(new ImageIcon(Cadastro.class.getResource("/imgs/telaverde.png")));
 		label_15.setForeground(new Color(0, 204, 0));
 		label_15.setBackground(new Color(0, 204, 0));
-		label_15.setBounds(10, 313, 694, 150);
-		panel.add(label_15);
+		label_15.setBounds(23, 317, 694, 150);
+		tabDependentes.add(label_15);
 		
 		comboBox = new JComboBox();
 		comboBox.setBounds(600, 72, 119, 20);
-		panel.add(comboBox);
+		tabDependentes.add(comboBox);
 
 		getContentPane().add(jPanel1);
 		jPanel1.setBounds(0, 0, 800, 530);
@@ -921,7 +921,7 @@ public class Cadastro extends javax.swing.JFrame {
 	private JButton btnCadastroDeFuncionrios;
 	private JButton btnCadastroFuncionarios;
 	private JButton btnCadastroDeDependentes_1;
-	private JPanel panel;
+	private JPanel tabDependentes;
 	private JLabel lblCadastroDeDependentes;
 	private JSeparator separator;
 	private JLabel label_1;
