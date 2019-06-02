@@ -265,10 +265,6 @@ public class CadastroProjetos extends JFrame {
 		separatorFuncionario.setBounds(10, 180, 65, 10);
 		contentPane.add(separatorFuncionario);
 		
-		JComboBox cbxFuncionario = new JComboBox();
-		cbxFuncionario.setBounds(89, 155, 278, 20);
-		contentPane.add(cbxFuncionario);
-		
 		tblFuncionario = new JTable();
 		tblFuncionario.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -280,6 +276,10 @@ public class CadastroProjetos extends JFrame {
 		));
 		tblFuncionario.setBounds(10, 189, 357, 85);
 		contentPane.add(tblFuncionario);
+		
+		JComboBox cbxFuncionario = new JComboBox();
+		cbxFuncionario.setBounds(89, 155, 278, 20);
+		contentPane.add(cbxFuncionario);
 		
 		JLabel lblBack = new JLabel();
 		lblBack.setForeground(new Color(0, 204, 0));
