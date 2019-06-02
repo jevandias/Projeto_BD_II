@@ -525,20 +525,20 @@ public class Cadastro extends javax.swing.JFrame {
 		lblCadastroDeDependentes.setText("Cadastro de Dependentes");
 		lblCadastroDeDependentes.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblCadastroDeDependentes.setBackground(new Color(153, 153, 153));
-		lblCadastroDeDependentes.setBounds(10, 11, 301, 35);
+		lblCadastroDeDependentes.setBounds(23, 15, 301, 35);
 		panel.add(lblCadastroDeDependentes);
 		
 		separator = new JSeparator();
 		separator.setForeground(new Color(204, 204, 204));
 		separator.setBackground(new Color(204, 204, 204));
-		separator.setBounds(10, 52, 694, 10);
+		separator.setBounds(23, 56, 694, 10);
 		panel.add(separator);
 		
 		label_1 = new JLabel();
 		label_1.setText("Nome:");
 		label_1.setForeground(new Color(153, 153, 153));
 		label_1.setBackground(Color.WHITE);
-		label_1.setBounds(10, 69, 36, 16);
+		label_1.setBounds(23, 73, 36, 16);
 		panel.add(label_1);
 		
 		textField = new JTextField();
@@ -546,20 +546,20 @@ public class Cadastro extends javax.swing.JFrame {
 		textField.setForeground(new Color(153, 153, 153));
 		textField.setBorder(null);
 		textField.setBackground(Color.WHITE);
-		textField.setBounds(52, 68, 243, 18);
+		textField.setBounds(65, 72, 243, 18);
 		panel.add(textField);
 		
 		separator_1 = new JSeparator();
 		separator_1.setForeground(new Color(204, 204, 204));
 		separator_1.setBackground(new Color(204, 204, 204));
-		separator_1.setBounds(10, 92, 285, 10);
+		separator_1.setBounds(23, 96, 285, 10);
 		panel.add(separator_1);
 		
 		label_2 = new JLabel();
 		label_2.setText("CPF:");
 		label_2.setForeground(new Color(153, 153, 153));
 		label_2.setBackground(Color.WHITE);
-		label_2.setBounds(313, 69, 25, 16);
+		label_2.setBounds(326, 73, 25, 16);
 		panel.add(label_2);
 		
 		textField_1 = new JTextField();
@@ -567,40 +567,40 @@ public class Cadastro extends javax.swing.JFrame {
 		textField_1.setForeground(new Color(153, 153, 153));
 		textField_1.setBorder(null);
 		textField_1.setBackground(Color.WHITE);
-		textField_1.setBounds(344, 68, 123, 18);
+		textField_1.setBounds(357, 72, 123, 18);
 		panel.add(textField_1);
 		
 		separator_2 = new JSeparator();
 		separator_2.setForeground(new Color(204, 204, 204));
 		separator_2.setBackground(new Color(204, 204, 204));
-		separator_2.setBounds(313, 92, 154, 10);
+		separator_2.setBounds(326, 96, 154, 10);
 		panel.add(separator_2);
 		
 		lblFuncionrio = new JLabel();
 		lblFuncionrio.setText("CPF do Funcionário:");
 		lblFuncionrio.setForeground(new Color(153, 153, 153));
 		lblFuncionrio.setBackground(Color.WHITE);
-		lblFuncionrio.setBounds(485, 69, 97, 16);
+		lblFuncionrio.setBounds(498, 73, 97, 16);
 		panel.add(lblFuncionrio);
 		
 		separator_3 = new JSeparator();
 		separator_3.setForeground(new Color(204, 204, 204));
 		separator_3.setBackground(new Color(204, 204, 204));
-		separator_3.setBounds(485, 92, 97, 10);
+		separator_3.setBounds(498, 96, 97, 10);
 		panel.add(separator_3);
 		
 		label_4 = new JLabel();
 		label_4.setText("Endereço");
 		label_4.setForeground(new Color(153, 153, 153));
 		label_4.setBackground(Color.WHITE);
-		label_4.setBounds(10, 114, 57, 16);
+		label_4.setBounds(23, 118, 57, 16);
 		panel.add(label_4);
 		
 		label_5 = new JLabel();
 		label_5.setText("Rua:");
 		label_5.setForeground(new Color(153, 153, 153));
 		label_5.setBackground(Color.WHITE);
-		label_5.setBounds(10, 143, 25, 16);
+		label_5.setBounds(23, 147, 25, 16);
 		panel.add(label_5);
 		
 		textField_3 = new JTextField();
@@ -608,13 +608,13 @@ public class Cadastro extends javax.swing.JFrame {
 		textField_3.setForeground(new Color(153, 153, 153));
 		textField_3.setBorder(null);
 		textField_3.setBackground(Color.WHITE);
-		textField_3.setBounds(38, 142, 291, 18);
+		textField_3.setBounds(51, 146, 291, 18);
 		panel.add(textField_3);
 		
 		separator_4 = new JSeparator();
 		separator_4.setForeground(new Color(204, 204, 204));
 		separator_4.setBackground(new Color(204, 204, 204));
-		separator_4.setBounds(10, 166, 319, 10);
+		separator_4.setBounds(23, 170, 319, 10);
 		panel.add(separator_4);
 		
 		label_6 = new JLabel();
@@ -826,7 +826,7 @@ public class Cadastro extends javax.swing.JFrame {
 		panel.add(label_15);
 		
 		comboBox = new JComboBox();
-		comboBox.setBounds(585, 73, 119, 20);
+		comboBox.setBounds(600, 72, 119, 20);
 		panel.add(comboBox);
 
 		getContentPane().add(jPanel1);
