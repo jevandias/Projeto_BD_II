@@ -14,7 +14,6 @@ import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
@@ -22,7 +21,6 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import java.awt.Font;
-
 import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
@@ -103,14 +101,14 @@ public class Inicio extends JFrame {
 
 		setUndecorated(true);
 		setMinimumSize(new Dimension(800, 530));
-		setSize(new Dimension(800, 531));
+		setSize(new Dimension(800, 530));
 
 		
 		
 
 		setUndecorated(true);
 		setMinimumSize(new Dimension(800, 530));
-		setSize(new Dimension(800, 520));
+		setSize(new Dimension(800, 530));
 
 		setAlwaysOnTop(true);
 		setLocationRelativeTo(null);
@@ -143,6 +141,7 @@ public class Inicio extends JFrame {
 		tabInicio = new javax.swing.JPanel();
 
 		jLabel1 = new javax.swing.JLabel();
+		jLabel1.setText("Usuário");
 		jLabel1.setBounds(663, 16, 83, 14);
 		jLabel2 = new javax.swing.JLabel();
 		jLabel2.setBounds(36, 17, 70, 96);
@@ -152,7 +151,7 @@ public class Inicio extends JFrame {
 		jSeparator1.setBounds(110, 119, 675, 10);
 		jLabel4 = new javax.swing.JLabel();
 		jLabel4.setHorizontalAlignment(SwingConstants.CENTER);
-		jLabel4.setBounds(212, 135, 371, 14);
+		jLabel4.setBounds(215, 135, 371, 14);
 
 		lblUsuarioLogado = new javax.swing.JLabel();
 		lblUsuarioLogado.setBounds(618, 18, 110, 14);
@@ -244,7 +243,7 @@ public class Inicio extends JFrame {
 		label.setBounds(675, 43, 51, 45);
 		tabInicio.add(label);
 
-		lbllogout = new JLabel("New label");
+		lbllogout = new JLabel("");
 		lbllogout.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/iconlogout.png")));
 		lbllogout.setBounds(756, 13, 18, 18);
 		tabInicio.add(lbllogout);
