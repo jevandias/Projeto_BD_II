@@ -80,7 +80,7 @@ public class Inicio extends JFrame {
 		btnCadastroDependentes.setBackground(Color.WHITE);
 		btnCadastroDependentes.setBounds(615, 95, 170, 23);
 		panel.add(btnCadastroDependentes);
-		
+				
 		btnCadastroDepartamentos = new JButton("Cadastro de departamentos");
 		btnCadastroDepartamentos.setBorder(null);
 		btnCadastroDepartamentos.setBackground(Color.WHITE);
