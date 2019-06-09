@@ -29,4 +29,8 @@ public class DepartamentoController {
 	public void excluir(int codigo) throws SQLException {
 		departamentoDao.excluir(codigo);
 	}
+	
+	public int recuperarId() throws SQLException {
+		return departamentoDao.recuperarId();
+	}
 }

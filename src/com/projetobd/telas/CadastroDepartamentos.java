@@ -5,14 +5,21 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
+
+import com.projetobd.controler.DepartamentoController;
+import com.projetobd.entidades.Departamentos;
+
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 
@@ -98,13 +105,21 @@ public class CadastroDepartamentos extends JFrame {
 		lblCodigo.setBounds(326, 73, 42, 16);
 		panel.add(lblCodigo);
 
-		txtCodigo = new JTextField();
-		txtCodigo.setToolTipText("");
-		txtCodigo.setForeground(new Color(153, 153, 153));
-		txtCodigo.setBorder(null);
-		txtCodigo.setBackground(Color.WHITE);
-		txtCodigo.setBounds(369, 72, 111, 18);
-		panel.add(txtCodigo);
+		try {
+			int idDepartamento = new DepartamentoController().recuperarId();
+			txtCodigo = new JTextField();
+			txtCodigo.setForeground(new Color(153, 153, 153));
+			txtCodigo.setBorder(null);
+			txtCodigo.setText(String.valueOf(idDepartamento));
+			txtCodigo.setBackground(Color.WHITE);
+			txtCodigo.setBounds(369, 72, 111, 18);
+			txtCodigo.setEditable(false);
+			panel.add(txtCodigo);
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
 
 		separatorCodigo = new JSeparator();
 		separatorCodigo.setForeground(new Color(204, 204, 204));
@@ -140,11 +155,19 @@ public class CadastroDepartamentos extends JFrame {
 		btnSalvar.setBackground(Color.WHITE);
 		btnSalvar.setBounds(23, 111, 80, 39);
 		panel.add(btnSalvar);
+		btnSalvar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				cadastrarDep();
+			}
+		});
 
 		lblConfirmacao = new JLabel();
-		lblConfirmacao.setText("Confirmação");
-		lblConfirmacao.setBounds(113, 122, 73, 16);
+		lblConfirmacao.setForeground(Color.GREEN);
+		lblConfirmacao.setText("Cadastrado com sucesso");
+		lblConfirmacao.setBounds(113, 122, 154, 16);
 		panel.add(lblConfirmacao);
+		lblConfirmacao.setVisible(false);
 
 		lblNavegacao = new JLabel();
 		lblNavegacao.setText("Navegação:");
@@ -228,7 +251,7 @@ public class CadastroDepartamentos extends JFrame {
 		btnCadastroDependentes.setBackground(Color.WHITE);
 		btnCadastroDependentes.setBounds(15, 433, 162, 23);
 		panel.add(btnCadastroDependentes);
-		
+
 		lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(CadastroDepartamentos.class.getResource("/imgs/backdepartamento.png")));
 		lblNewLabel.setBounds(0, 202, 795, 276);
@@ -242,5 +265,28 @@ public class CadastroDepartamentos extends JFrame {
 
 			}
 		});
+	}
+
+	private void cadastrarDep() {
+		Departamentos departamento = new Departamentos();
+		departamento.setCodigo(Integer.parseInt(txtCodigo.getText()));
+		departamento.setLocalizacao(txtLocalizacao.getText());
+		departamento.setNome(txtNome.getText());
+
+		try {
+			new DepartamentoController().cadastrarDepartamento(departamento);
+			lblConfirmacao.setVisible(true);
+			limparTelas();
+		} catch (ClassNotFoundException e) {
+			JOptionPane.showMessageDialog(null, "Erro interno do sistema");
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Erro no banco de dados: " + e.getMessage());
+		}
+	}
+
+	private void limparTelas() {
+		txtCodigo.setText("");
+		txtLocalizacao.setText("");
+		txtNome.setText("");
 	}
 }
