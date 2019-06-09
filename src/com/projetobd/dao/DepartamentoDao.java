@@ -60,4 +60,17 @@ public class DepartamentoDao {
 		prepare.execute();
 		prepare.close();
 	}
+	
+	public int recuperarId() throws SQLException {
+		String sql = "SELECT max(codigo)+1 as id FROM departamentos";
+		PreparedStatement prepare = con.prepareStatement(sql);
+		ResultSet result = prepare.executeQuery();
+		int idDepartamento = 0;
+		if(result.next()) {
+			idDepartamento = result.getInt("id");
+		}
+		
+		return idDepartamento;
+		
+	}
 }

@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -19,6 +20,8 @@ import javax.swing.JTextField;
 import com.projetobd.personalizados.JNumberFormatField;
 
 import java.text.DecimalFormat;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import com.projetobd.controler.ConsultaCep;
 import com.projetobd.controler.FuncionarioController;
@@ -68,7 +71,7 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 	private JNumberField txtSenha;
 	private JSeparator separatorSenha;
 	private JButton btnSalvar;
-	private JLabel label_13;
+	private JLabel lblConfirmacao;
 	private JLabel label_14;
 	private JButton btnInici;
 	private JButton btnCadastroDepartamentos;
@@ -83,6 +86,8 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 	private JLabel lblUf;
 	private JButton button;
 	private JButton btnLogout;
+	private JLabel lblCpfInvalido;
+	private int contCpfInvalido = 0;
 
 	/**
 	 * Create the frame.
@@ -145,7 +150,7 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		pane3.add(txtCpf);
 		txtCpf.setColumns(10);
 		txtCpf.addFocusListener(this);
-		
+
 		separatorCpf = new JSeparator();
 		separatorCpf.setForeground(new Color(204, 204, 204));
 		separatorCpf.setBackground(new Color(204, 204, 204));
@@ -355,11 +360,12 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		btnSalvar.setBounds(10, 287, 80, 39);
 		pane3.add(btnSalvar);
 		btnSalvar.addActionListener(this);
-		
-		label_13 = new JLabel();
-		label_13.setText("Confirmação");
-		label_13.setBounds(99, 298, 73, 16);
-		pane3.add(label_13);
+
+		lblConfirmacao = new JLabel("Cadastrado com sucesso");
+		lblConfirmacao.setForeground(Color.GREEN);
+		lblConfirmacao.setVisible(false);
+		lblConfirmacao.setBounds(99, 298, 146, 16);
+		pane3.add(lblConfirmacao);
 
 		label_14 = new JLabel();
 		label_14.setText("Navegação:");
@@ -376,12 +382,12 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		btnInici.setBounds(15, 349, 57, 23);
 		pane3.add(btnInici);
 		btnInici.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new Inicio().setVisible(true);
 				dispose();
-				
+
 			}
 		});
 
@@ -393,12 +399,12 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		btnCadastroDepartamentos.setBounds(15, 371, 162, 23);
 		pane3.add(btnCadastroDepartamentos);
 		btnCadastroDepartamentos.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new CadastroDepartamentos().setVisible(true);
 				dispose();
-				
+
 			}
 		});
 
@@ -410,12 +416,12 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		btnCadastroFuncionario.setBounds(15, 393, 162, 23);
 		pane3.add(btnCadastroFuncionario);
 		btnCadastroFuncionario.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new CadastroFuncionario().setVisible(true);
 				dispose();
-				
+
 			}
 		});
 
@@ -427,12 +433,12 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		btnCadastroProjetos.setBounds(15, 414, 162, 23);
 		pane3.add(btnCadastroProjetos);
 		btnCadastroProjetos.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new CadastroProjetos().setVisible(true);
 				dispose();
-				
+
 			}
 		});
 
@@ -444,12 +450,12 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		btnCadastroDependentes.setBounds(15, 433, 162, 23);
 		pane3.add(btnCadastroDependentes);
 		btnCadastroDependentes.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new CadastroDependentes().setVisible(true);
 				dispose();
-				
+
 			}
 		});
 
@@ -460,13 +466,14 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		lblfuncinario.setBackground(new Color(0, 204, 0));
 		lblfuncinario.setBounds(0, 208, 800, 270);
 		pane3.add(lblfuncinario);
-		
+
 		btnLogout = new JButton("");
 		btnLogout.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				btnLogout.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/iconlogout2.0.sobre.png")));
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				btnLogout.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/iconlogout2.0.png")));
@@ -479,7 +486,7 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		pane3.add(btnLogout);
 		btnLogout.setBorder(null);
 		btnLogout.setFocusPainted(isVisible());
-				
+
 		btnLogout.addActionListener(new ActionListener() {
 
 			@Override
@@ -489,42 +496,57 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 
 			}
 		});
+		pane3.add(lblfuncinario);
+
+		lblCpfInvalido = new JLabel();
+		lblCpfInvalido.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCpfInvalido.setForeground(Color.RED);
+		lblCpfInvalido.setBounds(294, 102, 192, 14);
+		pane3.add(lblCpfInvalido);
 	}
-	
+
 	private void validaCpf() {
 		boolean valido = ValidaCNP.isValidCPF(txtCpf.getText());
-		if(!valido) {
+		if (!valido) {
 			separatorCpf.setBackground(Color.RED);
+			lblCpfInvalido.setText("CPF invalido");
 			txtCpf.setText("");
 		}
 	}
 
 	@Override
 	public void focusGained(FocusEvent e) {
-		if(e.getSource() == txtCpf) {
+		if (e.getSource() == txtCpf) {
 			separatorCpf.setBackground(new Color(204, 204, 204));
+			lblCpfInvalido.setText("");
 		}
 	}
 
 	@Override
 	public void focusLost(FocusEvent e) {
-		if(e.getSource() == txtCep) {
+		if (e.getSource() == txtCep) {
 			ConsultaCep consulta = new ConsultaCep(txtCep.getText().replace("     -   ", ""));
-			if(consulta != null) {
+			if (consulta != null) {
 				txtRua.setText(consulta.getLogradouro());
 				txtBairro.setText(consulta.getBairro());
 				txtCidade.setText(consulta.getCidade());
 				txtUf.setText(consulta.getEstado());
 				txtSenha.setText(String.valueOf(GerarSenha.retornaSenha()));
 			}
-		}else if(e.getSource() == txtCpf) {
-			validaCpf();
+		} else if (e.getSource() == txtCpf) {
+			if (!txtCpf.getText().replace(".", "").replace("-", "").replace(" ", "").equals("")) {
+				lblCpfInvalido.setText("");
+				validaCpf();
+			} else {
+				separatorCpf.setBackground(Color.RED);
+				lblCpfInvalido.setText("CPF não pode ficar em branco");
+			}
 		}
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		if(arg0.getSource() == btnSalvar) {
+		if (arg0.getSource() == btnSalvar) {
 			Funcionario funcionario = new Funcionario();
 			funcionario.setCpf(Long.parseLong(txtCpf.getText().replace("-", "").replace(".", "")));
 			funcionario.setNome(txtNome.getText());
@@ -533,19 +555,39 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 			funcionario.setNumeroEnd(Integer.parseInt(txtNumero.getText()));
 			funcionario.setCidade(txtCidade.getText());
 			funcionario.setUf(txtUf.getText());
-			funcionario.setTelefone(Long.parseLong(txtTelefone.getText().replace("(", "").replace(")", "").replace("-", "")));
+			funcionario.setTelefone(
+					Long.parseLong(txtTelefone.getText().replace("(", "").replace(")", "").replace("-", "")));
 			funcionario.setSalario(Double.parseDouble(txtSalario.getText().replace(",", ".")));
 			funcionario.setCodigo_departamento(0);
 			funcionario.setCodigo_departamentoGerenciar(0);
 			funcionario.setSenha(Integer.parseInt(txtSenha.getText()));
-			
+
 			try {
+
 				new FuncionarioController().cadastrarFuncionario(funcionario);
-				
+
+				lblConfirmacao.setVisible(true);
+
+				Timer timer = new Timer(); // new timer
+				TimerTask task = new TimerTask() {
+					public void run() {
+						contCpfInvalido--;
+						if (contCpfInvalido == -1) {
+							timer.cancel();
+							lblConfirmacao.setVisible(false);
+						}
+					}
+				};
+				timer.scheduleAtFixedRate(task, 1000, 1000); // = 1000 = a delay de 1 segundo no contador;
+				limparTela();
 			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
+	}
+
+	private void limparTela() {
+		txtBairro.setText("");
+		txtCep.setText("");
 	}
 }

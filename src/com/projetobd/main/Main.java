@@ -1,13 +1,14 @@
 package com.projetobd.main;
 
-import com.projetobd.telas.CadastroFuncionario;
 
+
+import com.projetobd.telas.Inicio;
 
 public class Main {
 	
 	public static void main(String[] args) {
 	
-			new CadastroFuncionario().setVisible(true);
+			new Inicio().setVisible(true);
 		
 	}
 }
