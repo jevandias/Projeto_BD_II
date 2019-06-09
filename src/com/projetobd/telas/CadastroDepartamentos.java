@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
 
 public class CadastroDepartamentos extends JFrame {
 
@@ -39,6 +40,7 @@ public class CadastroDepartamentos extends JFrame {
 	private JButton btnSalvar;
 	private JLabel lblConfirmacao;
 	private JLabel lblNavegacao;
+	private JLabel lblNewLabel;
 
 	public CadastroDepartamentos() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -226,6 +228,11 @@ public class CadastroDepartamentos extends JFrame {
 		btnCadastroDependentes.setBackground(Color.WHITE);
 		btnCadastroDependentes.setBounds(15, 433, 162, 23);
 		panel.add(btnCadastroDependentes);
+		
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(CadastroDepartamentos.class.getResource("/imgs/backdepartamento.png")));
+		lblNewLabel.setBounds(0, 202, 795, 276);
+		panel.add(lblNewLabel);
 		btnCadastroDependentes.addActionListener(new ActionListener() {
 
 			@Override

@@ -86,6 +86,15 @@ public class Inicio extends JFrame {
 		btnCadastroDepartamentos.setBackground(Color.WHITE);
 		btnCadastroDepartamentos.setBounds(117, 95, 166, 23);
 		panel.add(btnCadastroDepartamentos);
+		btnCadastroDepartamentos.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new CadastroDepartamentos().setVisible(true);
+				dispose();
+
+			}
+		});
 
 		btnCadastroDependentes = new JButton("Cadastro de dependentes");
 		btnCadastroDependentes.setBorder(null);
