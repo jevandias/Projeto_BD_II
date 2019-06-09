@@ -30,6 +30,11 @@ public class DepartamentoController {
 		departamentoDao.excluir(codigo);
 	}
 	
+	public int consultaDep(String nomeDep) throws SQLException {
+		
+		return departamentoDao.consultaDep(nomeDep);
+	}
+	
 	public int recuperarId() throws SQLException {
 		return departamentoDao.recuperarId();
 	}

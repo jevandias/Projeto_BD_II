@@ -584,7 +584,16 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 	}
 
 	private void limparTela() {
-		txtBairro.setText("");
+		txtNome.setText("");
+		txtCpf.setText("");
+		txtSalario.setText("");
 		txtCep.setText("");
+		txtRua.setText("");
+		txtBairro.setText("");
+		txtNumero.setText("");
+		txtCidade.setText("");
+		txtUf.setText("");
+		txtTelefone.setText("");
+		txtSenha.setText("");
 	}
 }

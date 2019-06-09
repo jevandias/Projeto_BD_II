@@ -8,6 +8,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.sql.SQLException;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -19,10 +21,12 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 
+import com.projetobd.controler.ConsultaCep;
 import com.projetobd.controler.DependentesController;
 import com.projetobd.controler.FuncionarioController;
 import com.projetobd.entidades.Dependentes;
 import com.projetobd.entidades.Funcionario;
+import com.projetobd.personalizados.JDocumentFormatedField;
 
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
@@ -65,7 +69,7 @@ public class CadastroDependentes extends JFrame {
 	private JButton btnCadastroProjetos;
 	private JButton btnCadastroDependentes;
 	private JButton btnCadastroDepartamentos;
-	private JComboBox<Long> comboBox;
+	private JComboBox<String> comboBox;
 	private JLabel lblCdigoDoDependente;
 	private int codDependente;
 	private JLabel lblBack;
@@ -132,13 +136,13 @@ public class CadastroDependentes extends JFrame {
 		separatorCpf.setBounds(313, 92, 94, 10);
 		pane2.add(separatorCpf);
 
-		comboBox = new JComboBox<Long>();
+		comboBox = new JComboBox<String>();
 		comboBox.setBounds(412, 67, 136, 20);
 		pane2.add(comboBox);
 		try {
-			comboBox.addItem(0L);
+			comboBox.addItem("");
 			for (Funcionario func : new FuncionarioController().listarFuncionario()) {
-				comboBox.addItem(func.getCpf());
+				comboBox.addItem(String.valueOf(func.getCpf()));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -172,13 +176,31 @@ public class CadastroDependentes extends JFrame {
 		lblCep.setBounds(10, 143, 36, 16);
 		pane2.add(lblCep);
 
-		txtCep = new JTextField();
+		txtCep = new JDocumentFormatedField().getCep();
 		txtCep.setToolTipText("");
 		txtCep.setForeground(new Color(153, 153, 153));
 		txtCep.setBorder(null);
 		txtCep.setBackground(Color.WHITE);
 		txtCep.setBounds(38, 142, 118, 18);
 		pane2.add(txtCep);
+		txtCep.addFocusListener(new FocusListener() {
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				String cep = txtCep.getText().replace("     -   ", "");
+				if(!cep.equals("")) {
+					ConsultaCep consultaCep = new ConsultaCep(cep);
+					txtRua.setText(consultaCep.getLogradouro());
+					txtBairro.setText(consultaCep.getBairro());
+					txtCidade.setText(consultaCep.getCidade());
+					txtUf.setText(consultaCep.getEstado());
+				}
+			}
+			
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				
+			}
+		});
 
 		separatorCep = new JSeparator();
 		separatorCep.setForeground(new Color(204, 204, 204));
@@ -328,8 +350,10 @@ public class CadastroDependentes extends JFrame {
 		pane2.add(btnSalvar);
 
 		lblConfirmacao = new JLabel();
-		lblConfirmacao.setText("Confirmação");
-		lblConfirmacao.setBounds(99, 298, 73, 16);
+		lblConfirmacao.setForeground(Color.GREEN);
+		lblConfirmacao.setText("Cadastrado com sucesso");
+		lblConfirmacao.setBounds(99, 298, 146, 16);
+		lblConfirmacao.setVisible(false);
 		pane2.add(lblConfirmacao);
 
 		btnInici = new JButton("Início");
@@ -443,20 +467,21 @@ public class CadastroDependentes extends JFrame {
 
 	private void salvarCadastro() {
 		Dependentes dependentes = new Dependentes();
+		dependentes.setCodigo(codDependente);
 		dependentes.setNome(txtNome.getText());
 		dependentes.setCidade(txtCidade.getText());
 		dependentes.setNumeroEnd(Integer.parseInt(txtNumero.getText()));
 		dependentes.setUf(txtUf.getText());
 		dependentes.setBairro(txtBairro.getText());
 		dependentes.setRua(txtRua.getText());
-		dependentes.setCep(Long.parseLong(txtCep.getText()));
+		dependentes.setCep(Long.parseLong(txtCep.getText().replace("-", "").replace(" ", "")));
 		dependentes.setCpfFuncionario(Long.parseLong(comboBox.getSelectedItem().toString()));
 		dependentes.setParentesco(txtParentesco.getText());
 
 		try {
 			new DependentesController().cadastrarDependente(dependentes);
-
-			lblConfirmacao.setVisible(false);
+			limparTelas();
+			lblConfirmacao.setVisible(true);
 			Timer timer = new Timer(); // new timer
 			TimerTask task = new TimerTask() {
 				private int contCpfInvalido = 0;
@@ -476,5 +501,16 @@ public class CadastroDependentes extends JFrame {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private void limparTelas() {
+		txtNome.setText("");
+		comboBox.setSelectedItem("");
+		txtCep.setText("");
+		txtRua.setText("");
+		txtBairro.setText("");
+		txtNumero.setText("");
+		txtUf.setText("");
+		txtParentesco.setText("");
 	}
 }
