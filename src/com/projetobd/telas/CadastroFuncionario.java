@@ -354,7 +354,7 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		
 		label_13 = new JLabel();
 		label_13.setText("Confirmação");
-		label_13.setBounds(111, 289, 81, 16);
+		label_13.setBounds(111, 289, 73, 16);
 		contentPane.add(label_13);
 
 		label_14 = new JLabel();

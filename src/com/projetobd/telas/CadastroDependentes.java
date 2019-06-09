@@ -317,12 +317,12 @@ public class CadastroDependentes extends JFrame {
 		btnSalvar.setForeground(new Color(153, 153, 153));
 		btnSalvar.setBorder(new LineBorder(new Color(153, 153, 153), 1, true));
 		btnSalvar.setBackground(Color.WHITE);
-		btnSalvar.setBounds(10, 224, 80, 39);
+		btnSalvar.setBounds(10, 276, 80, 39);
 		contentPane.add(btnSalvar);
 		
 		lblConfirmacao = new JLabel();
 		lblConfirmacao.setText("Confirmação");
-		lblConfirmacao.setBounds(100, 235, 73, 16);
+		lblConfirmacao.setBounds(111, 289, 73, 16);
 		contentPane.add(lblConfirmacao);
 		
 		btnInici = new JButton("Início");
