@@ -9,6 +9,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import com.projetobd.personalizados.JNumberFormatField;
@@ -22,6 +25,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.ImageIcon;
 
 public class CadastroProjetos extends JFrame {
 
@@ -31,6 +35,11 @@ public class CadastroProjetos extends JFrame {
 	private JTextField txtNumero;
 	private JTextField txtHoras;
 	private JTable tblFuncionario;
+	private JButton btnInici;
+	private JButton btnCadastroDepartamentos;
+	private JButton btnCadastroFuncionario;
+	private JButton btnCadastroProjetos;
+	private JButton btnCadastroDependentes;
 
 	/**
 	 * Launch the application.
@@ -197,12 +206,12 @@ public class CadastroProjetos extends JFrame {
 		btnSalvar.setForeground(new Color(153, 153, 153));
 		btnSalvar.setBorder(new LineBorder(new Color(153, 153, 153), 1, true));
 		btnSalvar.setBackground(Color.WHITE);
-		btnSalvar.setBounds(624, 268, 80, 39);
+		btnSalvar.setBounds(10, 287, 80, 39);
 		contentPane.add(btnSalvar);
 		
 		JLabel lblConfirmacao = new JLabel();
 		lblConfirmacao.setText("Confirmação");
-		lblConfirmacao.setBounds(514, 279, 73, 16);
+		lblConfirmacao.setBounds(99, 298, 73, 16);
 		contentPane.add(lblConfirmacao);
 		
 		JLabel lblNavegacao = new JLabel();
@@ -212,45 +221,90 @@ public class CadastroProjetos extends JFrame {
 		lblNavegacao.setBounds(37, 326, 100, 23);
 		contentPane.add(lblNavegacao);
 		
-		JButton btnInicio = new JButton("Início");
-		btnInicio.setHorizontalAlignment(SwingConstants.LEFT);
-		btnInicio.setForeground(Color.WHITE);
-		btnInicio.setBorder(null);
-		btnInicio.setBackground(new Color(0, 168, 89));
-		btnInicio.setBounds(37, 349, 57, 23);
-		contentPane.add(btnInicio);
-		
-		JButton btnCadastroDepartamento = new JButton("Cadastro de Departamentos");
-		btnCadastroDepartamento.setHorizontalAlignment(SwingConstants.LEFT);
-		btnCadastroDepartamento.setForeground(Color.WHITE);
-		btnCadastroDepartamento.setBorder(null);
-		btnCadastroDepartamento.setBackground(new Color(0, 168, 89));
-		btnCadastroDepartamento.setBounds(37, 371, 162, 23);
-		contentPane.add(btnCadastroDepartamento);
-		
-		JButton btnCadastroFuncionarios = new JButton("Cadastro de Funcionários");
-		btnCadastroFuncionarios.setHorizontalAlignment(SwingConstants.LEFT);
-		btnCadastroFuncionarios.setForeground(Color.WHITE);
-		btnCadastroFuncionarios.setBorder(null);
-		btnCadastroFuncionarios.setBackground(new Color(0, 168, 89));
-		btnCadastroFuncionarios.setBounds(37, 393, 162, 23);
-		contentPane.add(btnCadastroFuncionarios);
-		
-		JButton btnCadastroProjetos = new JButton("Cadastro de Projetos");
+		btnInici = new JButton("Início");
+		btnInici.setHorizontalAlignment(SwingConstants.LEFT);
+		btnInici.setForeground(Color.BLACK);
+		btnInici.setBorder(null);
+		btnInici.setBackground(Color.WHITE);
+		btnInici.setBounds(15, 349, 57, 23);
+		contentPane.add(btnInici);
+		btnInici.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new Inicio().setVisible(true);
+				dispose();
+				
+			}
+		});
+
+		btnCadastroDepartamentos = new JButton("Cadastro de Departamentos");
+		btnCadastroDepartamentos.setHorizontalAlignment(SwingConstants.LEFT);
+		btnCadastroDepartamentos.setForeground(Color.BLACK);
+		btnCadastroDepartamentos.setBorder(null);
+		btnCadastroDepartamentos.setBackground(Color.WHITE);
+		btnCadastroDepartamentos.setBounds(15, 371, 162, 23);
+		contentPane.add(btnCadastroDepartamentos);
+		btnCadastroDepartamentos.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new CadastroDepartamentos().setVisible(true);
+				dispose();
+				
+			}
+		});
+
+		btnCadastroFuncionario = new JButton("Cadastro de Funcionários");
+		btnCadastroFuncionario.setHorizontalAlignment(SwingConstants.LEFT);
+		btnCadastroFuncionario.setForeground(Color.BLACK);
+		btnCadastroFuncionario.setBorder(null);
+		btnCadastroFuncionario.setBackground(Color.WHITE);
+		btnCadastroFuncionario.setBounds(15, 393, 162, 23);
+		contentPane.add(btnCadastroFuncionario);
+		btnCadastroFuncionario.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new CadastroFuncionario().setVisible(true);
+				dispose();
+				
+			}
+		});
+
+		btnCadastroProjetos = new JButton("Cadastro de Projetos");
 		btnCadastroProjetos.setHorizontalAlignment(SwingConstants.LEFT);
-		btnCadastroProjetos.setForeground(Color.WHITE);
+		btnCadastroProjetos.setForeground(Color.BLACK);
 		btnCadastroProjetos.setBorder(null);
-		btnCadastroProjetos.setBackground(new Color(0, 168, 89));
-		btnCadastroProjetos.setBounds(37, 414, 162, 23);
+		btnCadastroProjetos.setBackground(Color.WHITE);
+		btnCadastroProjetos.setBounds(15, 414, 162, 23);
 		contentPane.add(btnCadastroProjetos);
-		
-		JButton btnCadastroDependentes = new JButton("Cadastro de Dependentes");
+		btnCadastroProjetos.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new CadastroProjetos().setVisible(true);
+				dispose();
+				
+			}
+		});
+
+		btnCadastroDependentes = new JButton("Cadastro de Dependentes");
 		btnCadastroDependentes.setHorizontalAlignment(SwingConstants.LEFT);
-		btnCadastroDependentes.setForeground(Color.WHITE);
+		btnCadastroDependentes.setForeground(Color.BLACK);
 		btnCadastroDependentes.setBorder(null);
-		btnCadastroDependentes.setBackground(new Color(0, 168, 89));
-		btnCadastroDependentes.setBounds(37, 433, 162, 23);
+		btnCadastroDependentes.setBackground(Color.WHITE);
+		btnCadastroDependentes.setBounds(15, 433, 162, 23);
 		contentPane.add(btnCadastroDependentes);
+		btnCadastroDependentes.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new CadastroDependentes().setVisible(true);
+				dispose();
+				
+			}
+		});
 		
 		JLabel lblFuncionario = new JLabel();
 		lblFuncionario.setText("Funcionário:");
@@ -266,6 +320,7 @@ public class CadastroProjetos extends JFrame {
 		contentPane.add(separatorFuncionario);
 		
 		tblFuncionario = new JTable();
+		tblFuncionario.setBackground(new Color(255, 255, 255));
 		tblFuncionario.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null},
@@ -282,9 +337,10 @@ public class CadastroProjetos extends JFrame {
 		contentPane.add(cbxFuncionario);
 		
 		JLabel lblBack = new JLabel();
+		lblBack.setIcon(new ImageIcon(CadastroProjetos.class.getResource("/imgs/backprojetos.png")));
 		lblBack.setForeground(new Color(0, 204, 0));
 		lblBack.setBackground(new Color(0, 204, 0));
-		lblBack.setBounds(10, 313, 694, 150);
+		lblBack.setBounds(0, 208, 800, 270);
 		contentPane.add(lblBack);
 	}
 }

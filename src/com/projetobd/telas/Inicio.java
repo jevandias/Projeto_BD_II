@@ -92,6 +92,15 @@ public class Inicio extends JFrame {
 		btnCadastroDepartamentos.setBounds(116, 95, 170, 23);
 		panel.add(btnCadastroDepartamentos);
 		btnCadastroDepartamentos.setFocusPainted(isVisible());
+		btnCadastroDepartamentos.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new CadastroDepartamentos().setVisible(true);
+				dispose();
+				
+			}
+		});
 		
 		btnCadatroFuncionario = new JButton("Cadastro de funcionários");
 		btnCadatroFuncionario.setBorder(null);
