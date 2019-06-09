@@ -8,6 +8,8 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
@@ -40,6 +42,7 @@ public class CadastroDepartamentos extends JFrame {
 	private JButton btnSalvar;
 	private JLabel lblNavegacao;
 	private JLabel lblBack;
+	private JButton btnLogout;
 
 	public CadastroDepartamentos() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -232,11 +235,31 @@ public class CadastroDepartamentos extends JFrame {
 		lblBack.setIcon(new ImageIcon(CadastroDepartamentos.class.getResource("/imgs/backdepartamento.png")));
 		lblBack.setBounds(0, 202, 795, 276);
 		panel.add(lblBack);
-		btnCadastroDependentes.addActionListener(new ActionListener() {
+		
+		btnLogout = new JButton("");
+		btnLogout.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnLogout.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/iconlogout2.0.sobre.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnLogout.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/iconlogout2.0.png")));
+			}
+		});
+		btnLogout.setForeground(Color.WHITE);
+		btnLogout.setBackground(Color.WHITE);
+		btnLogout.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/iconlogout2.0.png")));
+		btnLogout.setBounds(767, 14, 23, 18);
+		panel.add(btnLogout);
+		btnLogout.setBorder(null);
+		btnLogout.setFocusPainted(isVisible());
+				
+		btnLogout.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new CadastroDependentes().setVisible(true);
+				new Inicio().setVisible(true);
 				dispose();
 
 			}
