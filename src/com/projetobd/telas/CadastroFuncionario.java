@@ -371,6 +371,15 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		btnInici.setBackground(Color.WHITE);
 		btnInici.setBounds(15, 349, 57, 23);
 		contentPane.add(btnInici);
+		btnInici.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new Inicio().setVisible(true);
+				dispose();
+				
+			}
+		});
 
 		btnCadastroDepartamentos = new JButton("Cadastro de Departamentos");
 		btnCadastroDepartamentos.setHorizontalAlignment(SwingConstants.LEFT);
@@ -379,6 +388,15 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		btnCadastroDepartamentos.setBackground(Color.WHITE);
 		btnCadastroDepartamentos.setBounds(15, 371, 162, 23);
 		contentPane.add(btnCadastroDepartamentos);
+		btnCadastroDepartamentos.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new CadastroDepartamentos().setVisible(true);
+				dispose();
+				
+			}
+		});
 
 		btnCadastroFuncionario = new JButton("Cadastro de Funcionários");
 		btnCadastroFuncionario.setHorizontalAlignment(SwingConstants.LEFT);
@@ -387,6 +405,15 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		btnCadastroFuncionario.setBackground(Color.WHITE);
 		btnCadastroFuncionario.setBounds(15, 393, 162, 23);
 		contentPane.add(btnCadastroFuncionario);
+		btnCadastroFuncionario.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new CadastroFuncionario().setVisible(true);
+				dispose();
+				
+			}
+		});
 
 		btnCadastroProjetos = new JButton("Cadastro de Projetos");
 		btnCadastroProjetos.setHorizontalAlignment(SwingConstants.LEFT);
@@ -395,6 +422,15 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		btnCadastroProjetos.setBackground(Color.WHITE);
 		btnCadastroProjetos.setBounds(15, 414, 162, 23);
 		contentPane.add(btnCadastroProjetos);
+		btnCadastroProjetos.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new CadastroProjetos().setVisible(true);
+				dispose();
+				
+			}
+		});
 
 		btnCadastroDependentes = new JButton("Cadastro de Dependentes");
 		btnCadastroDependentes.setHorizontalAlignment(SwingConstants.LEFT);
@@ -403,6 +439,15 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		btnCadastroDependentes.setBackground(Color.WHITE);
 		btnCadastroDependentes.setBounds(15, 433, 162, 23);
 		contentPane.add(btnCadastroDependentes);
+		btnCadastroDependentes.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new CadastroDependentes().setVisible(true);
+				dispose();
+				
+			}
+		});
 
 		lblfuncinario = new JLabel();
 		lblfuncinario.setIcon(new ImageIcon(CadastroFuncionario.class.getResource("/imgs/backfuncionario.png")));
