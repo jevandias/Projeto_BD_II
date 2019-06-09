@@ -21,6 +21,8 @@ public class DependentesDao {
 
 	public void cadastrar(Dependentes dependentes) throws SQLException {
 		String sql = "INSERT INTO dependentes(nome,rua,bairro,numero,cidade,uf,parentesco) VALUES (?,?,?,?,?,?,?);";
+		String sqlFuncDep = "INSERT INTO funcionarios_dependentes(cpf_funcionario, codigo_dependentes) VALUES(?,?)";
+		
 		PreparedStatement prepare = con.prepareStatement(sql);
 		prepare.setString(1, dependentes.getNome());
 		prepare.setString(2, dependentes.getRua());
@@ -29,6 +31,12 @@ public class DependentesDao {
 		prepare.setString(5, dependentes.getCidade());
 		prepare.setString(6, dependentes.getUf());
 		prepare.setString(7, dependentes.getParentesco());
+		prepare.execute();
+		prepare.close();
+		
+		prepare = con.prepareStatement(sqlFuncDep);
+		prepare.setLong(1, dependentes.getCpf_funcionario());
+		prepare.setInt(2, dependentes.getCodigo());
 		prepare.execute();
 		prepare.close();
 	}
@@ -73,5 +81,16 @@ public class DependentesDao {
 		prepare.setInt(1, codigo);
 		prepare.execute();
 		prepare.close();
+	}
+
+	public int recuperarId() throws SQLException {
+		String sql = "SELECT max(codigo)+1 as codigo FROM dependentes";
+		PreparedStatement prepare = con.prepareStatement(sql);
+		ResultSet result = prepare.executeQuery();
+		int codDependente =0;
+		if(result.next()) {
+			codDependente = result.getInt("codigo");
+		}
+		return codDependente;
 	}
 }

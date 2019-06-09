@@ -11,6 +11,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
@@ -68,6 +70,8 @@ public class CadastroDependentes extends JFrame {
 	private JButton btnCadastroDepartamentos;
 	private JLabel lblBack;
 	private JComboBox<Long> comboBox;
+	private JLabel lblCdigoDoDependente;
+	private int codDependente;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -152,6 +156,18 @@ public class CadastroDependentes extends JFrame {
 		separatorCpfFunc.setBackground(new Color(204, 204, 204));
 		separatorCpfFunc.setBounds(319, 92, 73, 10);
 		contentPane.add(separatorCpfFunc);
+
+		try {
+			codDependente = new DependentesController().recuperarId();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		lblCdigoDoDependente = new JLabel();
+		lblCdigoDoDependente.setText("Código do dependente: " + codDependente);
+		lblCdigoDoDependente.setForeground(new Color(153, 153, 153));
+		lblCdigoDoDependente.setBackground(Color.WHITE);
+		lblCdigoDoDependente.setBounds(558, 58, 146, 16);
+		contentPane.add(lblCdigoDoDependente);
 
 		lblEndereco = new JLabel();
 		lblEndereco.setText("Endereço");
@@ -322,8 +338,10 @@ public class CadastroDependentes extends JFrame {
 		});
 
 		lblConfirmacao = new JLabel();
-		lblConfirmacao.setText("Confirmação");
-		lblConfirmacao.setBounds(99, 298, 73, 16);
+		lblConfirmacao.setForeground(Color.GREEN);
+		lblConfirmacao.setText("Cadastrado com sucesso");
+		lblConfirmacao.setBounds(99, 298, 136, 16);
+		lblConfirmacao.setVisible(false);
 		contentPane.add(lblConfirmacao);
 
 		btnInicio = new JButton("Início");
@@ -409,19 +427,47 @@ public class CadastroDependentes extends JFrame {
 			}
 		});
 
-
 		lblBack = new JLabel("");
 		lblBack.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblBack.setIcon(new ImageIcon(CadastroDependentes.class.getResource("/imgs/backdependentes.png")));
 		lblBack.setBounds(0, 200, 798, 278);
 		contentPane.add(lblBack);
 	}
-	
+
 	private void salvarCadastro() {
 		Dependentes dependentes = new Dependentes();
-		dependentes.setCodigo(codigo);
-		dependentes.setNome(nome);
-		dependentes.set
-		
+		dependentes.setNome(txtNome.getText());
+		dependentes.setCidade(txtCidade.getText());
+		dependentes.setNumeroEnd(Integer.parseInt(txtNumero.getText()));
+		dependentes.setUf(txtUf.getText());
+		dependentes.setBairro(txtBairro.getText());
+		dependentes.setRua(txtRua.getText());
+		dependentes.setCep(Long.parseLong(txtCep.getText()));
+		dependentes.setCpfFuncionario(Long.parseLong(comboBox.getSelectedItem().toString()));
+		dependentes.setParentesco(txtParentesco.getText());
+
+		try {
+			new DependentesController().cadastrarDependente(dependentes);
+			
+			lblConfirmacao.setVisible(false);
+			Timer timer = new Timer(); // new timer
+			TimerTask task = new TimerTask() {
+				private int contCpfInvalido = 0;
+
+				public void run() {
+					contCpfInvalido --;
+					if (contCpfInvalido == -1) {
+						timer.cancel();
+						lblConfirmacao.setVisible(false);
+					}
+				}
+			};
+			timer.scheduleAtFixedRate(task, 1000, 1000); // = 1000 = a delay de 1 segundo no contador;
+			
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

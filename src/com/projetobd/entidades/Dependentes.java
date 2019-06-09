@@ -4,6 +4,8 @@ public class Dependentes {
 
 	private int codigo;
 	private String nome;
+	private long cpfFuncionario;
+	private long cep;
 	private String rua;
 	private String bairro;
 	private int numeroEnd;
@@ -89,5 +91,21 @@ public class Dependentes {
 
 	public void setParentesco(String parentesco) {
 		this.parentesco = parentesco;
+	}
+
+	public long getCpf_funcionario() {
+		return cpfFuncionario;
+	}
+
+	public void setCpfFuncionario(long cpfFuncionario) {
+		this.cpfFuncionario = cpfFuncionario;
+	}
+
+	public long getCep() {
+		return cep;
+	}
+
+	public void setCep(long cep) {
+		this.cep = cep;
 	}
 }
