@@ -263,7 +263,7 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		lblCidade.setText("Cidade:");
 		lblCidade.setForeground(new Color(153, 153, 153));
 		lblCidade.setBackground(Color.WHITE);
-		lblCidade.setBounds(180, 185, 45, 16);
+		lblCidade.setBounds(180, 185, 49, 16);
 		contentPane.add(lblCidade);
 
 		txtCidade = new JTextField();
@@ -271,7 +271,7 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		txtCidade.setForeground(new Color(153, 153, 153));
 		txtCidade.setBorder(null);
 		txtCidade.setBackground(Color.WHITE);
-		txtCidade.setBounds(223, 184, 119, 18);
+		txtCidade.setBounds(229, 184, 113, 18);
 		contentPane.add(txtCidade);
 
 		separatorCidade = new JSeparator();
@@ -348,13 +348,13 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		btnSalvar.setForeground(new Color(153, 153, 153));
 		btnSalvar.setBorder(new LineBorder(new Color(153, 153, 153), 1, true));
 		btnSalvar.setBackground(Color.WHITE);
-		btnSalvar.setBounds(10, 276, 80, 39);
+		btnSalvar.setBounds(10, 287, 80, 39);
 		contentPane.add(btnSalvar);
 		btnSalvar.addActionListener(this);
 		
 		label_13 = new JLabel();
 		label_13.setText("Confirmação");
-		label_13.setBounds(111, 289, 81, 16);
+		label_13.setBounds(99, 298, 73, 16);
 		contentPane.add(label_13);
 
 		label_14 = new JLabel();

@@ -45,9 +45,9 @@ public class CadastroDepartamentos extends JFrame {
 	private JLabel lblLocalizacao;
 	private JSeparator separatorLocalizacao;
 	private JButton btnSalvar;
-	private JLabel lblConfirmacao;
 	private JLabel lblNavegacao;
-	private JLabel lblNewLabel;
+	private JLabel lblBack;
+	private JLabel lblConfirmacao;
 
 	public CadastroDepartamentos() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -68,20 +68,20 @@ public class CadastroDepartamentos extends JFrame {
 		label.setText("Cadastro de Departamentos\r\n");
 		label.setFont(new Font("Dialog", Font.BOLD, 18));
 		label.setBackground(new Color(153, 153, 153));
-		label.setBounds(23, 15, 301, 35);
+		label.setBounds(10, 11, 301, 35);
 		panel.add(label);
 
 		separatorTitulo = new JSeparator();
 		separatorTitulo.setForeground(new Color(204, 204, 204));
 		separatorTitulo.setBackground(new Color(204, 204, 204));
-		separatorTitulo.setBounds(23, 56, 694, 10);
+		separatorTitulo.setBounds(10, 52, 694, 10);
 		panel.add(separatorTitulo);
 
 		lblNome = new JLabel();
 		lblNome.setText("Nome:");
 		lblNome.setForeground(new Color(153, 153, 153));
 		lblNome.setBackground(Color.WHITE);
-		lblNome.setBounds(23, 73, 36, 16);
+		lblNome.setBounds(10, 69, 36, 16);
 		panel.add(lblNome);
 
 		txtNome = new JTextField();
@@ -89,20 +89,20 @@ public class CadastroDepartamentos extends JFrame {
 		txtNome.setForeground(new Color(153, 153, 153));
 		txtNome.setBorder(null);
 		txtNome.setBackground(Color.WHITE);
-		txtNome.setBounds(61, 72, 247, 18);
+		txtNome.setBounds(55, 68, 234, 18);
 		panel.add(txtNome);
 
 		separatorNome = new JSeparator();
 		separatorNome.setForeground(new Color(204, 204, 204));
 		separatorNome.setBackground(new Color(204, 204, 204));
-		separatorNome.setBounds(23, 96, 285, 10);
+		separatorNome.setBounds(10, 92, 285, 10);
 		panel.add(separatorNome);
 
 		lblCodigo = new JLabel();
 		lblCodigo.setText("Código:");
 		lblCodigo.setForeground(new Color(153, 153, 153));
 		lblCodigo.setBackground(Color.WHITE);
-		lblCodigo.setBounds(326, 73, 42, 16);
+		lblCodigo.setBounds(313, 69, 42, 16);
 		panel.add(lblCodigo);
 
 		try {
@@ -112,7 +112,7 @@ public class CadastroDepartamentos extends JFrame {
 			txtCodigo.setBorder(null);
 			txtCodigo.setText(String.valueOf(idDepartamento));
 			txtCodigo.setBackground(Color.WHITE);
-			txtCodigo.setBounds(369, 72, 111, 18);
+			txtCodigo.setBounds(354, 68, 111, 18);
 			txtCodigo.setEditable(false);
 			panel.add(txtCodigo);
 		} catch (ClassNotFoundException e1) {
@@ -124,20 +124,20 @@ public class CadastroDepartamentos extends JFrame {
 		separatorCodigo = new JSeparator();
 		separatorCodigo.setForeground(new Color(204, 204, 204));
 		separatorCodigo.setBackground(new Color(204, 204, 204));
-		separatorCodigo.setBounds(326, 96, 154, 10);
+		separatorCodigo.setBounds(313, 92, 154, 10);
 		panel.add(separatorCodigo);
 
 		lblLocalizacao = new JLabel();
 		lblLocalizacao.setText("Localização:");
 		lblLocalizacao.setForeground(new Color(153, 153, 153));
 		lblLocalizacao.setBackground(Color.WHITE);
-		lblLocalizacao.setBounds(498, 73, 87, 16);
+		lblLocalizacao.setBounds(485, 69, 80, 16);
 		panel.add(lblLocalizacao);
 
 		separatorLocalizacao = new JSeparator();
 		separatorLocalizacao.setForeground(new Color(204, 204, 204));
 		separatorLocalizacao.setBackground(new Color(204, 204, 204));
-		separatorLocalizacao.setBounds(498, 96, 219, 10);
+		separatorLocalizacao.setBounds(485, 92, 219, 10);
 		panel.add(separatorLocalizacao);
 
 		txtLocalizacao = new JTextField();
@@ -145,7 +145,7 @@ public class CadastroDepartamentos extends JFrame {
 		txtLocalizacao.setForeground(new Color(153, 153, 153));
 		txtLocalizacao.setBorder(null);
 		txtLocalizacao.setBackground(Color.WHITE);
-		txtLocalizacao.setBounds(576, 72, 141, 18);
+		txtLocalizacao.setBounds(563, 68, 141, 18);
 		panel.add(txtLocalizacao);
 
 		btnSalvar = new JButton();
@@ -153,8 +153,9 @@ public class CadastroDepartamentos extends JFrame {
 		btnSalvar.setForeground(new Color(153, 153, 153));
 		btnSalvar.setBorder(new LineBorder(new Color(153, 153, 153), 1, true));
 		btnSalvar.setBackground(Color.WHITE);
-		btnSalvar.setBounds(23, 111, 80, 39);
+		btnSalvar.setBounds(10, 287, 80, 39);
 		panel.add(btnSalvar);
+		
 		btnSalvar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -165,7 +166,7 @@ public class CadastroDepartamentos extends JFrame {
 		lblConfirmacao = new JLabel();
 		lblConfirmacao.setForeground(Color.GREEN);
 		lblConfirmacao.setText("Cadastrado com sucesso");
-		lblConfirmacao.setBounds(113, 122, 154, 16);
+		lblConfirmacao.setBounds(99, 298, 154, 16);
 		panel.add(lblConfirmacao);
 		lblConfirmacao.setVisible(false);
 
@@ -251,11 +252,12 @@ public class CadastroDepartamentos extends JFrame {
 		btnCadastroDependentes.setBackground(Color.WHITE);
 		btnCadastroDependentes.setBounds(15, 433, 162, 23);
 		panel.add(btnCadastroDependentes);
+		
+		lblBack = new JLabel("");
+		lblBack.setIcon(new ImageIcon(CadastroDepartamentos.class.getResource("/imgs/backdepartamento.png")));
+		lblBack.setBounds(0, 202, 795, 276);
+		panel.add(lblBack);
 
-		lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(CadastroDepartamentos.class.getResource("/imgs/backdepartamento.png")));
-		lblNewLabel.setBounds(0, 202, 795, 276);
-		panel.add(lblNewLabel);
 		btnCadastroDependentes.addActionListener(new ActionListener() {
 
 			@Override

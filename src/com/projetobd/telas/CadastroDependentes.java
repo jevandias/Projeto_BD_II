@@ -66,7 +66,7 @@ public class CadastroDependentes extends JFrame {
 	private JComboBox cbxCpfFuncionario;
 	private JButton btnInici;
 	private JButton btnCadastroDepartamentos;
-	private JLabel lblNewLabel;
+	private JLabel lblBack_1;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -152,6 +152,10 @@ public class CadastroDependentes extends JFrame {
 		lblCpfFunc.setBackground(Color.WHITE);
 		lblCpfFunc.setBounds(485, 69, 118, 16);
 		contentPane.add(lblCpfFunc);
+		
+		JComboBox lblComboBox = new JComboBox();
+		lblComboBox.setBounds(603, 67, 101, 20);
+		contentPane.add(lblComboBox);
 		
 		separatorCpfFunc = new JSeparator();
 		separatorCpfFunc.setForeground(new Color(204, 204, 204));
@@ -318,12 +322,12 @@ public class CadastroDependentes extends JFrame {
 		btnSalvar.setForeground(new Color(153, 153, 153));
 		btnSalvar.setBorder(new LineBorder(new Color(153, 153, 153), 1, true));
 		btnSalvar.setBackground(Color.WHITE);
-		btnSalvar.setBounds(10, 224, 80, 39);
+		btnSalvar.setBounds(10, 287, 80, 39);
 		contentPane.add(btnSalvar);
 		
 		lblConfirmacao = new JLabel();
 		lblConfirmacao.setText("Confirmação");
-		lblConfirmacao.setBounds(100, 235, 73, 16);
+		lblConfirmacao.setBounds(99, 298, 73, 16);
 		contentPane.add(lblConfirmacao);
 		
 		btnInici = new JButton("Início");
@@ -402,11 +406,11 @@ public class CadastroDependentes extends JFrame {
 		btnCadastroDependentes.setBounds(15, 433, 162, 23);
 		contentPane.add(btnCadastroDependentes);
 		
-		lblNewLabel = new JLabel("");
-		lblNewLabel.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblNewLabel.setIcon(new ImageIcon(CadastroDependentes.class.getResource("/imgs/backdependentes.png")));
-		lblNewLabel.setBounds(0, 200, 798, 278);
-		contentPane.add(lblNewLabel);
+		lblBack_1 = new JLabel("");
+		lblBack_1.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblBack_1.setIcon(new ImageIcon(CadastroDependentes.class.getResource("/imgs/backdependentes.png")));
+		lblBack_1.setBounds(0, 200, 798, 278);
+		contentPane.add(lblBack_1);
 		btnCadastroDependentes.addActionListener(new ActionListener() {
 			
 			@Override
