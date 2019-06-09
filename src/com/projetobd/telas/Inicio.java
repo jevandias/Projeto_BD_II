@@ -40,6 +40,9 @@ public class Inicio extends JFrame implements MouseListener {
 	private JLabel lblBanner;
 	private JButton btnLogout;
 	private JButton btnCadastroDepartamentos;
+	private JLabel lblListarIcon;
+	private JButton btnlistar;
+	private JLabel lbllistarIcon;
 
 	public Inicio() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -60,13 +63,13 @@ public class Inicio extends JFrame implements MouseListener {
 
 		lblIcone = new JLabel();
 		lblIcone.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/ifpe.png")));
-		lblIcone.setBounds(36, 17, 70, 96);
+		lblIcone.setBounds(10, 22, 70, 96);
 		panel.add(lblIcone);
 
 		separatorBase = new JSeparator();
 		separatorBase.setForeground(new Color(204, 204, 204));
 		separatorBase.setBackground(new Color(204, 204, 204));
-		separatorBase.setBounds(110, 119, 675, 10);
+		separatorBase.setBounds(90, 130, 695, 10);
 		panel.add(separatorBase);
 
 		lblBemVindo = new JLabel();
@@ -83,14 +86,14 @@ public class Inicio extends JFrame implements MouseListener {
 		lblNomeSistema = new JLabel();
 		lblNomeSistema.setText("Gerência Empresarial |  Departamentos e Funcionários");
 		lblNomeSistema.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNomeSistema.setBounds(212, 135, 371, 14);
+		lblNomeSistema.setBounds(252, 135, 371, 14);
 		panel.add(lblNomeSistema);
 
 		btnCadastroDepartamentos = new JButton("Cadastro de departamentos");
 		btnCadastroDepartamentos.setFocusPainted(false);
 		btnCadastroDepartamentos.setBorder(null);
 		btnCadastroDepartamentos.setBackground(Color.WHITE);
-		btnCadastroDepartamentos.setBounds(117, 95, 166, 23);
+		btnCadastroDepartamentos.setBounds(90, 98, 166, 23);
 		panel.add(btnCadastroDepartamentos);
 		btnCadastroDepartamentos.addMouseListener(this);
 
@@ -98,7 +101,7 @@ public class Inicio extends JFrame implements MouseListener {
 		btnCadastroDependentes.setBorder(null);
 		btnCadastroDependentes.setBackground(Color.WHITE);
 		btnCadastroDependentes.setFocusPainted(isVisible());
-		btnCadastroDependentes.setBounds(615, 95, 170, 23);
+		btnCadastroDependentes.setBounds(565, 98, 151, 23);
 		panel.add(btnCadastroDependentes);
 		btnCadastroDependentes.setFocusPainted(isVisible());
 		btnCadastroDependentes.addMouseListener(this);
@@ -106,7 +109,7 @@ public class Inicio extends JFrame implements MouseListener {
 		btnCadastroFuncionario = new JButton("Cadastro de funcionários");
 		btnCadastroFuncionario.setBorder(null);
 		btnCadastroFuncionario.setBackground(Color.WHITE);
-		btnCadastroFuncionario.setBounds(293, 95, 166, 23);
+		btnCadastroFuncionario.setBounds(266, 98, 145, 23);
 		panel.add(btnCadastroFuncionario);
 		btnCadastroFuncionario.addMouseListener(this);
 		btnCadastroFuncionario.setFocusPainted(isVisible());
@@ -114,7 +117,7 @@ public class Inicio extends JFrame implements MouseListener {
 		btnCadastroProjeto = new JButton("Cadastro de projetos");
 		btnCadastroProjeto.setBorder(null);
 		btnCadastroProjeto.setBackground(Color.WHITE);
-		btnCadastroProjeto.setBounds(469, 95, 140, 23);
+		btnCadastroProjeto.setBounds(421, 98, 134, 23);
 		panel.add(btnCadastroProjeto);
 		btnCadastroProjeto.setFocusPainted(isVisible());
 		btnCadastroProjeto.addMouseListener(this);
@@ -122,25 +125,25 @@ public class Inicio extends JFrame implements MouseListener {
 		lblDepartamentoIcon = new JLabel("");
 		lblDepartamentoIcon.addMouseListener(this);
 		lblDepartamentoIcon.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/icondepartamento.png")));
-		lblDepartamentoIcon.setBounds(181, 46, 40, 45);
+		lblDepartamentoIcon.setBounds(153, 49, 40, 45);
 		panel.add(lblDepartamentoIcon);
 		lblDepartamentoIcon.addMouseListener(this);
 
 		lblFuncionarioIcon = new JLabel("");
 		lblFuncionarioIcon.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/iconfuncionario.png")));
-		lblFuncionarioIcon.setBounds(356, 46, 40, 45);
+		lblFuncionarioIcon.setBounds(318, 49, 40, 45);
 		panel.add(lblFuncionarioIcon);
 		lblFuncionarioIcon.addMouseListener(this);
 
 		lblProjetoIcon = new JLabel("");
 		lblProjetoIcon.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/iconprojeto.png")));
-		lblProjetoIcon.setBounds(519, 46, 40, 45);
+		lblProjetoIcon.setBounds(468, 49, 40, 45);
 		panel.add(lblProjetoIcon);
 		lblProjetoIcon.addMouseListener(this);
 		
 		lblDependentesIcon = new JLabel("");
 		lblDependentesIcon.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/icondependentes.png")));
-		lblDependentesIcon.setBounds(675, 43, 51, 45);
+		lblDependentesIcon.setBounds(615, 46, 51, 45);
 		panel.add(lblDependentesIcon);
 		lblDependentesIcon.addMouseListener(this);
 		
@@ -171,6 +174,20 @@ public class Inicio extends JFrame implements MouseListener {
 		panel.add(btnLogout);
 		btnLogout.setBorder(null);
 		btnLogout.setFocusPainted(isVisible());
+		
+		lblListarIcon = new JLabel("");
+		lblListarIcon.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/iconlistar.png")));
+		lblListarIcon.setBounds(735, 46, 40, 43);
+		panel.add(lblListarIcon);
+		lblListarIcon.addMouseListener(this);
+		
+		btnlistar = new JButton("Listar");
+		btnlistar.setFocusPainted(false);
+		btnlistar.setBorder(null);
+		btnlistar.setBackground(Color.WHITE);
+		btnlistar.setBounds(726, 98, 59, 23);
+		panel.add(btnlistar);
+		btnlistar.addMouseListener(this);
 
 		btnLogout.addActionListener(new ActionListener() {
 
@@ -216,6 +233,14 @@ public class Inicio extends JFrame implements MouseListener {
 			new CadastroDependentes().setVisible(true);
 
 		}
+		
+		else if (arg0.getSource() == btnlistar || lblListarIcon == arg0.getSource()) {
+
+			lblListarIcon.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/iconlistar.clik.png")));
+			dispose();
+			new Listar().setVisible(true);
+
+		}
 
 	}
 
@@ -242,6 +267,12 @@ public class Inicio extends JFrame implements MouseListener {
 		else if (e.getSource() == btnCadastroDependentes || lblDependentesIcon == e.getSource()) {
 
 			lblDependentesIcon.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/icondependentes.sobre.png")));
+
+		}
+		
+		else if (e.getSource() == btnlistar || lblListarIcon == e.getSource()) {
+
+			lblListarIcon.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/iconlistar.sobre.png")));
 
 		}
 
@@ -271,6 +302,12 @@ public class Inicio extends JFrame implements MouseListener {
 		else if (e.getSource() == btnCadastroDependentes || lblDependentesIcon == e.getSource()) {
 
 			lblDependentesIcon.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/icondependentes.png")));
+
+		}
+		
+		else if (e.getSource() == btnlistar || lblListarIcon == e.getSource()) {
+
+			lblListarIcon.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/iconlistar.png")));
 
 		}
 
