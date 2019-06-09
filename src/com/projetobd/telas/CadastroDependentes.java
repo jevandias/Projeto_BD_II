@@ -153,6 +153,10 @@ public class CadastroDependentes extends JFrame {
 		lblCpfFunc.setBounds(485, 69, 118, 16);
 		contentPane.add(lblCpfFunc);
 		
+		JComboBox lblComboBox = new JComboBox();
+		lblComboBox.setBounds(603, 67, 101, 20);
+		contentPane.add(lblComboBox);
+		
 		separatorCpfFunc = new JSeparator();
 		separatorCpfFunc.setForeground(new Color(204, 204, 204));
 		separatorCpfFunc.setBackground(new Color(204, 204, 204));
@@ -407,10 +411,6 @@ public class CadastroDependentes extends JFrame {
 		lblBack_1.setIcon(new ImageIcon(CadastroDependentes.class.getResource("/imgs/backdependentes.png")));
 		lblBack_1.setBounds(0, 200, 798, 278);
 		contentPane.add(lblBack_1);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(603, 67, 101, 20);
-		contentPane.add(comboBox);
 		btnCadastroDependentes.addActionListener(new ActionListener() {
 			
 			@Override
