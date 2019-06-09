@@ -75,7 +75,6 @@ public class Login extends JFrame implements ActionListener {
 		lblErro = new JLabel();
 
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		setAlwaysOnTop(true);
 		setBackground(new java.awt.Color(255, 255, 255));
 		setMinimumSize(new Dimension(720, 500));
 		setSize(new Dimension(702, 530));

@@ -61,16 +61,31 @@ public class DepartamentoDao {
 		prepare.close();
 	}
 	
+	public int consultaDep(String nomeDep) throws SQLException {
+		String sql = "SELECT codigo FROM departamentos WHERE nome=?";
+		PreparedStatement prepared = con.prepareStatement(sql);
+		prepared.setString(1, nomeDep);
+		ResultSet result = prepared.executeQuery();
+		int retorno = 0;
+		if(result.next()) {
+			retorno = result.getInt("codigo");
+		}
+		return retorno;
+	}
+
 	public int recuperarId() throws SQLException {
 		String sql = "SELECT max(codigo)+1 as id FROM departamentos";
 		PreparedStatement prepare = con.prepareStatement(sql);
 		ResultSet result = prepare.executeQuery();
 		int idDepartamento = 0;
-		if(result.next()) {
+		if (result.next()) {
 			idDepartamento = result.getInt("id");
 		}
-		
+		if (idDepartamento == 0) {
+			idDepartamento = 1;
+		}
+
 		return idDepartamento;
-		
+
 	}
 }

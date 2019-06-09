@@ -3,7 +3,6 @@ package com.projetobd.telas;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.MouseInputListener;
 
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -123,7 +122,6 @@ public class Inicio extends JFrame implements MouseListener {
 		btnCadastroProjeto.addMouseListener(this);
 
 		lblDepartamentoIcon = new JLabel("");
-		lblDepartamentoIcon.addMouseListener(this);
 		lblDepartamentoIcon.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/icondepartamento.png")));
 		lblDepartamentoIcon.setBounds(153, 49, 40, 45);
 		panel.add(lblDepartamentoIcon);
@@ -140,13 +138,12 @@ public class Inicio extends JFrame implements MouseListener {
 		lblProjetoIcon.setBounds(468, 49, 40, 45);
 		panel.add(lblProjetoIcon);
 		lblProjetoIcon.addMouseListener(this);
-		
+
 		lblDependentesIcon = new JLabel("");
 		lblDependentesIcon.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/icondependentes.png")));
 		lblDependentesIcon.setBounds(615, 46, 51, 45);
 		panel.add(lblDependentesIcon);
 		lblDependentesIcon.addMouseListener(this);
-		
 
 		lblBanner = new JLabel("");
 		lblBanner.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/backinicio.png")));
@@ -203,11 +200,9 @@ public class Inicio extends JFrame implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		if (arg0.getSource() == btnCadastroDepartamentos || lblDepartamentoIcon == arg0.getSource()) {
-
 			lblDepartamentoIcon.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/icondepartamento.clik.png")));
 			dispose();
 			new CadastroDepartamentos().setVisible(true);
-
 		}
 
 		else if (arg0.getSource() == btnCadastroFuncionario || lblFuncionarioIcon == arg0.getSource()) {

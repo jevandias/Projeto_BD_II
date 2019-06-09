@@ -1,5 +1,7 @@
 package com.projetobd.entidades;
 
+import java.util.List;
+
 public class Projetos {
 
 	private int numero;
@@ -7,13 +9,15 @@ public class Projetos {
 	private String tipo;
 	private double verba;
 	private int cod_departamento;
-	private long cpf_funcionario;
+	private List<Long> cpf_funcionario;
+	private int hora;
 
 	public Projetos() {
 
 	}
 
-	public Projetos(int numero, String nome, String tipo, double verba, int cod_departamento, long cpf_funcionario) {
+	public Projetos(int numero, String nome, String tipo, double verba, int cod_departamento,
+			List<Long> cpf_funcionario) {
 		super();
 		this.numero = numero;
 		this.nome = nome;
@@ -63,11 +67,19 @@ public class Projetos {
 		this.cod_departamento = cod_departamento;
 	}
 
-	public long getCpf_funcionario() {
+	public List<Long> getCpf_funcionario() {
 		return cpf_funcionario;
 	}
 
-	public void setCpf_funcionario(long cpf_funcionario) {
+	public void setCpf_funcionario(List<Long> cpf_funcionario) {
 		this.cpf_funcionario = cpf_funcionario;
+	}
+
+	public int getHora() {
+		return hora;
+	}
+
+	public void setHora(int hora) {
+		this.hora = hora;
 	}
 }
