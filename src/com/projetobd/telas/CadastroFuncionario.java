@@ -348,13 +348,13 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		btnSalvar.setForeground(new Color(153, 153, 153));
 		btnSalvar.setBorder(new LineBorder(new Color(153, 153, 153), 1, true));
 		btnSalvar.setBackground(Color.WHITE);
-		btnSalvar.setBounds(15, 260, 80, 39);
+		btnSalvar.setBounds(10, 276, 80, 39);
 		contentPane.add(btnSalvar);
 		btnSalvar.addActionListener(this);
 		
 		label_13 = new JLabel();
 		label_13.setText("Confirmação");
-		label_13.setBounds(116, 273, 81, 16);
+		label_13.setBounds(111, 289, 81, 16);
 		contentPane.add(label_13);
 
 		label_14 = new JLabel();
