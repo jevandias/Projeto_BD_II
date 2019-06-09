@@ -78,7 +78,7 @@ public class CadastroDependentes extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 798, 478);
 		setUndecorated(true);
-
+		setLocationRelativeTo(null);
 		pane2 = new JPanel();
 		pane2.setBackground(Color.WHITE);
 		pane2.setBorder(new EmptyBorder(5, 5, 5, 5));

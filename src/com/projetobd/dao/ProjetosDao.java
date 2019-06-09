@@ -39,7 +39,7 @@ public class ProjetosDao {
 			projetos.setNome(result.getString("nome"));
 			
 		}
-		return null;
+		return listProjetos;
 	}
 
 	public void atualizar(Projetos projetos) throws SQLException {

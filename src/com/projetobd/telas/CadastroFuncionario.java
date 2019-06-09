@@ -84,18 +84,15 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 	private JLabel lblCidade;
 	private JSeparator separatorCidade;
 	private JLabel lblUf;
-	private JButton button;
 	private JButton btnLogout;
 	private JLabel lblCpfInvalido;
 	private int contCpfInvalido = 0;
 
-	/**
-	 * Create the frame.
-	 */
 	public CadastroFuncionario() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 798, 478);
 		setUndecorated(true);
+		setLocationRelativeTo(null);
 		pane3 = new JPanel();
 		pane3.setBackground(Color.WHITE);
 		pane3.setBorder(new EmptyBorder(5, 5, 5, 5));
