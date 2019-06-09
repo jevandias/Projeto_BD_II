@@ -11,6 +11,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
@@ -48,6 +50,7 @@ public class CadastroDepartamentos extends JFrame {
 	private JLabel lblNavegacao;
 	private JLabel lblBack;
 	private JLabel lblConfirmacao;
+	private int contCpfInvalido = 0;
 
 	public CadastroDepartamentos() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -278,6 +281,21 @@ public class CadastroDepartamentos extends JFrame {
 		try {
 			new DepartamentoController().cadastrarDepartamento(departamento);
 			lblConfirmacao.setVisible(true);
+			
+			Timer timer = new Timer(); // new timer
+			TimerTask task = new TimerTask() {
+
+				public void run() {
+					contCpfInvalido--;
+					System.out.println(contCpfInvalido);
+					if (contCpfInvalido == -1) {
+						timer.cancel();
+						lblConfirmacao.setVisible(false);
+					}
+				}
+			};
+			timer.scheduleAtFixedRate(task, 1000, 1000); // = 1000 = a delay de 1 segundo no contador;
+			
 			limparTelas();
 		} catch (ClassNotFoundException e) {
 			JOptionPane.showMessageDialog(null, "Erro interno do sistema");
