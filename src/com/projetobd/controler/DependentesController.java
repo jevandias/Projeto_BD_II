@@ -25,4 +25,8 @@ public class DependentesController {
 	public void excluirDependentes(int codigo) {
 		
 	}
+	
+	public int recuperarId() {
+		
+	}
 }

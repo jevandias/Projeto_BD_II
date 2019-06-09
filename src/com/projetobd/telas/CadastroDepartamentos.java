@@ -282,19 +282,18 @@ public class CadastroDepartamentos extends JFrame {
 			new DepartamentoController().cadastrarDepartamento(departamento);
 			lblConfirmacao.setVisible(true);
 			
-			Timer timer = new Timer(); // new timer
+			Timer timer = new Timer();
 			TimerTask task = new TimerTask() {
 
 				public void run() {
 					contCpfInvalido--;
-					System.out.println(contCpfInvalido);
 					if (contCpfInvalido == -1) {
 						timer.cancel();
 						lblConfirmacao.setVisible(false);
 					}
 				}
 			};
-			timer.scheduleAtFixedRate(task, 1000, 1000); // = 1000 = a delay de 1 segundo no contador;
+			timer.scheduleAtFixedRate(task, 1000, 1000);
 			
 			limparTelas();
 		} catch (ClassNotFoundException e) {

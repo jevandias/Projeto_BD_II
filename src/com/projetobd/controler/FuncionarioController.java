@@ -17,8 +17,8 @@ public class FuncionarioController {
 		funcionarioDao.cadastrar(funcionario);
 	}
 	
-	public List<Funcionario> listarFuncionario(){
-		return null;
+	public List<Funcionario> listarFuncionario() throws SQLException{
+		return funcionarioDao.listar();
 	}
 	
 	public void alterarFuncionario(Funcionario funcionario) {
