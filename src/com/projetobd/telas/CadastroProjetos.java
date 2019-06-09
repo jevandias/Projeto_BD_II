@@ -40,6 +40,10 @@ public class CadastroProjetos extends JFrame {
 	private JButton btnCadastroFuncionario;
 	private JButton btnCadastroProjetos;
 	private JButton btnCadastroDependentes;
+	private JComboBox comboBox;
+	private JLabel txtVerba;
+	private JComboBox cbxDepartamento;
+	private JComboBox cbxFuncionario;
 
 	/**
 	 * Launch the application.
@@ -197,7 +201,7 @@ public class CadastroProjetos extends JFrame {
 		separatorDepartamento.setBounds(394, 136, 81, 10);
 		contentPane.add(separatorDepartamento);
 		
-		JComboBox cbxDepartamento = new JComboBox();
+		cbxDepartamento = new JComboBox();
 		cbxDepartamento.setBounds(495, 113, 209, 20);
 		contentPane.add(cbxDepartamento);
 		
@@ -332,7 +336,7 @@ public class CadastroProjetos extends JFrame {
 		tblFuncionario.setBounds(10, 189, 357, 85);
 		contentPane.add(tblFuncionario);
 		
-		JComboBox cbxFuncionario = new JComboBox();
+		cbxFuncionario = new JComboBox();
 		cbxFuncionario.setBounds(89, 155, 278, 20);
 		contentPane.add(cbxFuncionario);
 		
@@ -342,5 +346,14 @@ public class CadastroProjetos extends JFrame {
 		lblBack.setBackground(new Color(0, 204, 0));
 		lblBack.setBounds(0, 208, 800, 270);
 		contentPane.add(lblBack);
+	}
+	private void limparTela() {
+		txtNome.setText("");
+		txtNumero.setText("");
+		txtVerba.setText("");
+		txtHoras.setText("");
+		txtTipo.setText("");
+		cbxDepartamento.setSelectedItem("");
+		cbxFuncionario.setSelectedItem("");
 	}
 }

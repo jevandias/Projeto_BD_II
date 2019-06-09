@@ -67,6 +67,7 @@ public class CadastroDependentes extends JFrame {
 	private JButton btnInici;
 	private JButton btnCadastroDepartamentos;
 	private JLabel lblBack_1;
+	private JComboBox comboBox;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -153,9 +154,9 @@ public class CadastroDependentes extends JFrame {
 		lblCpfFunc.setBounds(485, 69, 118, 16);
 		contentPane.add(lblCpfFunc);
 		
-		JComboBox lblComboBox = new JComboBox();
-		lblComboBox.setBounds(603, 67, 101, 20);
-		contentPane.add(lblComboBox);
+		comboBox = new JComboBox();
+		comboBox.setBounds(603, 67, 101, 20);
+		contentPane.add(comboBox);
 		
 		separatorCpfFunc = new JSeparator();
 		separatorCpfFunc.setForeground(new Color(204, 204, 204));
@@ -420,5 +421,16 @@ public class CadastroDependentes extends JFrame {
 				
 			}
 		});
+	}
+	private void limparTelas() {
+		txtNome.setText("");
+		txtCpf.setText("");
+		comboBox.setSelectedItem("");
+		txtCep.setText("");
+		txtRua.setText("");
+		txtBairro.setText("");
+		txtNumero.setText("");
+		txtUf.setText("");
+		txtParentesco.setText("");
 	}
 }
