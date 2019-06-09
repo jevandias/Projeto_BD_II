@@ -11,6 +11,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
@@ -29,7 +31,7 @@ import javax.swing.ImageIcon;
 
 public class CadastroProjetos extends JFrame {
 
-	private JPanel contentPane;
+	private JPanel pane4;
 	private JTextField txtNome;
 	private JTextField txtTipo;
 	private JTextField txtNumero;
@@ -44,6 +46,8 @@ public class CadastroProjetos extends JFrame {
 	private JLabel txtVerba;
 	private JComboBox cbxDepartamento;
 	private JComboBox cbxFuncionario;
+
+	private JButton btnLogout;
 
 	/**
 	 * Launch the application.
@@ -68,31 +72,31 @@ public class CadastroProjetos extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 798, 478);
 		setUndecorated(true);
-		contentPane = new JPanel();
-		contentPane.setBackground(Color.WHITE);
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		pane4 = new JPanel();
+		pane4.setBackground(Color.WHITE);
+		pane4.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(pane4);
+		pane4.setLayout(null);
 		
 		JLabel lblCadastroDeProjetos = new JLabel();
 		lblCadastroDeProjetos.setText("Cadastro de Projetos");
 		lblCadastroDeProjetos.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblCadastroDeProjetos.setBackground(new Color(153, 153, 153));
 		lblCadastroDeProjetos.setBounds(10, 11, 301, 35);
-		contentPane.add(lblCadastroDeProjetos);
+		pane4.add(lblCadastroDeProjetos);
 		
 		JSeparator separatorProjetos = new JSeparator();
 		separatorProjetos.setForeground(new Color(204, 204, 204));
 		separatorProjetos.setBackground(new Color(204, 204, 204));
 		separatorProjetos.setBounds(10, 52, 694, 10);
-		contentPane.add(separatorProjetos);
+		pane4.add(separatorProjetos);
 		
 		JLabel lblNome = new JLabel();
 		lblNome.setText("Nome:");
 		lblNome.setForeground(new Color(153, 153, 153));
 		lblNome.setBackground(Color.WHITE);
 		lblNome.setBounds(10, 69, 36, 16);
-		contentPane.add(lblNome);
+		pane4.add(lblNome);
 		
 		txtNome = new JTextField();
 		txtNome.setToolTipText("");
@@ -100,39 +104,39 @@ public class CadastroProjetos extends JFrame {
 		txtNome.setBorder(null);
 		txtNome.setBackground(Color.WHITE);
 		txtNome.setBounds(52, 68, 243, 18);
-		contentPane.add(txtNome);
+		pane4.add(txtNome);
 		
 		JSeparator separatorNome = new JSeparator();
 		separatorNome.setForeground(new Color(204, 204, 204));
 		separatorNome.setBackground(new Color(204, 204, 204));
 		separatorNome.setBounds(10, 92, 285, 10);
-		contentPane.add(separatorNome);
+		pane4.add(separatorNome);
 		
 		JLabel lblNumero = new JLabel();
 		lblNumero.setText("Número:");
 		lblNumero.setForeground(new Color(153, 153, 153));
 		lblNumero.setBackground(Color.WHITE);
 		lblNumero.setBounds(313, 69, 50, 16);
-		contentPane.add(lblNumero);
+		pane4.add(lblNumero);
 		
 		txtNumero = new JTextField();
 		txtNumero.setBorder(null);
 		txtNumero.setBounds(362, 67, 105, 20);
-		contentPane.add(txtNumero);
+		pane4.add(txtNumero);
 		txtNumero.setColumns(10);
 		
 		JSeparator separatorNumero = new JSeparator();
 		separatorNumero.setForeground(new Color(204, 204, 204));
 		separatorNumero.setBackground(new Color(204, 204, 204));
 		separatorNumero.setBounds(313, 92, 154, 10);
-		contentPane.add(separatorNumero);
+		pane4.add(separatorNumero);
 		
 		JLabel lblVerba = new JLabel();
 		lblVerba.setText("Verba:");
 		lblVerba.setForeground(new Color(153, 153, 153));
 		lblVerba.setBackground(Color.WHITE);
 		lblVerba.setBounds(485, 69, 43, 16);
-		contentPane.add(lblVerba);
+		pane4.add(lblVerba);
 		
 		JNumberFormatField txtVerba = new JNumberFormatField(new DecimalFormat("0.00"));
 		txtVerba.setToolTipText("");
@@ -140,31 +144,31 @@ public class CadastroProjetos extends JFrame {
 		txtVerba.setBorder(null);
 		txtVerba.setBackground(Color.WHITE);
 		txtVerba.setBounds(529, 68, 174, 18);
-		contentPane.add(txtVerba);
+		pane4.add(txtVerba);
 		
 		JSeparator separatorVerba = new JSeparator();
 		separatorVerba.setForeground(new Color(204, 204, 204));
 		separatorVerba.setBackground(new Color(204, 204, 204));
 		separatorVerba.setBounds(485, 92, 219, 10);
-		contentPane.add(separatorVerba);
+		pane4.add(separatorVerba);
 		
 		JLabel lblHoras = new JLabel();
 		lblHoras.setText("Horas:");
 		lblHoras.setForeground(new Color(153, 153, 153));
 		lblHoras.setBackground(Color.WHITE);
 		lblHoras.setBounds(10, 113, 50, 16);
-		contentPane.add(lblHoras);
+		pane4.add(lblHoras);
 		
 		JSeparator separatorHoras = new JSeparator();
 		separatorHoras.setForeground(new Color(204, 204, 204));
 		separatorHoras.setBackground(new Color(204, 204, 204));
 		separatorHoras.setBounds(10, 136, 146, 10);
-		contentPane.add(separatorHoras);
+		pane4.add(separatorHoras);
 		
 		txtHoras = new JTextField();
 		txtHoras.setBorder(null);
 		txtHoras.setBounds(51, 113, 105, 20);
-		contentPane.add(txtHoras);
+		pane4.add(txtHoras);
 		txtHoras.setColumns(10);
 		
 		JLabel lblTipo = new JLabel();
@@ -172,7 +176,7 @@ public class CadastroProjetos extends JFrame {
 		lblTipo.setForeground(new Color(153, 153, 153));
 		lblTipo.setBackground(Color.WHITE);
 		lblTipo.setBounds(184, 113, 36, 16);
-		contentPane.add(lblTipo);
+		pane4.add(lblTipo);
 		
 		txtTipo = new JTextField();
 		txtTipo.setToolTipText("");
@@ -180,30 +184,30 @@ public class CadastroProjetos extends JFrame {
 		txtTipo.setBorder(null);
 		txtTipo.setBackground(Color.WHITE);
 		txtTipo.setBounds(218, 114, 145, 18);
-		contentPane.add(txtTipo);
+		pane4.add(txtTipo);
 		
 		JSeparator separatorTipo = new JSeparator();
 		separatorTipo.setForeground(new Color(204, 204, 204));
 		separatorTipo.setBackground(new Color(204, 204, 204));
 		separatorTipo.setBounds(184, 136, 179, 10);
-		contentPane.add(separatorTipo);
+		pane4.add(separatorTipo);
 		
 		JLabel lblDepartamento = new JLabel();
 		lblDepartamento.setText("Departamento:");
 		lblDepartamento.setForeground(new Color(153, 153, 153));
 		lblDepartamento.setBackground(Color.WHITE);
 		lblDepartamento.setBounds(394, 113, 92, 16);
-		contentPane.add(lblDepartamento);
+		pane4.add(lblDepartamento);
 		
 		JSeparator separatorDepartamento = new JSeparator();
 		separatorDepartamento.setForeground(new Color(204, 204, 204));
 		separatorDepartamento.setBackground(new Color(204, 204, 204));
 		separatorDepartamento.setBounds(394, 136, 81, 10);
-		contentPane.add(separatorDepartamento);
+		pane4.add(separatorDepartamento);
 		
 		cbxDepartamento = new JComboBox();
 		cbxDepartamento.setBounds(495, 113, 209, 20);
-		contentPane.add(cbxDepartamento);
+		pane4.add(cbxDepartamento);
 		
 		JButton btnSalvar = new JButton();
 		btnSalvar.setText("Salvar");
@@ -211,19 +215,19 @@ public class CadastroProjetos extends JFrame {
 		btnSalvar.setBorder(new LineBorder(new Color(153, 153, 153), 1, true));
 		btnSalvar.setBackground(Color.WHITE);
 		btnSalvar.setBounds(10, 287, 80, 39);
-		contentPane.add(btnSalvar);
+		pane4.add(btnSalvar);
 		
 		JLabel lblConfirmacao = new JLabel();
 		lblConfirmacao.setText("Confirmação");
 		lblConfirmacao.setBounds(99, 298, 73, 16);
-		contentPane.add(lblConfirmacao);
+		pane4.add(lblConfirmacao);
 		
 		JLabel lblNavegacao = new JLabel();
 		lblNavegacao.setText("Navegação:");
 		lblNavegacao.setForeground(Color.WHITE);
 		lblNavegacao.setFont(new Font("Dialog", Font.BOLD, 14));
 		lblNavegacao.setBounds(37, 326, 100, 23);
-		contentPane.add(lblNavegacao);
+		pane4.add(lblNavegacao);
 		
 		btnInici = new JButton("Início");
 		btnInici.setHorizontalAlignment(SwingConstants.LEFT);
@@ -231,7 +235,7 @@ public class CadastroProjetos extends JFrame {
 		btnInici.setBorder(null);
 		btnInici.setBackground(Color.WHITE);
 		btnInici.setBounds(15, 349, 57, 23);
-		contentPane.add(btnInici);
+		pane4.add(btnInici);
 		btnInici.addActionListener(new ActionListener() {
 			
 			@Override
@@ -248,7 +252,7 @@ public class CadastroProjetos extends JFrame {
 		btnCadastroDepartamentos.setBorder(null);
 		btnCadastroDepartamentos.setBackground(Color.WHITE);
 		btnCadastroDepartamentos.setBounds(15, 371, 162, 23);
-		contentPane.add(btnCadastroDepartamentos);
+		pane4.add(btnCadastroDepartamentos);
 		btnCadastroDepartamentos.addActionListener(new ActionListener() {
 			
 			@Override
@@ -265,7 +269,7 @@ public class CadastroProjetos extends JFrame {
 		btnCadastroFuncionario.setBorder(null);
 		btnCadastroFuncionario.setBackground(Color.WHITE);
 		btnCadastroFuncionario.setBounds(15, 393, 162, 23);
-		contentPane.add(btnCadastroFuncionario);
+		pane4.add(btnCadastroFuncionario);
 		btnCadastroFuncionario.addActionListener(new ActionListener() {
 			
 			@Override
@@ -282,7 +286,7 @@ public class CadastroProjetos extends JFrame {
 		btnCadastroProjetos.setBorder(null);
 		btnCadastroProjetos.setBackground(Color.WHITE);
 		btnCadastroProjetos.setBounds(15, 414, 162, 23);
-		contentPane.add(btnCadastroProjetos);
+		pane4.add(btnCadastroProjetos);
 		btnCadastroProjetos.addActionListener(new ActionListener() {
 			
 			@Override
@@ -299,7 +303,7 @@ public class CadastroProjetos extends JFrame {
 		btnCadastroDependentes.setBorder(null);
 		btnCadastroDependentes.setBackground(Color.WHITE);
 		btnCadastroDependentes.setBounds(15, 433, 162, 23);
-		contentPane.add(btnCadastroDependentes);
+		pane4.add(btnCadastroDependentes);
 		btnCadastroDependentes.addActionListener(new ActionListener() {
 			
 			@Override
@@ -315,13 +319,13 @@ public class CadastroProjetos extends JFrame {
 		lblFuncionario.setForeground(new Color(153, 153, 153));
 		lblFuncionario.setBackground(Color.WHITE);
 		lblFuncionario.setBounds(10, 157, 84, 16);
-		contentPane.add(lblFuncionario);
+		pane4.add(lblFuncionario);
 		
 		JSeparator separatorFuncionario = new JSeparator();
 		separatorFuncionario.setForeground(new Color(204, 204, 204));
 		separatorFuncionario.setBackground(new Color(204, 204, 204));
 		separatorFuncionario.setBounds(10, 180, 65, 10);
-		contentPane.add(separatorFuncionario);
+		pane4.add(separatorFuncionario);
 		
 		tblFuncionario = new JTable();
 		tblFuncionario.setBackground(new Color(255, 255, 255));
@@ -334,18 +338,47 @@ public class CadastroProjetos extends JFrame {
 			}
 		));
 		tblFuncionario.setBounds(10, 189, 357, 85);
-		contentPane.add(tblFuncionario);
+		pane4.add(tblFuncionario);
 		
 		cbxFuncionario = new JComboBox();
 		cbxFuncionario.setBounds(89, 155, 278, 20);
-		contentPane.add(cbxFuncionario);
+		pane4.add(cbxFuncionario);
 		
 		JLabel lblBack = new JLabel();
 		lblBack.setIcon(new ImageIcon(CadastroProjetos.class.getResource("/imgs/backprojetos.png")));
 		lblBack.setForeground(new Color(0, 204, 0));
 		lblBack.setBackground(new Color(0, 204, 0));
 		lblBack.setBounds(0, 208, 800, 270);
-		contentPane.add(lblBack);
+		pane4.add(lblBack);
+		
+		btnLogout = new JButton("");
+		btnLogout.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnLogout.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/iconlogout2.0.sobre.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnLogout.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/iconlogout2.0.png")));
+			}
+		});
+		btnLogout.setForeground(Color.WHITE);
+		btnLogout.setBackground(Color.WHITE);
+		btnLogout.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/iconlogout2.0.png")));
+		btnLogout.setBounds(767, 14, 23, 18);
+		pane4.add(btnLogout);
+		btnLogout.setBorder(null);
+		btnLogout.setFocusPainted(isVisible());
+				
+		btnLogout.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new Inicio().setVisible(true);
+				dispose();
+
+			}
+		});
 	}
 	private void limparTela() {
 		txtNome.setText("");

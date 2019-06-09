@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 
 import javax.swing.JSeparator;
@@ -36,7 +38,7 @@ import javax.swing.ImageIcon;
 public class CadastroFuncionario extends JFrame implements FocusListener, ActionListener {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	private JPanel pane3;
 	private JTextField txtNome;
 	private JTextField txtRua;
 	private JTextField txtBairro;
@@ -82,8 +84,10 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 	private JLabel lblCidade;
 	private JSeparator separatorCidade;
 	private JLabel lblUf;
+	private JButton button;
+	private JButton btnLogout;
 	private JLabel lblCpfInvalido;
-	private int contCpfInvalido = 5;
+	private int contCpfInvalido = 0;
 
 	/**
 	 * Create the frame.
@@ -92,31 +96,31 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 798, 478);
 		setUndecorated(true);
-		contentPane = new JPanel();
-		contentPane.setBackground(Color.WHITE);
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		pane3 = new JPanel();
+		pane3.setBackground(Color.WHITE);
+		pane3.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(pane3);
+		pane3.setLayout(null);
 
 		lblTitulo = new JLabel();
 		lblTitulo.setText("Cadastro de Funcionários");
 		lblTitulo.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblTitulo.setBackground(new Color(153, 153, 153));
 		lblTitulo.setBounds(10, 11, 301, 35);
-		contentPane.add(lblTitulo);
+		pane3.add(lblTitulo);
 
 		separatorTitulo = new JSeparator();
 		separatorTitulo.setForeground(new Color(204, 204, 204));
 		separatorTitulo.setBackground(new Color(204, 204, 204));
 		separatorTitulo.setBounds(10, 52, 694, 10);
-		contentPane.add(separatorTitulo);
+		pane3.add(separatorTitulo);
 
 		lblNome = new JLabel();
 		lblNome.setText("Nome:");
 		lblNome.setForeground(new Color(153, 153, 153));
 		lblNome.setBackground(Color.WHITE);
 		lblNome.setBounds(10, 69, 36, 16);
-		contentPane.add(lblNome);
+		pane3.add(lblNome);
 
 		txtNome = new JTextField();
 		txtNome.setToolTipText("");
@@ -124,26 +128,26 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		txtNome.setBorder(null);
 		txtNome.setBackground(Color.WHITE);
 		txtNome.setBounds(52, 68, 243, 18);
-		contentPane.add(txtNome);
+		pane3.add(txtNome);
 
 		separatorNome = new JSeparator();
 		separatorNome.setForeground(new Color(204, 204, 204));
 		separatorNome.setBackground(new Color(204, 204, 204));
 		separatorNome.setBounds(10, 92, 285, 10);
-		contentPane.add(separatorNome);
+		pane3.add(separatorNome);
 
 		lblCpf = new JLabel();
 		lblCpf.setText("CPF:");
 		lblCpf.setForeground(new Color(153, 153, 153));
 		lblCpf.setBackground(Color.WHITE);
 		lblCpf.setBounds(313, 69, 25, 16);
-		contentPane.add(lblCpf);
+		pane3.add(lblCpf);
 
 		txtCpf = new JDocumentFormatedField().getCpf();
 		txtCpf.setBorder(null);
 		txtCpf.setForeground(new Color(153, 153, 153));
 		txtCpf.setBounds(342, 67, 125, 20);
-		contentPane.add(txtCpf);
+		pane3.add(txtCpf);
 		txtCpf.setColumns(10);
 		txtCpf.addFocusListener(this);
 
@@ -151,14 +155,14 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		separatorCpf.setForeground(new Color(204, 204, 204));
 		separatorCpf.setBackground(new Color(204, 204, 204));
 		separatorCpf.setBounds(313, 92, 154, 10);
-		contentPane.add(separatorCpf);
+		pane3.add(separatorCpf);
 
 		lblSalario = new JLabel();
 		lblSalario.setText("Salário:");
 		lblSalario.setForeground(new Color(153, 153, 153));
 		lblSalario.setBackground(Color.WHITE);
 		lblSalario.setBounds(485, 69, 43, 16);
-		contentPane.add(lblSalario);
+		pane3.add(lblSalario);
 
 		txtSalario = new JNumberFormatField(new DecimalFormat("0.00"));
 		txtSalario.setToolTipText("");
@@ -166,33 +170,33 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		txtSalario.setBorder(null);
 		txtSalario.setBackground(Color.WHITE);
 		txtSalario.setBounds(529, 68, 174, 18);
-		contentPane.add(txtSalario);
+		pane3.add(txtSalario);
 
 		separatorSalario = new JSeparator();
 		separatorSalario.setForeground(new Color(204, 204, 204));
 		separatorSalario.setBackground(new Color(204, 204, 204));
 		separatorSalario.setBounds(485, 92, 219, 10);
-		contentPane.add(separatorSalario);
+		pane3.add(separatorSalario);
 
 		lblEndereco = new JLabel();
 		lblEndereco.setText("Endereço");
 		lblEndereco.setForeground(new Color(153, 153, 153));
 		lblEndereco.setBackground(Color.WHITE);
 		lblEndereco.setBounds(10, 114, 57, 16);
-		contentPane.add(lblEndereco);
+		pane3.add(lblEndereco);
 
 		lblCep = new JLabel();
 		lblCep.setText("CEP:");
 		lblCep.setForeground(new Color(153, 153, 153));
 		lblCep.setBackground(Color.WHITE);
 		lblCep.setBounds(10, 143, 28, 16);
-		contentPane.add(lblCep);
+		pane3.add(lblCep);
 
 		txtCep = new JDocumentFormatedField().getCep();
 		txtCep.setBorder(null);
 		txtCep.setForeground(new Color(153, 153, 153));
 		txtCep.setBounds(43, 141, 113, 20);
-		contentPane.add(txtCep);
+		pane3.add(txtCep);
 		txtCep.setColumns(10);
 		txtCep.addFocusListener(this);
 
@@ -200,34 +204,34 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		separatorCep.setForeground(new Color(204, 204, 204));
 		separatorCep.setBackground(new Color(204, 204, 204));
 		separatorCep.setBounds(10, 166, 146, 10);
-		contentPane.add(separatorCep);
+		pane3.add(separatorCep);
 
 		lblRua = new JLabel();
 		lblRua.setText("Rua:");
 		lblRua.setForeground(new Color(153, 153, 153));
 		lblRua.setBackground(Color.WHITE);
 		lblRua.setBounds(180, 143, 38, 16);
-		contentPane.add(lblRua);
+		pane3.add(lblRua);
 
 		txtRua = new JTextField();
 		txtRua.setForeground(new Color(153, 153, 153));
 		txtRua.setBorder(null);
 		txtRua.setBackground(Color.WHITE);
 		txtRua.setBounds(216, 142, 251, 18);
-		contentPane.add(txtRua);
+		pane3.add(txtRua);
 
 		separatorRua = new JSeparator();
 		separatorRua.setForeground(new Color(204, 204, 204));
 		separatorRua.setBackground(new Color(204, 204, 204));
 		separatorRua.setBounds(180, 166, 287, 10);
-		contentPane.add(separatorRua);
+		pane3.add(separatorRua);
 
 		lblBairro = new JLabel();
 		lblBairro.setText("Bairro:");
 		lblBairro.setForeground(new Color(153, 153, 153));
 		lblBairro.setBackground(Color.WHITE);
 		lblBairro.setBounds(485, 143, 45, 16);
-		contentPane.add(lblBairro);
+		pane3.add(lblBairro);
 
 		txtBairro = new JTextField();
 		txtBairro.setToolTipText("");
@@ -235,20 +239,20 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		txtBairro.setBorder(null);
 		txtBairro.setBackground(Color.WHITE);
 		txtBairro.setBounds(529, 142, 174, 18);
-		contentPane.add(txtBairro);
+		pane3.add(txtBairro);
 
 		separatorBairro = new JSeparator();
 		separatorBairro.setForeground(new Color(204, 204, 204));
 		separatorBairro.setBackground(new Color(204, 204, 204));
 		separatorBairro.setBounds(485, 166, 219, 10);
-		contentPane.add(separatorBairro);
+		pane3.add(separatorBairro);
 
 		lblNumero = new JLabel();
 		lblNumero.setText("Número:");
 		lblNumero.setForeground(new Color(153, 153, 153));
 		lblNumero.setBackground(Color.WHITE);
 		lblNumero.setBounds(10, 185, 50, 16);
-		contentPane.add(lblNumero);
+		pane3.add(lblNumero);
 
 		txtNumero = new JNumberField();
 		txtNumero.setToolTipText("");
@@ -256,20 +260,20 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		txtNumero.setBorder(null);
 		txtNumero.setBackground(Color.WHITE);
 		txtNumero.setBounds(61, 184, 95, 18);
-		contentPane.add(txtNumero);
+		pane3.add(txtNumero);
 
 		separatorNumero = new JSeparator();
 		separatorNumero.setForeground(new Color(204, 204, 204));
 		separatorNumero.setBackground(new Color(204, 204, 204));
 		separatorNumero.setBounds(10, 212, 146, 10);
-		contentPane.add(separatorNumero);
+		pane3.add(separatorNumero);
 
 		lblCidade = new JLabel();
 		lblCidade.setText("Cidade:");
 		lblCidade.setForeground(new Color(153, 153, 153));
 		lblCidade.setBackground(Color.WHITE);
 		lblCidade.setBounds(180, 185, 49, 16);
-		contentPane.add(lblCidade);
+		pane3.add(lblCidade);
 
 		txtCidade = new JTextField();
 		txtCidade.setToolTipText("");
@@ -277,20 +281,20 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		txtCidade.setBorder(null);
 		txtCidade.setBackground(Color.WHITE);
 		txtCidade.setBounds(229, 184, 113, 18);
-		contentPane.add(txtCidade);
+		pane3.add(txtCidade);
 
 		separatorCidade = new JSeparator();
 		separatorCidade.setForeground(new Color(204, 204, 204));
 		separatorCidade.setBackground(new Color(204, 204, 204));
 		separatorCidade.setBounds(180, 212, 162, 10);
-		contentPane.add(separatorCidade);
+		pane3.add(separatorCidade);
 
 		lblUf = new JLabel();
 		lblUf.setText("UF:");
 		lblUf.setForeground(new Color(153, 153, 153));
 		lblUf.setBackground(Color.WHITE);
 		lblUf.setBounds(366, 185, 17, 16);
-		contentPane.add(lblUf);
+		pane3.add(lblUf);
 
 		txtUf = new JTextField();
 		txtUf.setToolTipText("");
@@ -298,40 +302,40 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		txtUf.setBorder(null);
 		txtUf.setBackground(Color.WHITE);
 		txtUf.setBounds(386, 184, 81, 18);
-		contentPane.add(txtUf);
+		pane3.add(txtUf);
 
 		separatorUf = new JSeparator();
 		separatorUf.setForeground(new Color(204, 204, 204));
 		separatorUf.setBackground(new Color(204, 204, 204));
 		separatorUf.setBounds(366, 212, 101, 10);
-		contentPane.add(separatorUf);
+		pane3.add(separatorUf);
 
 		lblTelefone = new JLabel();
 		lblTelefone.setText("Telefone:");
 		lblTelefone.setForeground(new Color(153, 153, 153));
 		lblTelefone.setBackground(Color.WHITE);
 		lblTelefone.setBounds(485, 185, 52, 16);
-		contentPane.add(lblTelefone);
+		pane3.add(lblTelefone);
 
 		txtTelefone = new JDocumentFormatedField().getTel();
 		txtTelefone.setBorder(null);
 		txtTelefone.setBounds(542, 183, 162, 20);
 		txtTelefone.setForeground(new Color(153, 153, 153));
-		contentPane.add(txtTelefone);
+		pane3.add(txtTelefone);
 		txtTelefone.setColumns(10);
 
 		separatorTelefone = new JSeparator();
 		separatorTelefone.setForeground(new Color(204, 204, 204));
 		separatorTelefone.setBackground(new Color(204, 204, 204));
 		separatorTelefone.setBounds(485, 212, 219, 10);
-		contentPane.add(separatorTelefone);
+		pane3.add(separatorTelefone);
 
 		lblSenha = new JLabel();
 		lblSenha.setText("Senha de Acesso:");
 		lblSenha.setForeground(new Color(153, 153, 153));
 		lblSenha.setBackground(Color.WHITE);
 		lblSenha.setBounds(10, 229, 105, 16);
-		contentPane.add(lblSenha);
+		pane3.add(lblSenha);
 
 		txtSenha = new JNumberField();
 		txtSenha.setEditable(false);
@@ -340,13 +344,13 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		txtSenha.setBorder(null);
 		txtSenha.setBackground(Color.WHITE);
 		txtSenha.setBounds(116, 228, 113, 18);
-		contentPane.add(txtSenha);
+		pane3.add(txtSenha);
 
 		separatorSenha = new JSeparator();
 		separatorSenha.setForeground(new Color(204, 204, 204));
 		separatorSenha.setBackground(new Color(204, 204, 204));
 		separatorSenha.setBounds(10, 252, 219, 10);
-		contentPane.add(separatorSenha);
+		pane3.add(separatorSenha);
 
 		btnSalvar = new JButton();
 		btnSalvar.setText("Salvar");
@@ -354,21 +358,21 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		btnSalvar.setBorder(new LineBorder(new Color(153, 153, 153), 1, true));
 		btnSalvar.setBackground(Color.WHITE);
 		btnSalvar.setBounds(10, 287, 80, 39);
-		contentPane.add(btnSalvar);
+		pane3.add(btnSalvar);
 		btnSalvar.addActionListener(this);
 
 		lblConfirmacao = new JLabel("Cadastrado com sucesso");
 		lblConfirmacao.setForeground(Color.GREEN);
 		lblConfirmacao.setVisible(false);
 		lblConfirmacao.setBounds(99, 298, 146, 16);
-		contentPane.add(lblConfirmacao);
+		pane3.add(lblConfirmacao);
 
 		label_14 = new JLabel();
 		label_14.setText("Navegação:");
 		label_14.setForeground(Color.WHITE);
 		label_14.setFont(new Font("Dialog", Font.BOLD, 14));
 		label_14.setBounds(37, 326, 100, 23);
-		contentPane.add(label_14);
+		pane3.add(label_14);
 
 		btnInici = new JButton("Início");
 		btnInici.setHorizontalAlignment(SwingConstants.LEFT);
@@ -376,7 +380,7 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		btnInici.setBorder(null);
 		btnInici.setBackground(Color.WHITE);
 		btnInici.setBounds(15, 349, 57, 23);
-		contentPane.add(btnInici);
+		pane3.add(btnInici);
 		btnInici.addActionListener(new ActionListener() {
 
 			@Override
@@ -393,7 +397,7 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		btnCadastroDepartamentos.setBorder(null);
 		btnCadastroDepartamentos.setBackground(Color.WHITE);
 		btnCadastroDepartamentos.setBounds(15, 371, 162, 23);
-		contentPane.add(btnCadastroDepartamentos);
+		pane3.add(btnCadastroDepartamentos);
 		btnCadastroDepartamentos.addActionListener(new ActionListener() {
 
 			@Override
@@ -410,7 +414,7 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		btnCadastroFuncionario.setBorder(null);
 		btnCadastroFuncionario.setBackground(Color.WHITE);
 		btnCadastroFuncionario.setBounds(15, 393, 162, 23);
-		contentPane.add(btnCadastroFuncionario);
+		pane3.add(btnCadastroFuncionario);
 		btnCadastroFuncionario.addActionListener(new ActionListener() {
 
 			@Override
@@ -427,7 +431,7 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		btnCadastroProjetos.setBorder(null);
 		btnCadastroProjetos.setBackground(Color.WHITE);
 		btnCadastroProjetos.setBounds(15, 414, 162, 23);
-		contentPane.add(btnCadastroProjetos);
+		pane3.add(btnCadastroProjetos);
 		btnCadastroProjetos.addActionListener(new ActionListener() {
 
 			@Override
@@ -444,7 +448,7 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		btnCadastroDependentes.setBorder(null);
 		btnCadastroDependentes.setBackground(Color.WHITE);
 		btnCadastroDependentes.setBounds(15, 433, 162, 23);
-		contentPane.add(btnCadastroDependentes);
+		pane3.add(btnCadastroDependentes);
 		btnCadastroDependentes.addActionListener(new ActionListener() {
 
 			@Override
@@ -461,13 +465,44 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		lblfuncinario.setForeground(new Color(0, 204, 0));
 		lblfuncinario.setBackground(new Color(0, 204, 0));
 		lblfuncinario.setBounds(0, 208, 800, 270);
-		contentPane.add(lblfuncinario);
+		pane3.add(lblfuncinario);
+
+		btnLogout = new JButton("");
+		btnLogout.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnLogout.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/iconlogout2.0.sobre.png")));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnLogout.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/iconlogout2.0.png")));
+			}
+		});
+		btnLogout.setForeground(Color.WHITE);
+		btnLogout.setBackground(Color.WHITE);
+		btnLogout.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/iconlogout2.0.png")));
+		btnLogout.setBounds(767, 14, 23, 18);
+		pane3.add(btnLogout);
+		btnLogout.setBorder(null);
+		btnLogout.setFocusPainted(isVisible());
+
+		btnLogout.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new Inicio().setVisible(true);
+				dispose();
+
+			}
+		});
+		pane3.add(lblfuncinario);
 
 		lblCpfInvalido = new JLabel();
 		lblCpfInvalido.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCpfInvalido.setForeground(Color.RED);
 		lblCpfInvalido.setBounds(294, 102, 192, 14);
-		contentPane.add(lblCpfInvalido);
+		pane3.add(lblCpfInvalido);
 	}
 
 	private void validaCpf() {
