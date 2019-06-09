@@ -66,6 +66,7 @@ public class CadastroDependentes extends JFrame {
 	private JComboBox cbxCpfFuncionario;
 	private JButton btnInici;
 	private JButton btnCadastroDepartamentos;
+	private JLabel lblNewLabel;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -400,6 +401,12 @@ public class CadastroDependentes extends JFrame {
 		btnCadastroDependentes.setBackground(Color.WHITE);
 		btnCadastroDependentes.setBounds(15, 433, 162, 23);
 		contentPane.add(btnCadastroDependentes);
+		
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblNewLabel.setIcon(new ImageIcon(CadastroDependentes.class.getResource("/imgs/backdependentes.png")));
+		lblNewLabel.setBounds(0, 200, 798, 278);
+		contentPane.add(lblNewLabel);
 		btnCadastroDependentes.addActionListener(new ActionListener() {
 			
 			@Override
