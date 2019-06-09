@@ -25,8 +25,8 @@ public class Inicio extends JFrame {
 	private JLabel lblUsuarioLogado;
 	private JLabel lblNomeSistema;
 	private JButton btnCadastroDependentes;
-	private JButton btnCadastroDepartamentos;
-	private JButton btnCadatroFuncionario;
+	
+	private JButton btnCadastroFuncionario;
 	private JButton btnCadastroProjeto;
 	private JLabel lblDepartamentoIcon;
 	private JLabel lblFuncionarioIcon;
@@ -34,6 +34,7 @@ public class Inicio extends JFrame {
 	private JLabel lblDependentesIcon;
 	private JLabel lblBanner;
 	private JButton btnLogout;
+	private JButton btnCadastroDepartamentos;
 
 	public Inicio() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -78,6 +79,13 @@ public class Inicio extends JFrame {
 		lblNomeSistema.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNomeSistema.setBounds(212, 135, 371, 14);
 		panel.add(lblNomeSistema);
+		
+		btnCadastroDepartamentos = new JButton("Cadastro de departamentos");
+		btnCadastroDepartamentos.setFocusPainted(false);
+		btnCadastroDepartamentos.setBorder(null);
+		btnCadastroDepartamentos.setBackground(Color.WHITE);
+		btnCadastroDepartamentos.setBounds(117, 95, 166, 23);
+		panel.add(btnCadastroDepartamentos);
 
 		btnCadastroDependentes = new JButton("Cadastro de dependentes");
 		btnCadastroDependentes.setBorder(null);
@@ -85,29 +93,32 @@ public class Inicio extends JFrame {
 		btnCadastroDependentes.setFocusPainted(isVisible());
 		btnCadastroDependentes.setBounds(615, 95, 170, 23);
 		panel.add(btnCadastroDependentes);
-
-		btnCadastroDepartamentos = new JButton("Cadastro de departamentos");
-		btnCadastroDepartamentos.setBorder(null);
-		btnCadastroDepartamentos.setBackground(Color.WHITE);
-		btnCadastroDepartamentos.setBounds(116, 95, 170, 23);
-		panel.add(btnCadastroDepartamentos);
-		btnCadastroDepartamentos.setFocusPainted(isVisible());
-		btnCadastroDepartamentos.addActionListener(new ActionListener() {
+		btnCadastroDependentes.setFocusPainted(isVisible());
+		btnCadastroDependentes.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new CadastroDepartamentos().setVisible(true);
+				new CadastroDependentes().setVisible(true);
 				dispose();
 
 			}
 		});
 
-		btnCadatroFuncionario = new JButton("Cadastro de funcionários");
-		btnCadatroFuncionario.setBorder(null);
-		btnCadatroFuncionario.setBackground(Color.WHITE);
-		btnCadatroFuncionario.setBounds(293, 95, 166, 23);
-		panel.add(btnCadatroFuncionario);
-		btnCadatroFuncionario.setFocusPainted(isVisible());
+		btnCadastroFuncionario = new JButton("Cadastro de funcionários");
+		btnCadastroFuncionario.setBorder(null);
+		btnCadastroFuncionario.setBackground(Color.WHITE);
+		btnCadastroFuncionario.setBounds(293, 95, 166, 23);
+		panel.add(btnCadastroFuncionario);
+		btnCadastroFuncionario.setFocusPainted(isVisible());
+		btnCadastroFuncionario.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new CadastroFuncionario().setVisible(true);
+				dispose();
+
+			}
+		});
 
 		btnCadastroProjeto = new JButton("Cadastro de projetos");
 		btnCadastroProjeto.setBorder(null);
@@ -115,6 +126,15 @@ public class Inicio extends JFrame {
 		btnCadastroProjeto.setBounds(469, 95, 140, 23);
 		panel.add(btnCadastroProjeto);
 		btnCadastroProjeto.setFocusPainted(isVisible());
+		btnCadastroProjeto.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new CadastroProjetos().setVisible(true);
+				dispose();
+
+			}
+		});
 
 		lblDepartamentoIcon = new JLabel("");
 		lblDepartamentoIcon.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/icondepartamento.png")));
@@ -151,7 +171,7 @@ public class Inicio extends JFrame {
 		panel.add(btnLogout);
 		btnLogout.setBorder(null);
 		btnLogout.setFocusPainted(isVisible());
-		;
+				
 		btnLogout.addActionListener(new ActionListener() {
 
 			@Override
