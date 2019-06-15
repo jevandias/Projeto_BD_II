@@ -43,7 +43,7 @@ public class DependentesDao {
 	}
 
 	public List<Dependentes> listar() throws SQLException {
-		String sql = "SELECT * FROM dependentes";
+		String sql = "SELECT d.nome, d.rua, d.bairro, d.numero, d.cidade, d.uf, d.parentesco, f.nome as nome_funcionario FROM funcionarios f INNER JOIN funcionarios_dependentes fd ON fd.cpf_funcionario = f.cpf INNER JOIN dependentes d ON d.codigo = fd.codigo_dependentes";
 		PreparedStatement prepare = con.prepareStatement(sql);
 		ResultSet result = prepare.executeQuery();
 		listDependentes = new ArrayList<Dependentes>();
@@ -56,6 +56,7 @@ public class DependentesDao {
 			dependentes.setCidade(result.getString("cidade"));
 			dependentes.setUf(result.getString("uf"));
 			dependentes.setParentesco(result.getString("parentesco"));
+			dependentes.setNome_funcionario(result.getString("nome_funcionario"));
 			listDependentes.add(dependentes);
 		}
 		return listDependentes;
@@ -83,7 +84,7 @@ public class DependentesDao {
 		prepare.execute();
 		prepare.close();
 	}
-
+	
 	public int recuperarId() throws SQLException {
 		String sql = "SELECT max(codigo)+1 as codigo FROM dependentes";
 		PreparedStatement prepare = con.prepareStatement(sql);

@@ -18,8 +18,8 @@ public class DependentesController {
 		dependentesDao.cadastrar(dependentes);
 	}
 
-	public List<Dependentes> listarDependentes() {
-		return null;
+	public List<Dependentes> listarDependentes() throws SQLException {
+		return dependentesDao.listar();
 	}
 
 	public void alterarDependentes(Dependentes dependentes) {

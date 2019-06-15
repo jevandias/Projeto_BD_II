@@ -260,7 +260,7 @@ public class CadastroProjetos extends JFrame {
 				try {
 					Projetos projeto = new Projetos();
 					projeto.setNome(txtNome.getText());
-					projeto.setNumero(numProjeto);
+					projeto.setNumero(Integer.parseInt(txtNumero.getText()));
 					projeto.setTipo(txtTipo.getText());
 					projeto.setHora(Integer.parseInt(txtHoras.getText()));
 					projeto.setVerba(Double.parseDouble(txtVerba.getText().replace(",", ".")));
@@ -274,8 +274,12 @@ public class CadastroProjetos extends JFrame {
 						listCpfFunc.add(Long.parseLong(tblFuncionario.getValueAt(i, 0).toString()));
 					}
 					projeto.setCpf_funcionario(listCpfFunc);
-
-					projetosController.cadastrarProjeto(projeto);
+					
+					if(lblCadastroDeProjetos.getText().equals("Cadastro de Projetos")) {
+						projetosController.cadastrarProjeto(projeto);
+					}else {
+						projetosController.alterarProjetos(projeto);
+					}
 					lblConfirmacao.setVisible(true);
 
 					Timer timer = new Timer(); // new timer
@@ -484,6 +488,29 @@ public class CadastroProjetos extends JFrame {
 				cbxFuncionario.setSelectedItem("");
 			}
 		});
+	}
+
+	public void alterarProjeto(int numero) {
+		try {
+			lblCadastroDeProjetos.setText("Atualizar Projeto");
+			Projetos projeto = new ProjetosController().buscarProjeto(numero);
+			
+			txtNome.setText(projeto.getNome());
+			txtNumero.setText(String.valueOf(projeto.getNumero()));
+			System.out.println(projeto.getVerba());
+			txtVerba.setText(String.valueOf(projeto.getVerba()));
+			txtHoras.setText(String.valueOf(projeto.getHora()));
+			txtTipo.setText(projeto.getTipo());
+			cbxDepartamento.setSelectedIndex(projeto.getCod_departamento());
+			for(Long cpf : projeto.getCpf_funcionario()) {
+				model.addRow(new Object[] {cpf});
+			}
+			tblFuncionario.setModel(model);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
 	}
 
 	private void limparTela() {

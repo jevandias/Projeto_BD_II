@@ -18,19 +18,23 @@ public class ProjetosController {
 		projetosDao.cadastrar(projetos);
 	}
 
-	public List<Projetos> listarProjetos() {
-		return null;
+	public List<Projetos> listarProjetos() throws SQLException {
+		return projetosDao.listar();
 	}
 
-	public void alterarProjetos(Projetos projetos) {
-
+	public void alterarProjetos(Projetos projetos) throws SQLException {
+		projetosDao.atualizar(projetos);
 	}
 
-	public void excluirProjetos(int numero) {
-
+	public void excluirProjetos(int numero) throws SQLException {
+		projetosDao.excluir(numero);
 	}
 		
 	public int recuperarNumero() throws SQLException {
 		return projetosDao.recuperarNumero();
+	}
+	
+	public Projetos buscarProjeto(int numero) throws SQLException{
+		return projetosDao.buscarProjeto(numero);
 	}
 }

@@ -29,7 +29,7 @@ public class DepartamentoDao {
 	}
 
 	public List<Departamentos> listar() throws SQLException {
-		String sql = "SELECT * FROM departamentos";
+		String sql = "SELECT * FROM departamentos ORDER BY codigo ASC";
 		PreparedStatement prepare = con.prepareStatement(sql);
 		ResultSet result = prepare.executeQuery();
 		listDepartamento = new ArrayList<Departamentos>();
