@@ -54,7 +54,7 @@ public class Listar extends JFrame implements MouseListener, ListSelectionListen
 
 	public Listar() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 530);
+		setBounds(100, 100, 798, 478);
 		setUndecorated(true);
 		setLocationRelativeTo(null);
 		pane6 = new JPanel();
@@ -64,7 +64,7 @@ public class Listar extends JFrame implements MouseListener, ListSelectionListen
 		pane6.setLayout(null);
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 150, 780, 327);
+		scrollPane.setBounds(9, 112, 780, 301);
 		pane6.add(scrollPane);
 
 		table = new JTable();
@@ -161,7 +161,7 @@ public class Listar extends JFrame implements MouseListener, ListSelectionListen
 		btnAlterar.setBorder(null);
 		btnAlterar.setFocusPainted(false);
 		btnAlterar.setBackground(Color.WHITE);
-		btnAlterar.setBounds(10, 489, 115, 41);
+		btnAlterar.setBounds(19, 426, 115, 41);
 		btnAlterar.addMouseListener(this);
 		btnAlterar.setVisible(false);
 		pane6.add(btnAlterar);
@@ -190,7 +190,7 @@ public class Listar extends JFrame implements MouseListener, ListSelectionListen
 
 		btnExcluir = new JButton("");
 		btnExcluir.setIcon(new ImageIcon(Listar.class.getResource("/imgs/iconexcluir.png")));
-		btnExcluir.setBounds(135, 489, 115, 41);
+		btnExcluir.setBounds(144, 426, 115, 41);
 		btnExcluir.setBorder(null);
 		btnExcluir.setFocusPainted(false);
 		btnExcluir.setBackground(Color.WHITE);
@@ -336,7 +336,7 @@ public class Listar extends JFrame implements MouseListener, ListSelectionListen
 
 			for (Funcionario funcionario : new FuncionarioController().listarFuncionario()) {
 				modeloTabela
-						.addRow(new Object[] { funcionario.getCpf(), funcionario.getNome(), funcionario.getSalario() });
+						.addRow(new Object[] { funcionario.getCpf(), funcionario.getNome(), String.format("R$ %.2f", funcionario.getSalario() )});
 			}
 			table.setModel(modeloTabela);
 		} catch (SQLException e) {
@@ -354,7 +354,7 @@ public class Listar extends JFrame implements MouseListener, ListSelectionListen
 			modeloTabela.addColumn("Verba");
 
 			for (Projetos projetos : new ProjetosController().listarProjetos()) {
-				modeloTabela.addRow(new Object[] { projetos.getNumero(), projetos.getNome(), projetos.getVerba() });
+				modeloTabela.addRow(new Object[] { projetos.getNumero(), projetos.getNome(),  String.format("R$ %.2f",projetos.getVerba()) });
 			}
 			table.setModel(modeloTabela);
 		} catch (SQLException e) {

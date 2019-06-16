@@ -471,7 +471,7 @@ public class CadastroProjetos extends JFrame {
 					dispose();
 				else
 					new Inicio().setVisible(true);
-					dispose();
+				dispose();
 			}
 		});
 
@@ -502,7 +502,7 @@ public class CadastroProjetos extends JFrame {
 
 			txtNome.setText(projeto.getNome());
 			txtNumero.setText(String.valueOf(projeto.getNumero()));
-			txtVerba.setText(String.format("%.2f",projeto.getVerba()));
+			txtVerba.setText(String.format("%.2f", projeto.getVerba()));
 			txtHoras.setText(String.valueOf(projeto.getHora()));
 			txtTipo.setText(projeto.getTipo());
 			cbxDepartamento.setSelectedIndex(projeto.getCod_departamento());

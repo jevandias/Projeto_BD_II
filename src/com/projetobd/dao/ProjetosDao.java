@@ -56,16 +56,22 @@ public class ProjetosDao {
 	}
 
 	public void atualizar(Projetos projetos) throws SQLException {
-		String sql = "UPDATE projetos SET nome = ?, tipo = ?, codigo_Departamento = ?, verba = ?, horas = ? WHERE numero = ?;";
+		String sql = "UPDATE projetos SET nome = ?, tipo = ?, codigo_Departamento = ?, verba = ? WHERE numero = ?;";
 		PreparedStatement prepare = con.prepareStatement(sql);
 		prepare.setString(1, projetos.getNome());
 		prepare.setString(2, projetos.getTipo());
 		prepare.setInt(3, projetos.getCod_departamento());
 		prepare.setDouble(4, projetos.getVerba());
-		prepare.setInt(5, projetos.getHora());
-		prepare.setInt(6, projetos.getNumero());
+		prepare.setInt(5, projetos.getNumero());
 		prepare.executeUpdate();
 		prepare.close();
+
+		String sql2 = "UPDATE funcionarios_projetos SET horas = ? WHERE numero_projeto=?;";
+		PreparedStatement prepare2 = con.prepareStatement(sql2);
+		prepare2.setLong(1, projetos.getHora());
+		prepare2.setInt(2, projetos.getNumero());
+		prepare2.executeUpdate();
+		prepare2.close();
 	}
 
 	public void excluir(int codigo) throws SQLException {
