@@ -75,11 +75,51 @@ public class FuncionarioDao {
 	}
 
 	public void excluir(long cpf) throws SQLException {
+
+		String consultaFuncionario = "SELECT codigo_dependentes, cpf_funcionario FROM funcionarios_dependentes WHERE cpf_funcionario = ?;";
+		PreparedStatement prepare = con.prepareStatement(consultaFuncionario);
+		prepare.setLong(1, cpf);
+		ResultSet result = prepare.executeQuery();
+		List<Long> listaFuncionario = new ArrayList<Long>();
+		List<Integer> listaDependentes = new ArrayList<>();
+		while (result.next()) {
+			int numeroProjeto = result.getInt("codigo_dependentes");
+			long cpfFuncionario = result.getLong("cpf_funcionario");
+			listaFuncionario.add(cpfFuncionario);
+			listaDependentes.add(numeroProjeto);
+		}
+		prepare.close();
+
+		String deleteProjeto = "DELETE FROM funcionarios_dependentes WHERE codigo_dependentes=?";
+		prepare = con.prepareStatement(deleteProjeto);
+		for (int i = 0; i < listaDependentes.size(); i++) {
+			prepare.setInt(1, listaDependentes.get(i));
+			prepare.execute();
+		}
+		prepare.close();
+
+		String deleteProjetoFunc = "DELETE FROM funcionarios_projetos WHERE cpf_funcionario=?";
+		prepare = con.prepareStatement(deleteProjetoFunc);
+		for (int i = 0; i < listaFuncionario.size(); i++) {
+			prepare.setLong(1, listaFuncionario.get(i));
+			prepare.execute();
+		}
+		prepare.close();
+
+		String deleteDependente = "DELETE FROM dependentes WHERE codigo = ?;";
+		prepare = con.prepareStatement(deleteDependente);
+		for (int i = 0; i < listaDependentes.size(); i++) {
+			prepare.setLong(1, cpf);
+			prepare.execute();
+		}
+		prepare.close();
+
 		String sql = "DELETE FROM funcionarios WHERE cpf = ?";
-		PreparedStatement prepare = con.prepareStatement(sql);
+		prepare = con.prepareStatement(sql);
 		prepare.setLong(1, cpf);
 		prepare.execute();
 		prepare.close();
+
 	}
 
 	public Funcionario validarSessao(String usuario, String senha) throws SQLException {
