@@ -20,22 +20,21 @@ public class ProjetosDao {
 	}
 
 	public void cadastrar(Projetos projetos) throws SQLException {
-		String sql = "INSERT INTO projetos (nome, tipo, codigo_Departamento,verba, horas) VALUES(?, ?, ?, ?, ?);";
+		String sql = "INSERT INTO projetos (nome, tipo, codigo_Departamento, verba) VALUES(?, ?, ?, ?);";
 		PreparedStatement prepare = con.prepareStatement(sql);
 		prepare.setString(1, projetos.getNome());
 		prepare.setString(2, projetos.getTipo());
 		prepare.setInt(3, projetos.getCod_departamento());
 		prepare.setDouble(4, projetos.getVerba());
-		prepare.setInt(5, projetos.getHora());
 		prepare.execute();
 		prepare.close();
 
-		String sql2 = "INSERT INTO funcionarios_projetos(CPF_funcionario, numero_projeto) VALUES(?, ?);";
+		String sql2 = "INSERT INTO funcionarios_projetos(CPF_funcionario, numero_projeto, horas) VALUES(?, ?, ?);";
 		PreparedStatement prepare2 = con.prepareStatement(sql2);
-		System.out.println(projetos.getCpf_funcionario().get(0));
 		for (int i = 0; i < projetos.getCpf_funcionario().size(); i++) {
 			prepare2.setLong(1, projetos.getCpf_funcionario().get(i));
 			prepare2.setInt(2, projetos.getNumero());
+			prepare2.setInt(3, projetos.getHora());
 			prepare2.execute();
 		}
 		prepare2.close();
@@ -93,7 +92,7 @@ public class ProjetosDao {
 	}
 
 	public Projetos buscarProjeto(int numero) throws SQLException {
-		String sql = "SELECT pro.numero, pro.nome, pro.tipo, pro.verba, pro.horas, dep.codigo, funpro.CPF_funcionario FROM projetos pro INNER JOIN departamentos dep ON dep.codigo = pro.codigo_departamento INNER JOIN funcionarios_projetos funpro ON funpro.numero_projeto = pro.numero WHERE pro.numero = ?";
+		String sql = "SELECT pro.numero, pro.nome, pro.tipo, pro.verba, funpro.horas, dep.codigo, funpro.CPF_funcionario FROM projetos pro INNER JOIN departamentos dep ON dep.codigo = pro.codigo_departamento INNER JOIN funcionarios_projetos funpro ON funpro.numero_projeto = pro.numero WHERE pro.numero = ?";
 		PreparedStatement prepare = con.prepareStatement(sql);
 		prepare.setInt(1, numero);
 		ResultSet result = prepare.executeQuery();

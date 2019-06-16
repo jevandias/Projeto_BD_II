@@ -40,7 +40,7 @@ public class CadastroDepartamentos extends JFrame {
 	private JButton btnCadastroProjetos;
 	private JButton btnCadastroDependentes;
 	private JPanel panel;
-	private JLabel label;
+	private JLabel lblTitulo;
 	private JSeparator separatorTitulo;
 	private JLabel lblNome;
 	private JSeparator separatorNome;
@@ -54,7 +54,6 @@ public class CadastroDepartamentos extends JFrame {
 	private JButton btnLogout;
 	private JLabel lblConfirmacao;
 	private int contCpfInvalido = 0;
-
 
 	public CadastroDepartamentos() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -72,12 +71,12 @@ public class CadastroDepartamentos extends JFrame {
 		panel.setBounds(0, 0, 795, 478);
 		contentPane.add(panel);
 
-		label = new JLabel();
-		label.setText("Cadastro de Departamentos\r\n");
-		label.setFont(new Font("Dialog", Font.BOLD, 18));
-		label.setBackground(new Color(153, 153, 153));
-		label.setBounds(10, 11, 301, 35);
-		panel.add(label);
+		lblTitulo = new JLabel();
+		lblTitulo.setText("Cadastro de Departamentos");
+		lblTitulo.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblTitulo.setBackground(new Color(153, 153, 153));
+		lblTitulo.setBounds(10, 11, 301, 35);
+		panel.add(lblTitulo);
 
 		separatorTitulo = new JSeparator();
 		separatorTitulo.setForeground(new Color(204, 204, 204));
@@ -163,7 +162,7 @@ public class CadastroDepartamentos extends JFrame {
 		btnSalvar.setBackground(Color.WHITE);
 		btnSalvar.setBounds(10, 287, 80, 39);
 		panel.add(btnSalvar);
-		
+
 		btnSalvar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -269,18 +268,19 @@ public class CadastroDepartamentos extends JFrame {
 
 			}
 		});
-		
+
 		lblBack = new JLabel("");
 		lblBack.setIcon(new ImageIcon(CadastroDepartamentos.class.getResource("/imgs/backdepartamento.png")));
 		lblBack.setBounds(0, 202, 795, 276);
 		panel.add(lblBack);
-		
+
 		btnLogout = new JButton("");
 		btnLogout.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				btnLogout.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/iconlogout2.0.sobre.png")));
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				btnLogout.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/iconlogout2.0.png")));
@@ -296,13 +296,15 @@ public class CadastroDepartamentos extends JFrame {
 		btnLogout.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				new Inicio().setVisible(true);
-				
+				if (lblTitulo.getText().equals("Atualizar Departamento")) {
+					dispose();
+				} else {
+					dispose();
+					new Inicio().setVisible(true);
+				}
 			}
 		});
 
-		
 	}
 
 	private void cadastrarDep() {
@@ -312,9 +314,15 @@ public class CadastroDepartamentos extends JFrame {
 		departamento.setNome(txtNome.getText());
 
 		try {
-			new DepartamentoController().cadastrarDepartamento(departamento);
+
+			if (lblTitulo.getText().equals("Atualizar Departamento")) {
+				new DepartamentoController().alterarDepartamentos(departamento);
+			} else {
+				new DepartamentoController().cadastrarDepartamento(departamento);
+			}
+
 			lblConfirmacao.setVisible(true);
-			
+
 			Timer timer = new Timer();
 			TimerTask task = new TimerTask() {
 
@@ -323,11 +331,13 @@ public class CadastroDepartamentos extends JFrame {
 					if (contCpfInvalido == -1) {
 						timer.cancel();
 						lblConfirmacao.setVisible(false);
+						if (lblTitulo.getText().equals("Atualizar Departamento"))
+							dispose();
 					}
 				}
 			};
 			timer.scheduleAtFixedRate(task, 1000, 1000);
-			
+
 			limparTelas();
 		} catch (ClassNotFoundException e) {
 			JOptionPane.showMessageDialog(null, "Erro interno do sistema");
@@ -340,5 +350,19 @@ public class CadastroDepartamentos extends JFrame {
 		txtCodigo.setText("");
 		txtLocalizacao.setText("");
 		txtNome.setText("");
+	}
+
+	public void alterarDepartamento(int codigo) {
+		try {
+			lblTitulo.setText("Atualizar Departamento");
+			Departamentos departamento = new DepartamentoController().retornaDepartamento(codigo);
+			txtCodigo.setText(String.valueOf(departamento.getCodigo()));
+			txtLocalizacao.setText(departamento.getLocalizacao());
+			txtNome.setText(departamento.getNome());
+		} catch (SQLException e) {
+
+		} catch (ClassNotFoundException e) {
+
+		}
 	}
 }

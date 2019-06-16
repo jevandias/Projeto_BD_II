@@ -187,7 +187,7 @@ public class CadastroDependentes extends JFrame {
 			@Override
 			public void focusLost(FocusEvent arg0) {
 				String cep = txtCep.getText().replace("     -   ", "");
-				if(!cep.equals("")) {
+				if (!cep.equals("")) {
 					ConsultaCep consultaCep = new ConsultaCep(cep);
 					txtRua.setText(consultaCep.getLogradouro());
 					txtBairro.setText(consultaCep.getBairro());
@@ -195,10 +195,10 @@ public class CadastroDependentes extends JFrame {
 					txtUf.setText(consultaCep.getEstado());
 				}
 			}
-			
+
 			@Override
 			public void focusGained(FocusEvent arg0) {
-				
+
 			}
 		});
 
@@ -459,8 +459,12 @@ public class CadastroDependentes extends JFrame {
 		btnLogout.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new Inicio().setVisible(true);
-				dispose();
+				if (lblTitulo.getText().equals("Atualizar Dependentes")) {
+					dispose();
+				} else {
+					new Inicio().setVisible(true);
+					dispose();
+				}
 			}
 		});
 	}
@@ -479,7 +483,14 @@ public class CadastroDependentes extends JFrame {
 		dependentes.setParentesco(txtParentesco.getText());
 
 		try {
-			new DependentesController().cadastrarDependente(dependentes);
+
+			if (lblTitulo.getText().equals("Atualizar Dependentes")) {
+				lblConfirmacao.setText("Atualizado com sucesso");
+				new DependentesController().alterarDependentes(dependentes);
+			} else {
+				new DependentesController().cadastrarDependente(dependentes);
+			}
+
 			limparTelas();
 			lblConfirmacao.setVisible(true);
 			Timer timer = new Timer(); // new timer
@@ -491,6 +502,8 @@ public class CadastroDependentes extends JFrame {
 					if (contCpfInvalido == -1) {
 						timer.cancel();
 						lblConfirmacao.setVisible(false);
+						if (lblTitulo.getText().equals("Atualizar Dependentes"))
+							dispose();
 					}
 				}
 			};
@@ -512,5 +525,29 @@ public class CadastroDependentes extends JFrame {
 		txtNumero.setText("");
 		txtUf.setText("");
 		txtParentesco.setText("");
+	}
+
+	public void alterarDependente(int codigo) {
+
+		try {
+			lblTitulo.setText("Atualizar Dependentes");
+			Dependentes dependente = new DependentesController().consultarDependete(codigo);
+			lblCdigoDoDependente.setText("Código do dependente: " + dependente.getCodigo());
+			codDependente = dependente.getCodigo();
+			txtNome.setText(dependente.getNome());
+			comboBox.setSelectedItem(String.valueOf(dependente.getCpf_funcionario()));
+			txtCep.setText(String.valueOf(dependente.getCep()));
+			txtRua.setText(dependente.getRua());
+			txtCidade.setText(dependente.getCidade());
+			txtBairro.setText(dependente.getBairro());
+			txtNumero.setText(String.valueOf(dependente.getNumeroEnd()));
+			txtUf.setText(dependente.getUf());
+			txtParentesco.setText(dependente.getParentesco());
+		} catch (SQLException e) {
+
+		} catch (ClassNotFoundException e) {
+
+		}
+
 	}
 }

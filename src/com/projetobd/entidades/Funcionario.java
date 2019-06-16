@@ -7,6 +7,7 @@ public class Funcionario {
 	private String rua;
 	private String bairro;
 	private int numeroEnd;
+	private long cep;
 	private String cidade;
 	private String uf;
 	private long telefone;
@@ -18,14 +19,16 @@ public class Funcionario {
 	public Funcionario() {
 	}
 
-	public Funcionario(long cpf, String nome, String rua, String bairro, int numeroEnd, String cidade, String uf,
-			long telefone, double salario, int codigo_departamento, int codigo_departamentoGerenciar, int senha) {
+	public Funcionario(long cpf, String nome, String rua, String bairro, int numeroEnd, long cep, String cidade,
+			String uf, long telefone, double salario, int codigo_departamento, int codigo_departamentoGerenciar,
+			int senha) {
 		super();
 		this.cpf = cpf;
 		this.nome = nome;
 		this.rua = rua;
 		this.bairro = bairro;
 		this.numeroEnd = numeroEnd;
+		this.cep = cep;
 		this.cidade = cidade;
 		this.uf = uf;
 		this.telefone = telefone;
@@ -75,6 +78,14 @@ public class Funcionario {
 		this.numeroEnd = numeroEnd;
 	}
 
+	public long getCep() {
+		return cep;
+	}
+
+	public void setCep(long cep) {
+		this.cep = cep;
+	}
+
 	public String getCidade() {
 		return cidade;
 	}
@@ -122,11 +133,11 @@ public class Funcionario {
 	public void setCodigo_departamentoGerenciar(int codigo_departamentoGerenciar) {
 		this.codigo_departamentoGerenciar = codigo_departamentoGerenciar;
 	}
-	
+
 	public int getSenha() {
 		return this.senha;
 	}
-	
+
 	public void setSenha(int senha) {
 		this.senha = senha;
 	}

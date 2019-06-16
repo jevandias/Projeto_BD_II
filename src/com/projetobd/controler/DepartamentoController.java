@@ -31,8 +31,11 @@ public class DepartamentoController {
 	}
 	
 	public int consultaDep(String nomeDep) throws SQLException {
-		
 		return departamentoDao.consultaDep(nomeDep);
+	}
+	
+	public Departamentos retornaDepartamento(int codigo)throws SQLException {
+		return departamentoDao.retornaDepartamento(codigo);
 	}
 	
 	public int recuperarId() throws SQLException {

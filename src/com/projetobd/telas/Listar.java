@@ -49,6 +49,8 @@ public class Listar extends JFrame implements MouseListener, ListSelectionListen
 	private DefaultTableModel modeloTabela;
 	private JButton btnAlterar;
 	private JButton btnExcluir;
+	private int flag = 0; // Quando a flag for 1 - DEPARTAMENTO, 2 - FUNCIONARIO, 3 - PROJETO, 4 -
+							// DEPENDENTES
 
 	public Listar() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -166,9 +168,23 @@ public class Listar extends JFrame implements MouseListener, ListSelectionListen
 		btnAlterar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				CadastroProjetos cadProjetos = new CadastroProjetos();
-				cadProjetos.setVisible(true);
-				cadProjetos.alterarProjeto((int) table.getValueAt(table.getSelectedRow(), 0));
+				if (flag == 1) {
+					CadastroDepartamentos cadDepartamento = new CadastroDepartamentos();
+					cadDepartamento.setVisible(true);
+					cadDepartamento.alterarDepartamento((int) table.getValueAt(table.getSelectedRow(), 0));
+				} else if (flag == 2) {
+					CadastroFuncionario cadFuncionario = new CadastroFuncionario();
+					cadFuncionario.setVisible(true);
+					cadFuncionario.atualizarFuncionario((long) table.getValueAt(table.getSelectedRow(), 0));
+				} else if (flag == 3) {
+					CadastroProjetos cadProjetos = new CadastroProjetos();
+					cadProjetos.setVisible(true);
+					cadProjetos.alterarProjeto((int) table.getValueAt(table.getSelectedRow(), 0));
+				} else if (flag == 4) {
+					CadastroDependentes cadDependentes = new CadastroDependentes();
+					cadDependentes.setVisible(true);
+					cadDependentes.alterarDependente((int) table.getValueAt(table.getSelectedRow(), 0));
+				}
 			}
 		});
 
@@ -181,35 +197,55 @@ public class Listar extends JFrame implements MouseListener, ListSelectionListen
 		btnExcluir.addMouseListener(this);
 		pane6.add(btnExcluir);
 		btnExcluir.setVisible(false);
+		btnExcluir.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					if (flag == 1) {
+						new DepartamentoController().excluir((int) table.getValueAt(table.getSelectedRow(), 0));
+						modeloTabela.removeRow(table.getSelectedRow());
+					} else if (flag == 2) {
+						new FuncionarioController()
+								.excluirFuncionario((long) table.getValueAt(table.getSelectedRow(), 0));
+						modeloTabela.removeRow(table.getSelectedRow());
+					} else if (flag == 3) {
+						new ProjetosController().excluirProjetos((int) table.getValueAt(table.getSelectedRow(), 0));
+						modeloTabela.removeRow(table.getSelectedRow());
+					} else if (flag == 4) {
+						new DependentesController().excluirDependentes((int) table.getValueAt(table.getSelectedRow(), 0));
+						modeloTabela.removeRow(table.getSelectedRow());
+					}
+				} catch (ClassNotFoundException e1) {
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (e.getSource() == btnListarDepartamentos || lblDepartamentoIcon == e.getSource()) {
 			lblDepartamentoIcon.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/icondepartamento.clik.png")));
+			flag = 1;
 			listaDepartamentos();
 		} else if (e.getSource() == btnListarFuncionario || lblFuncionarioIcon == e.getSource()) {
 			lblFuncionarioIcon.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/iconfuncionario.clik.png")));
 			listaFuncionarios();
+			flag = 2;
 		} else if (e.getSource() == btnListarProjeto || lblProjetoIcon == e.getSource()) {
 			lblProjetoIcon.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/iconprojeto.clik.png")));
 			listaProjetos();
+			flag = 3;
 		} else if (e.getSource() == btnListarDependentes || lblDependentesIcon == e.getSource()) {
 			lblDependentesIcon.setIcon(new ImageIcon(Inicio.class.getResource("/imgs/icondependentes.clik.png")));
 			listaDependentes();
+			flag = 4;
 		} else if (e.getSource() == btnAlterar) {
 			btnAlterar.setIcon(new ImageIcon(Listar.class.getResource("/imgs/iconatualizar.clik.png")));
 		} else if (e.getSource() == btnExcluir) {
 			btnExcluir.setIcon(new ImageIcon(Listar.class.getResource("/imgs/iconexcluir.clik.png")));
-			try {
-				new ProjetosController().excluirProjetos((int) table.getValueAt(table.getSelectedRow(), 0));
-			} catch (ClassNotFoundException e1) {
-				e1.printStackTrace();
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
-			modeloTabela.removeRow(table.getSelectedRow());
-
 		}
 
 	}

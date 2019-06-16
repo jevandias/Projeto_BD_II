@@ -43,12 +43,13 @@ public class DependentesDao {
 	}
 
 	public List<Dependentes> listar() throws SQLException {
-		String sql = "SELECT d.nome, d.rua, d.bairro, d.numero, d.cidade, d.uf, d.parentesco, f.nome as nome_funcionario FROM funcionarios f INNER JOIN funcionarios_dependentes fd ON fd.cpf_funcionario = f.cpf INNER JOIN dependentes d ON d.codigo = fd.codigo_dependentes";
+		String sql = "SELECT d.codigo, d.nome, d.rua, d.bairro, d.numero, d.cidade, d.uf, d.parentesco, f.nome as nome_funcionario FROM funcionarios f INNER JOIN funcionarios_dependentes fd ON fd.cpf_funcionario = f.cpf INNER JOIN dependentes d ON d.codigo = fd.codigo_dependentes";
 		PreparedStatement prepare = con.prepareStatement(sql);
 		ResultSet result = prepare.executeQuery();
 		listDependentes = new ArrayList<Dependentes>();
 		while (result.next()) {
 			dependentes = new Dependentes();
+			dependentes.setCodigo(result.getInt("codigo"));
 			dependentes.setNome(result.getString("nome"));
 			dependentes.setRua(result.getString("rua"));
 			dependentes.setBairro(result.getString("bairro"));
@@ -73,6 +74,7 @@ public class DependentesDao {
 		prepare.setString(6, dependentes.getUf());
 		prepare.setString(7, dependentes.getParentesco());
 		prepare.setInt(8, dependentes.getCodigo());
+		System.out.println(prepare);
 		prepare.executeUpdate();
 		prepare.close();
 	}
@@ -97,5 +99,29 @@ public class DependentesDao {
 			codDependente = 1;
 		}
 		return codDependente;
+	}
+
+	public Dependentes consultarDependete(int codigo) throws SQLException{
+		String sql = "SELECT d.codigo, d.nome, d.cep, d.rua, d.bairro, d.cidade, d.uf, f.cpf, d.numero, d.parentesco FROM dependentes d INNER JOIN funcionarios_dependentes fd ON fd.codigo_dependentes = d.codigo INNER JOIN funcionarios f ON f.cpf = fd.cpf_funcionario WHERE codigo = ?";
+		PreparedStatement prepare = con.prepareStatement(sql);
+		prepare.setInt(1, codigo);
+		ResultSet result = prepare.executeQuery();
+		Dependentes dependente = null;
+		
+		if(result.next()) {
+			dependente = new Dependentes();
+			dependente.setCodigo(result.getInt("codigo"));
+			dependente.setNome(result.getString("nome"));
+			dependente.setCep(result.getLong("cep"));
+			dependente.setRua(result.getString("rua"));
+			dependente.setBairro(result.getString("bairro"));
+			dependente.setCidade(result.getString("cidade"));
+			dependente.setUf(result.getString("uf"));
+			dependente.setCpfFuncionario(result.getLong("cpf"));
+			dependente.setNumeroEnd(result.getInt("numero"));
+			dependente.setParentesco(result.getString("parentesco"));
+		}
+		
+		return dependente;
 	}
 }

@@ -274,11 +274,12 @@ public class CadastroProjetos extends JFrame {
 						listCpfFunc.add(Long.parseLong(tblFuncionario.getValueAt(i, 0).toString()));
 					}
 					projeto.setCpf_funcionario(listCpfFunc);
-					
-					if(lblCadastroDeProjetos.getText().equals("Cadastro de Projetos")) {
+
+					if (lblCadastroDeProjetos.getText().equals("Cadastro de Projetos")) {
 						projetosController.cadastrarProjeto(projeto);
-					}else {
+					} else {
 						projetosController.alterarProjetos(projeto);
+						lblConfirmacao.setText("Atualizado com sucesso");
 					}
 					lblConfirmacao.setVisible(true);
 
@@ -291,6 +292,8 @@ public class CadastroProjetos extends JFrame {
 							if (contador == -1) {
 								timer.cancel();
 								lblConfirmacao.setVisible(false);
+								if (lblCadastroDeProjetos.getText().equals("Atualizar Projeto"))
+									dispose();
 							}
 						}
 					};
@@ -464,9 +467,11 @@ public class CadastroProjetos extends JFrame {
 		btnLogout.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new Inicio().setVisible(true);
-				dispose();
-
+				if (lblCadastroDeProjetos.getText().equals("Atualizar Projeto"))
+					dispose();
+				else
+					new Inicio().setVisible(true);
+					dispose();
 			}
 		});
 
@@ -494,23 +499,22 @@ public class CadastroProjetos extends JFrame {
 		try {
 			lblCadastroDeProjetos.setText("Atualizar Projeto");
 			Projetos projeto = new ProjetosController().buscarProjeto(numero);
-			
+
 			txtNome.setText(projeto.getNome());
 			txtNumero.setText(String.valueOf(projeto.getNumero()));
-			System.out.println(projeto.getVerba());
-			txtVerba.setText(String.valueOf(projeto.getVerba()));
+			txtVerba.setText(String.format("%.2f",projeto.getVerba()));
 			txtHoras.setText(String.valueOf(projeto.getHora()));
 			txtTipo.setText(projeto.getTipo());
 			cbxDepartamento.setSelectedIndex(projeto.getCod_departamento());
-			for(Long cpf : projeto.getCpf_funcionario()) {
-				model.addRow(new Object[] {cpf});
+			for (Long cpf : projeto.getCpf_funcionario()) {
+				model.addRow(new Object[] { cpf });
 			}
 			tblFuncionario.setModel(model);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}		
+		}
 	}
 
 	private void limparTela() {

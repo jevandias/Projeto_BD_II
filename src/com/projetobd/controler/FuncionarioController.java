@@ -21,15 +21,19 @@ public class FuncionarioController {
 		return funcionarioDao.listar();
 	}
 	
-	public void alterarFuncionario(Funcionario funcionario) {
-		
+	public void alterarFuncionario(Funcionario funcionario) throws SQLException {
+		funcionarioDao.alterar(funcionario);
 	}
 	
-	public void excluirFuncionario(int cpf) {
-		
+	public void excluirFuncionario(long cpf) throws SQLException {
+		funcionarioDao.excluir(cpf);
 	}
 	
 	public Funcionario validarSessao(String login, String senha)throws SQLException {
 		return funcionarioDao.validarSessao(login, senha);
+	}
+
+	public Funcionario buscarFuncionario(long cpf) throws SQLException {
+		return funcionarioDao.buscar(cpf);
 	}
 }
