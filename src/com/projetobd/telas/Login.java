@@ -2,6 +2,7 @@ package com.projetobd.telas;
 
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
@@ -9,12 +10,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JRootPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 import javax.swing.WindowConstants;
 
 import java.awt.Font;
@@ -24,6 +28,7 @@ import com.projetobd.controler.FuncionarioController;
 import com.projetobd.controler.FuncionarioLogado;
 import com.projetobd.entidades.Funcionario;
 
+import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.SwingWorker;
@@ -112,6 +117,8 @@ public class Login extends JFrame implements ActionListener {
 		limparTxtField();
 		getContentPane().setLayout(null);
 
+		listenButton();
+
 		btnEntrar = new JButton();
 		btnEntrar.setFocusable(false);
 		btnEntrar.setBounds(138, 260, 69, 26);
@@ -142,7 +149,6 @@ public class Login extends JFrame implements ActionListener {
 				
 			}
 		});
-
 		btnEntrar.addActionListener(this);
 
 		getContentPane().add(jPanel1);
@@ -270,9 +276,10 @@ public class Login extends JFrame implements ActionListener {
 		} else {
 			try {
 				funcionario = new FuncionarioController().validarSessao(usuario, senha);
-
 				if (funcionario != null) {
 					FuncionarioLogado.nome = funcionario.getNome();
+					dispose();
+					new Inicio().setVisible(true);
 				} else {
 					lblErro.setText("");
 					lblErro.setText("Usuario e/ou senha invalidos");
@@ -286,5 +293,24 @@ public class Login extends JFrame implements ActionListener {
 				lblErro.setText("Erro de banco de dados");
 			}
 		}
+	}
+
+	private void listenButton() {
+		JRootPane enter = getRootPane();
+		enter.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "ENTER");
+		enter.getRootPane().getActionMap().put("ENTER", new AbstractAction("ENTER") {
+
+			private static final long serialVersionUID = 1L;
+
+			public void actionPerformed(ActionEvent e) {
+
+				if (txtUsuario.hasFocus()) {
+					txtUsuario.transferFocus();
+				} else if (txtPwd.hasFocus()) {
+					btnEntrar.doClick();
+					btnEntrar.transferFocus();
+				}
+			}
+		});
 	}
 }

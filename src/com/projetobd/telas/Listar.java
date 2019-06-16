@@ -202,17 +202,32 @@ public class Listar extends JFrame implements MouseListener, ListSelectionListen
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					if (flag == 1) {
-						new DepartamentoController().excluir((int) table.getValueAt(table.getSelectedRow(), 0));
-						modeloTabela.removeRow(table.getSelectedRow());
+						int confirmacao = JOptionPane.showConfirmDialog(null,
+								"Ao excuir o departamento você estará excluindo todos os projetos ligados a ele, confirmar exclusão ?",
+								"Excluir Departamentos", JOptionPane.YES_NO_OPTION);
+						if (confirmacao == JOptionPane.YES_OPTION) {
+							new DepartamentoController().excluir((int) table.getValueAt(table.getSelectedRow(), 0));
+							modeloTabela.removeRow(table.getSelectedRow());
+						} else {
+							return;
+						}
 					} else if (flag == 2) {
-						new FuncionarioController()
-								.excluirFuncionario((long) table.getValueAt(table.getSelectedRow(), 0));
-						modeloTabela.removeRow(table.getSelectedRow());
+						int confirmacao = JOptionPane.showConfirmDialog(null,
+								"Ao excuir o funcionario você estará excluindo todos os dependentes ligados a ele, confirmar exclusão ?",
+								"Excluir Departamentos", JOptionPane.YES_NO_OPTION);
+						if (confirmacao == JOptionPane.YES_OPTION) {
+							new FuncionarioController()
+									.excluirFuncionario((long) table.getValueAt(table.getSelectedRow(), 0));
+							modeloTabela.removeRow(table.getSelectedRow());
+						} else {
+							dispose();
+						}
 					} else if (flag == 3) {
 						new ProjetosController().excluirProjetos((int) table.getValueAt(table.getSelectedRow(), 0));
 						modeloTabela.removeRow(table.getSelectedRow());
 					} else if (flag == 4) {
-						new DependentesController().excluirDependentes((int) table.getValueAt(table.getSelectedRow(), 0));
+						new DependentesController()
+								.excluirDependentes((int) table.getValueAt(table.getSelectedRow(), 0));
 						modeloTabela.removeRow(table.getSelectedRow());
 					}
 				} catch (ClassNotFoundException e1) {
@@ -335,8 +350,8 @@ public class Listar extends JFrame implements MouseListener, ListSelectionListen
 			modeloTabela.addColumn("Salario");
 
 			for (Funcionario funcionario : new FuncionarioController().listarFuncionario()) {
-				modeloTabela
-						.addRow(new Object[] { funcionario.getCpf(), funcionario.getNome(), String.format("R$ %.2f", funcionario.getSalario() )});
+				modeloTabela.addRow(new Object[] { funcionario.getCpf(), funcionario.getNome(),
+						String.format("R$ %.2f", funcionario.getSalario()) });
 			}
 			table.setModel(modeloTabela);
 		} catch (SQLException e) {
@@ -354,7 +369,8 @@ public class Listar extends JFrame implements MouseListener, ListSelectionListen
 			modeloTabela.addColumn("Verba");
 
 			for (Projetos projetos : new ProjetosController().listarProjetos()) {
-				modeloTabela.addRow(new Object[] { projetos.getNumero(), projetos.getNome(),  String.format("R$ %.2f",projetos.getVerba()) });
+				modeloTabela.addRow(new Object[] { projetos.getNumero(), projetos.getNome(),
+						String.format("R$ %.2f", projetos.getVerba()) });
 			}
 			table.setModel(modeloTabela);
 		} catch (SQLException e) {

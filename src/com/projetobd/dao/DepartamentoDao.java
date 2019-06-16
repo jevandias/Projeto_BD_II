@@ -54,8 +54,36 @@ public class DepartamentoDao {
 	}
 
 	public void excluir(int codigo) throws SQLException {
+		
+		String consultaProjeto = "SELECT numero FROM projetos WHERE codigo_departamento = ?;";
+		PreparedStatement prepare = con.prepareStatement(consultaProjeto);
+		prepare.setInt(1, codigo);
+		ResultSet result = prepare.executeQuery();
+		List<Integer> listaProjetos = new ArrayList<>();
+		while(result.next()) {
+			int numeroProjeto = result.getInt("numero");
+			listaProjetos.add(numeroProjeto);
+		}
+		prepare.close();
+		
+		String deleteProjeto = "DELETE FROM projetos WHERE numero=?";
+		prepare = con.prepareStatement(deleteProjeto);
+		for(int i = 0; i < listaProjetos.size(); i++) {
+			prepare.setInt(1, listaProjetos.get(i));
+			prepare.execute();
+		}
+		prepare.close();
+		
+		String deleteProjetoFunc = "DELETE FROM funcionarios_projetos WHERE numero_projeto=?";
+		prepare = con.prepareStatement(deleteProjetoFunc);
+		for(int i = 0; i < listaProjetos.size(); i++) {
+			prepare.setInt(1, listaProjetos.get(i));
+			prepare.execute();
+		}
+		prepare.close();
+		
 		String sql = "DELETE FROM departamentos WHERE codigo = ?;";
-		PreparedStatement prepare = con.prepareStatement(sql);
+		prepare = con.prepareStatement(sql);
 		prepare.setInt(1, codigo);
 		prepare.execute();
 		prepare.close();

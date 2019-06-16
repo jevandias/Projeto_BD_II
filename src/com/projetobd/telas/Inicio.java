@@ -4,6 +4,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.projetobd.controler.FuncionarioLogado;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
@@ -76,8 +78,7 @@ public class Inicio extends JFrame implements MouseListener {
 		lblBemVindo.setBounds(560, 11, 92, 24);
 		panel.add(lblBemVindo);
 
-		lblUsuarioLogado = new JLabel();
-		lblUsuarioLogado.setText("Usuário");
+		lblUsuarioLogado = new JLabel(FuncionarioLogado.nome);
 		lblUsuarioLogado.setBounds(663, 16, 79, 14);
 		panel.add(lblUsuarioLogado);
 
