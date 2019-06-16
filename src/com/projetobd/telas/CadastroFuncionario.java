@@ -7,12 +7,15 @@ import javax.swing.JLabel;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.URL;
 import java.sql.SQLException;
 
 import javax.swing.JSeparator;
@@ -87,8 +90,10 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 	private JButton btnLogout;
 	private JLabel lblCpfInvalido;
 	private int contCpfInvalido = 0;
+	private JButton button;
 
 	public CadastroFuncionario() {
+		setIconImage(getIconIamge());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 798, 478);
 		setUndecorated(true);
@@ -455,6 +460,20 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 
 			}
 		});
+		
+		button = new JButton("Listar");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new Listar().setVisible(true);
+				dispose();
+			}
+		});
+		button.setHorizontalAlignment(SwingConstants.LEFT);
+		button.setForeground(Color.BLACK);
+		button.setBorder(null);
+		button.setBackground(Color.WHITE);
+		button.setBounds(15, 455, 57, 23);
+		pane3.add(button);
 
 		lblfuncinario = new JLabel();
 		lblfuncinario.setIcon(new ImageIcon(CadastroFuncionario.class.getResource("/imgs/backfuncionario.png")));
@@ -629,5 +648,11 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 		txtUf.setText("");
 		txtTelefone.setText("");
 		txtSenha.setText("");
+	}
+	
+	public Image getIconIamge() {
+		URL url = this.getClass().getResource("/imgs/iconexe.png");
+		Image Icone = Toolkit.getDefaultToolkit().getImage(url);
+		return Icone;
 	}
 }

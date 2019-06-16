@@ -6,6 +6,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -15,6 +17,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.URL;
 
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
@@ -77,8 +80,10 @@ public class CadastroDependentes extends JFrame {
 	private JSeparator separatorCpf;
 	private JLabel lblCpfFuncionario;
 	private JButton btnInici;
+	private JButton button;
 
 	public CadastroDependentes() {
+		setIconImage(getIconIamge());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 798, 478);
 		setUndecorated(true);
@@ -429,6 +434,20 @@ public class CadastroDependentes extends JFrame {
 		btnCadastroDependentes.setBackground(Color.WHITE);
 		btnCadastroDependentes.setBounds(15, 433, 162, 23);
 		pane2.add(btnCadastroDependentes);
+		
+		button = new JButton("Listar");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new Listar().setVisible(true);
+				dispose();
+			}
+		});
+		button.setHorizontalAlignment(SwingConstants.LEFT);
+		button.setForeground(Color.BLACK);
+		button.setBorder(null);
+		button.setBackground(Color.WHITE);
+		button.setBounds(15, 455, 57, 23);
+		pane2.add(button);
 
 		lblBack = new JLabel("");
 		lblBack.setVerticalAlignment(SwingConstants.BOTTOM);
@@ -549,5 +568,11 @@ public class CadastroDependentes extends JFrame {
 
 		}
 
+	}
+	
+	public Image getIconIamge() {
+		URL url = this.getClass().getResource("/imgs/iconexe.png");
+		Image Icone = Toolkit.getDefaultToolkit().getImage(url);
+		return Icone;
 	}
 }

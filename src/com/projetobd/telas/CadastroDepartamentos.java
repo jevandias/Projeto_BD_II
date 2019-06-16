@@ -8,10 +8,13 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -56,6 +59,7 @@ public class CadastroDepartamentos extends JFrame {
 	private int contCpfInvalido = 0;
 
 	public CadastroDepartamentos() {
+		setIconImage(getIconIamge());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 798, 478);
 		setUndecorated(true);
@@ -268,6 +272,20 @@ public class CadastroDepartamentos extends JFrame {
 
 			}
 		});
+		
+		JButton btnListar = new JButton("Listar");
+		btnListar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new Listar().setVisible(true);
+				dispose();
+			}
+		});
+		btnListar.setHorizontalAlignment(SwingConstants.LEFT);
+		btnListar.setForeground(Color.BLACK);
+		btnListar.setBorder(null);
+		btnListar.setBackground(Color.WHITE);
+		btnListar.setBounds(15, 455, 57, 23);
+		panel.add(btnListar);
 
 		lblBack = new JLabel("");
 		lblBack.setIcon(new ImageIcon(CadastroDepartamentos.class.getResource("/imgs/backdepartamento.png")));
@@ -364,5 +382,11 @@ public class CadastroDepartamentos extends JFrame {
 		} catch (ClassNotFoundException e) {
 
 		}
+	}
+	
+	public Image getIconIamge() {
+		URL url = this.getClass().getResource("/imgs/iconexe.png");
+		Image Icone = Toolkit.getDefaultToolkit().getImage(url);
+		return Icone;
 	}
 }

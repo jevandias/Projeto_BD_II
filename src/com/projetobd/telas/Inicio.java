@@ -10,6 +10,8 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,6 +21,7 @@ import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.net.URL;
 
 public class Inicio extends JFrame implements MouseListener {
 
@@ -45,6 +48,7 @@ public class Inicio extends JFrame implements MouseListener {
 	private JButton btnlistar;
 
 	public Inicio() {
+		setIconImage(getIconIamge());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 479);
 		setUndecorated(true);
@@ -318,5 +322,12 @@ public class Inicio extends JFrame implements MouseListener {
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 
+	}
+	
+
+	public Image getIconIamge() {
+		URL url = this.getClass().getResource("/imgs/iconexe.png");
+		Image Icone = Toolkit.getDefaultToolkit().getImage(url);
+		return Icone;
 	}
 }

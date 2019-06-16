@@ -5,6 +5,7 @@ import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.net.URL;
 import java.sql.SQLException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -22,6 +23,8 @@ import javax.swing.KeyStroke;
 import javax.swing.WindowConstants;
 
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.Dimension;
 
 import com.projetobd.controler.FuncionarioController;
@@ -57,6 +60,7 @@ public class Login extends JFrame implements ActionListener {
 	}
 
 	private void initComponents() {
+		setIconImage(getIconIamge());
 		setUndecorated(true);
 		jPanel1 = new JPanel();
 		jPanel1.setBounds(180, 90, 350, 310);
@@ -312,5 +316,12 @@ public class Login extends JFrame implements ActionListener {
 				}
 			}
 		});
+	}
+	
+	public Image getIconIamge() {
+		URL url = this.getClass().getResource("/imgs/iconexe.png");
+		Image Icone = Toolkit.getDefaultToolkit().getImage(url);
+		return Icone;
+		
 	}
 }

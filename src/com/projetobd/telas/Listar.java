@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.net.URL;
 import java.sql.SQLException;
 
 import javax.swing.JFrame;
@@ -28,6 +29,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
+
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
 
@@ -53,6 +57,7 @@ public class Listar extends JFrame implements MouseListener, ListSelectionListen
 							// DEPENDENTES
 
 	public Listar() {
+		setIconImage(getIconIamge());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 798, 478);
 		setUndecorated(true);
@@ -406,5 +411,12 @@ public class Listar extends JFrame implements MouseListener, ListSelectionListen
 			btnAlterar.setVisible(true);
 			btnExcluir.setVisible(true);
 		}
+	}
+	
+
+	public Image getIconIamge() {
+		URL url = this.getClass().getResource("/imgs/iconexe.png");
+		Image Icone = Toolkit.getDefaultToolkit().getImage(url);
+		return Icone;
 	}
 }

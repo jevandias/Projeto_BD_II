@@ -6,10 +6,13 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.URL;
 import java.sql.SQLException;
 
 import javax.swing.JSeparator;
@@ -81,8 +84,10 @@ public class CadastroProjetos extends JFrame {
 	private JButton btnAdicionar;
 	private JTable tblFuncionario;
 	private JScrollPane scrollPane;
+	private JButton button;
 
 	public CadastroProjetos() {
+		setIconImage(getIconIamge());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 798, 478);
 		setLocationRelativeTo(null);
@@ -437,6 +442,20 @@ public class CadastroProjetos extends JFrame {
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
+		
+		button = new JButton("Listar");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new Listar().setVisible(true);
+				dispose();
+			}
+		});
+		button.setHorizontalAlignment(SwingConstants.LEFT);
+		button.setForeground(Color.BLACK);
+		button.setBorder(null);
+		button.setBackground(Color.WHITE);
+		button.setBounds(15, 455, 57, 23);
+		pane4.add(button);
 
 		lblBack = new JLabel();
 		lblBack.setIcon(new ImageIcon(CadastroProjetos.class.getResource("/imgs/backprojetos.png")));
@@ -525,5 +544,11 @@ public class CadastroProjetos extends JFrame {
 		txtTipo.setText("");
 		cbxDepartamento.setSelectedItem("");
 		cbxFuncionario.setSelectedItem("");
+	}
+	
+	public Image getIconIamge() {
+		URL url = this.getClass().getResource("/imgs/iconexe.png");
+		Image Icone = Toolkit.getDefaultToolkit().getImage(url);
+		return Icone;
 	}
 }
