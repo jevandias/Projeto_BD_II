@@ -26,6 +26,7 @@ import com.projetobd.entidades.Funcionario;
 
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+import javax.swing.SwingWorker;
 
 public class Login extends JFrame implements ActionListener {
 
@@ -43,6 +44,7 @@ public class Login extends JFrame implements ActionListener {
 	private JTextField txtUsuario;
 	private JButton btnEntrar;
 	private JLabel lblErro;
+	private JLabel lblLoading;
 
 	public Login() {
 
@@ -86,7 +88,7 @@ public class Login extends JFrame implements ActionListener {
 		lblLogo.setFocusable(false);
 
 		txtUsuario.setBackground(new java.awt.Color(255, 255, 255));
-		txtUsuario.setText("Usuário");
+		txtUsuario.setText("Usu\u00E1rio");
 		txtUsuario.setBorder(null);
 		txtUsuario.setForeground(new Color(204, 204, 204));
 
@@ -112,7 +114,7 @@ public class Login extends JFrame implements ActionListener {
 
 		btnEntrar = new JButton();
 		btnEntrar.setFocusable(false);
-		btnEntrar.setBounds(138, 249, 69, 26);
+		btnEntrar.setBounds(138, 260, 69, 26);
 		btnEntrar.setIcon(new ImageIcon(Login.class.getResource("/imgs/entrar.png")));
 		btnEntrar.setBackground(Color.WHITE);
 		btnEntrar.addMouseListener(new MouseListener() {
@@ -137,6 +139,7 @@ public class Login extends JFrame implements ActionListener {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				
 			}
 		});
 
@@ -178,13 +181,35 @@ public class Login extends JFrame implements ActionListener {
 		lblErro.setBounds(10, 285, 330, 14);
 		lblErro.setForeground(Color.RED);
 		jPanel1.add(lblErro);
+		
+		lblLoading = new JLabel("");
+		lblLoading.setIcon(new ImageIcon("C:\\Users\\posit\\OneDrive\\Área de Trabalho\\Ellipsis-2.7s-34px.gif"));
+		lblLoading.setBounds(155, 229, 34, 33);
+		jPanel1.add(lblLoading);
+		lblLoading.setVisible(false);
+		
+		
+		
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnFechar) {
 			dispose();
 		} else if (e.getSource() == btnEntrar) {
-			validarSessao();
+			lblLoading.setVisible(true);
+			new SwingWorker<Object, Object>() {
+				
+				@Override
+				protected Object doInBackground() throws Exception {
+					Thread.sleep(2000);
+					validarSessao();
+					return null;
+				} @Override
+				protected void done() {
+					lblLoading.setVisible(false);
+					super.done();
+				}
+			}.execute();;
 		}
 	}
 
@@ -230,8 +255,10 @@ public class Login extends JFrame implements ActionListener {
 			}
 		});
 	}
+	
 
 	private void validarSessao() {
+	
 		String usuario = txtUsuario.getText();
 		String senha = new String(txtPwd.getPassword());
 		Funcionario funcionario;
