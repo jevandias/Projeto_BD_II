@@ -12,12 +12,13 @@ public class Dependentes {
 	private String cidade;
 	private String uf;
 	private String parentesco;
+	private String nome_funcionario;
 
 	public Dependentes() {
 	}
 
 	public Dependentes(int codigo, String nome, String rua, String bairro, int numeroEnd, String cidade, String uf,
-			String parentesco) {
+			String parentesco, String nome_funcionario) {
 		super();
 		this.codigo = codigo;
 		this.nome = nome;
@@ -27,6 +28,7 @@ public class Dependentes {
 		this.cidade = cidade;
 		this.uf = uf;
 		this.parentesco = parentesco;
+		this.nome_funcionario = nome_funcionario;
 	}
 
 	public int getCodigo() {
@@ -107,5 +109,13 @@ public class Dependentes {
 
 	public void setCep(long cep) {
 		this.cep = cep;
+	}
+
+	public void setNome_funcionario(String nome_funcionario) {
+		this.nome_funcionario = nome_funcionario;
+	}
+
+	public String getNome_funcionario() {
+		return nome_funcionario;
 	}
 }

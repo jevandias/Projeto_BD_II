@@ -41,7 +41,6 @@ public class Inicio extends JFrame implements MouseListener {
 	private JButton btnCadastroDepartamentos;
 	private JLabel lblListarIcon;
 	private JButton btnlistar;
-	private JLabel lbllistarIcon;
 
 	public Inicio() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

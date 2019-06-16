@@ -29,7 +29,7 @@ public class DepartamentoDao {
 	}
 
 	public List<Departamentos> listar() throws SQLException {
-		String sql = "SELECT * FROM departamentos";
+		String sql = "SELECT * FROM departamentos ORDER BY codigo ASC";
 		PreparedStatement prepare = con.prepareStatement(sql);
 		ResultSet result = prepare.executeQuery();
 		listDepartamento = new ArrayList<Departamentos>();
@@ -87,5 +87,20 @@ public class DepartamentoDao {
 
 		return idDepartamento;
 
+	}
+
+	public Departamentos retornaDepartamento(int codigo)throws SQLException {
+		String sql = "SELECT * FROM departamentos WHERE codigo=?;";
+		PreparedStatement prepare = con.prepareStatement(sql);
+		prepare.setInt(1, codigo);
+		ResultSet result = prepare.executeQuery();
+		Departamentos departamento = null;
+		if(result.next()) {
+			departamento = new Departamentos();
+			departamento.setCodigo(result.getInt("codigo"));
+			departamento.setLocalizacao(result.getString("localizacao"));
+			departamento.setNome(result.getString("nome"));
+		}
+		return departamento;
 	}
 }

@@ -18,19 +18,23 @@ public class DependentesController {
 		dependentesDao.cadastrar(dependentes);
 	}
 
-	public List<Dependentes> listarDependentes() {
-		return null;
+	public List<Dependentes> listarDependentes() throws SQLException {
+		return dependentesDao.listar();
 	}
 
-	public void alterarDependentes(Dependentes dependentes) {
-
+	public void alterarDependentes(Dependentes dependentes) throws SQLException {
+		dependentesDao.alterar(dependentes);
 	}
 
-	public void excluirDependentes(int codigo) {
-
+	public void excluirDependentes(int codigo) throws SQLException {
+		dependentesDao.excluir(codigo);
 	}
 
 	public int recuperarId() throws SQLException {
 		return dependentesDao.recuperarId();
+	}
+
+	public Dependentes consultarDependete(int codigo) throws SQLException {
+		return dependentesDao.consultarDependete(codigo);
 	}
 }

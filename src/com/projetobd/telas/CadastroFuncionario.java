@@ -488,8 +488,12 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new Inicio().setVisible(true);
-				dispose();
+				if (lblTitulo.getText().equals("Cadastro de Funcionários")) {
+					new Inicio().setVisible(true);
+					dispose();
+				} else {
+					dispose();
+				}
 
 			}
 		});
@@ -548,6 +552,7 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 			funcionario.setCpf(Long.parseLong(txtCpf.getText().replace("-", "").replace(".", "")));
 			funcionario.setNome(txtNome.getText());
 			funcionario.setRua(txtRua.getText());
+			funcionario.setCep(Long.parseLong(txtCep.getText().replace("-", "")));
 			funcionario.setBairro(txtBairro.getText());
 			funcionario.setNumeroEnd(Integer.parseInt(txtNumero.getText()));
 			funcionario.setCidade(txtCidade.getText());
@@ -561,7 +566,12 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 
 			try {
 
-				new FuncionarioController().cadastrarFuncionario(funcionario);
+				if (lblTitulo.getText().equals("Cadastro de Funcionários")) {
+					new FuncionarioController().cadastrarFuncionario(funcionario);
+				} else {
+					new FuncionarioController().alterarFuncionario(funcionario);
+					lblConfirmacao.setText("Atualizado com sucesso");
+				}
 
 				lblConfirmacao.setVisible(true);
 
@@ -572,6 +582,8 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 						if (contCpfInvalido == -1) {
 							timer.cancel();
 							lblConfirmacao.setVisible(false);
+							if (lblTitulo.getText().equals("Atualizar Funcionário"))
+								dispose();
 						}
 					}
 				};
@@ -580,6 +592,28 @@ public class CadastroFuncionario extends JFrame implements FocusListener, Action
 			} catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
 			}
+		}
+	}
+
+	public void atualizarFuncionario(long cpf) {
+		try {
+			lblTitulo.setText("Atualizar Funcionário");
+			Funcionario funcionario = new FuncionarioController().buscarFuncionario(cpf);
+			txtNome.setText(funcionario.getNome());
+			txtCpf.setText(String.valueOf(funcionario.getCpf()));
+			txtSalario.setText(String.format("%.2f", funcionario.getSalario()));
+			txtCep.setText(String.valueOf(funcionario.getCep()));
+			txtRua.setText(funcionario.getRua());
+			txtBairro.setText(funcionario.getBairro());
+			txtNumero.setText(String.valueOf(funcionario.getNumeroEnd()));
+			txtCidade.setText(funcionario.getCidade());
+			txtUf.setText(funcionario.getUf());
+			txtTelefone.setText(String.valueOf(funcionario.getTelefone()));
+			txtSenha.setText(String.valueOf(funcionario.getSenha()));
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 
